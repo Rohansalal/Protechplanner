@@ -15,16 +15,16 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      
+
       <section className="py-20 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
           <p className="text-muted-foreground mb-8">Last updated: {new Date().toLocaleDateString()}</p>
-          
+
           <div className="prose prose-lg max-w-none">
             <h2 className="text-2xl font-semibold mt-8 mb-4">1. Information We Collect</h2>
             <p className="mb-4">
-              We collect information you provide directly to us, such as when you create an account, 
+              We collect information you provide directly to us, such as when you create an account,
               use our services, or contact us for support. This may include:
             </p>
             <ul className="list-disc pl-6 mb-6">
@@ -46,7 +46,7 @@ export default function PrivacyPolicyPage() {
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">3. Information Sharing</h2>
             <p className="mb-4">
-              We do not sell, trade, or otherwise transfer your personal information to third parties 
+              We do not sell, trade, or otherwise transfer your personal information to third parties
               without your consent, except as described in this policy:
             </p>
             <ul className="list-disc pl-6 mb-6">
@@ -58,14 +58,14 @@ export default function PrivacyPolicyPage() {
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">4. Data Security</h2>
             <p className="mb-6">
-              We implement appropriate security measures to protect your personal information against 
-              unauthorized access, alteration, disclosure, or destruction. However, no method of 
+              We implement appropriate security measures to protect your personal information against
+              unauthorized access, alteration, disclosure, or destruction. However, no method of
               transmission over the internet is 100% secure.
             </p>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">5. Data Retention</h2>
             <p className="mb-6">
-              We retain your information for as long as necessary to provide our services and fulfill 
+              We retain your information for as long as necessary to provide our services and fulfill
               the purposes outlined in this policy, unless a longer retention period is required by law.
             </p>
 
@@ -84,7 +84,7 @@ export default function PrivacyPolicyPage() {
               If you have any questions about this Privacy Policy, please contact us at:
             </p>
             <div className="bg-gray-50 p-4 rounded-lg">
-              <p>Email: info@protechplanner.us</p>
+              <p>Email: info@protechplanner.com</p>
               <p>Phone: India- +91-8377963214, USA- +1(843)888-4894</p>
             </div>
           </div>

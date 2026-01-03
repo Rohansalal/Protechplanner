@@ -245,7 +245,7 @@
 // //                     <div>
 // //                       <div className="font-semibold">Message</div>
 // //                       <div className="text-muted-foreground">
-// //                         info@protechplanner.us
+// //                         info@protechplanner.com
 // //                       </div>
 // //                     </div>
 // //                   </div>
@@ -682,7 +682,7 @@
 // //                     <div>
 // //                       <div className="font-semibold">Message</div>
 // //                       <div className="text-muted-foreground">
-// //                         info@protechplanner.us
+// //                         info@protechplanner.com
 // //                       </div>
 // //                     </div>
 // //                   </div>
@@ -901,7 +901,7 @@
 
 //     try {
 //       const fullPhoneNumber = formData.countryCode + formData.phone;
-      
+
 //       // Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
 //       const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
 //         method: "POST",
@@ -950,10 +950,10 @@
 
 //     try {
 //       const fullPhoneNumber = formData.countryCode + formData.phone;
-      
+
 //       // You need to install EmailJS: npm install @emailjs/browser
 //       // Then import: import emailjs from '@emailjs/browser';
-      
+
 //       const templateParams = {
 //         from_name: formData.name,
 //         from_email: formData.email,
@@ -974,7 +974,7 @@
 
 //       // For now, just log the data (uncomment EmailJS code above when ready)
 //       console.log('Form data to be sent via EmailJS:', templateParams);
-      
+
 //       setSubmitStatus('success');
 //       setFormData({
 //         name: "",
@@ -1001,7 +1001,7 @@
 
 //     try {
 //       const fullPhoneNumber = formData.countryCode + formData.phone;
-      
+
 //       const formDataToSend = new FormData();
 //       formDataToSend.append('form-name', 'contact');
 //       formDataToSend.append('name', formData.name);
@@ -1113,7 +1113,7 @@
 //                 <form onSubmit={handleSubmit} className="space-y-6">
 //                   {/* Hidden field for Netlify forms */}
 //                   <input type="hidden" name="form-name" value="contact" />
-                  
+
 //                   <div className="grid md:grid-cols-2 gap-4">
 //                     <div className="space-y-2">
 //                       <Label htmlFor="name">Full Name *</Label>
@@ -1489,7 +1489,7 @@ export default function ContactPage() {
 
     try {
       const fullPhoneNumber = formData.countryCode + formData.phone;
-      
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -1542,11 +1542,11 @@ export default function ContactPage() {
   };
 
   // Check if form is valid
-  const isFormValid = 
-    formData.name && 
-    formData.email && 
-    formData.phone && 
-    formData.message && 
+  const isFormValid =
+    formData.name &&
+    formData.email &&
+    formData.phone &&
+    formData.message &&
     validatePhoneNumber(formData.phone) &&
     formData.name.length >= 2 &&
     formData.message.length >= 10;
@@ -1563,7 +1563,7 @@ export default function ContactPage() {
             Get in Touch
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
-            Ready to transform your business with our virtual assistant services? 
+            Ready to transform your business with our virtual assistant services?
             Contact us today for a free consultation and let's discuss how we can help you grow.
           </p>
         </div>
@@ -1797,7 +1797,7 @@ export default function ContactPage() {
                         India: <strong>+91-8377963214</strong>
                       </div>
                       <div className="text-muted-foreground">
-                        USA: <strong>+1 (843) 888-4894</strong>
+                        USA: <strong>+1 316-844-6584</strong>
                       </div>
                     </div>
                   </div>

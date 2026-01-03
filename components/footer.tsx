@@ -346,17 +346,17 @@ export function Footer() {
                     href="tel:+18438884894"
                     className="text-slate-400 hover:text-white transition-colors"
                   >
-                    USA: +1 (843) 888-4894
+                    USA: +1 316-844-6584
                   </a>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-slate-400 flex-shrink-0" />
                 <a
-                  href="mailto:info@protechplanner.us"
+                  href="mailto:info@protechplanner.com"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
-                  info@protechplanner.us
+                  info@protechplanner.com
                 </a>
               </div>
               <div className="flex items-start gap-3">

@@ -5,7 +5,7 @@ import { ArrowRight, Clock, CheckCircle2 } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="w-full flex justify-center pt-[86px] pb-10 px-4">
+    <section className="w-full flex justify-center pt-[120px] pb-10 px-4">
       {/* --- FRAME 5 Container --- */}
       <div className="relative w-full max-w-[1332px] min-h-[548px] bg-[#D6E3FF] rounded-[8px] overflow-hidden flex items-center shadow-xl">
 

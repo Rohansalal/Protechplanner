@@ -5,12 +5,12 @@ export default function RefundPolicyPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      
+
       <section className="py-20 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold mb-8">Refund Policy</h1>
           <p className="text-muted-foreground mb-8">Last updated: {new Date().toLocaleDateString()}</p>
-          
+
           <div className="prose prose-lg max-w-none">
             <h2 className="text-2xl font-semibold mt-8 mb-4">1. Refund Eligibility</h2>
             <p className="mb-4">
@@ -60,32 +60,32 @@ export default function RefundPolicyPage() {
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">5. Refund Methods</h2>
             <p className="mb-6">
-              Refunds will be processed using the original payment method. If the original payment 
+              Refunds will be processed using the original payment method. If the original payment
               method is no longer available, alternative arrangements will be made on a case-by-case basis.
             </p>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">6. Dispute Resolution</h2>
             <p className="mb-6">
-              If you are not satisfied with our refund decision, we encourage you to contact our 
-              customer service team for further discussion. We are committed to finding fair solutions 
+              If you are not satisfied with our refund decision, we encourage you to contact our
+              customer service team for further discussion. We are committed to finding fair solutions
               for all parties involved.
             </p>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">7. Cancellation Policy</h2>
             <p className="mb-6">
-              For ongoing services, you may cancel at any time with 48 hours notice. You will be 
+              For ongoing services, you may cancel at any time with 48 hours notice. You will be
               charged for work completed up to the cancellation date.
             </p>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">8. Force Majeure</h2>
             <p className="mb-6">
-              Refunds may be considered in cases where service delivery is affected by circumstances 
+              Refunds may be considered in cases where service delivery is affected by circumstances
               beyond our control, such as natural disasters, government actions, or other force majeure events.
             </p>
 
             <h2 className="text-2xl font-semibold mt-8 mb-4">9. Quality Guarantee</h2>
             <p className="mb-6">
-              We stand behind the quality of our work. If you are not satisfied with the delivered 
+              We stand behind the quality of our work. If you are not satisfied with the delivered
               service, we will work with you to make necessary corrections before considering refund options.
             </p>
 
@@ -94,7 +94,7 @@ export default function RefundPolicyPage() {
               To initiate a refund request or discuss refund-related questions:
             </p>
             <div className="bg-gray-50 p-4 rounded-lg">
-              <p>Email: info@protechplanner.us</p>
+              <p>Email: info@protechplanner.com</p>
               <p>Phone: India- +91-8377963214, USA- +1(843)888-4894</p>
               <p>Subject Line: "Refund Request - [Your Service/Order Number]"</p>
             </div>

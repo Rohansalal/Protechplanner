@@ -1511,7 +1511,7 @@ export function Navigation() {
                 alt="ProTech Planner Logo"
                 width={380}
                 height={360}
-                className="w-auto h-[80px] object-contain"
+                className="w-auto h-12 sm:h-16 lg:h-[80px] object-contain transition-all"
                 priority
               />
             </Link>
@@ -1538,18 +1538,20 @@ export function Navigation() {
                 </Link>
 
                 {/* --- MEGA MENU CONTAINER START --- */}
-                <div className="absolute top-[100px] left-1/2 transform -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <div className="w-[1427px] h-[433px] bg-[#F1F5FF] rounded-[8px] shadow-[0px_2px_20px_rgba(33,90,205,0.2)] flex overflow-hidden">
+                <div className="absolute top-[100px] left-1/2 transform -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 px-4 w-full flex justify-center">
+                  <div className="w-[95vw] max-w-[1400px] h-auto min-h-[433px] bg-[#F1F5FF] rounded-[8px] shadow-[0px_2px_20px_rgba(33,90,205,0.2)] flex overflow-hidden">
 
                     {/* --- LEFT PANEL: CATEGORIES --- */}
                     {/* Applied 'no-scrollbar' class here */}
-                    <div className="w-[352px] h-full flex flex-col p-[10px] gap-[1px] relative flex-shrink-0">
+                    {/* --- LEFT PANEL: CATEGORIES --- */}
+                    {/* Applied 'no-scrollbar' class here */}
+                    <div className="w-[30%] max-w-[350px] min-w-[280px] h-full flex flex-col p-[10px] gap-[1px] relative flex-shrink-0 border-r border-[#215ACD]/10">
                       <div className="w-full h-[40px] flex items-end px-[24px] mb-[10px]">
                         <span className="font-semibold text-[20px] text-[#215ACD]/60 leading-[200%]">
                           Categories
                         </span>
                       </div>
-                      <div className="flex flex-col gap-[1px] overflow-y-auto h-[340px] no-scrollbar">
+                      <div className="flex flex-col gap-[1px] overflow-y-auto max-h-[380px] no-scrollbar">
                         {services.map((service) => (
                           <div
                             key={service.slug}
@@ -1573,8 +1575,7 @@ export function Navigation() {
                       </div>
                     </div>
 
-                    {/* --- VERTICAL DIVIDER --- */}
-                    <div className="w-[1px] h-full bg-[#215ACD]/20 mx-0" />
+
 
                     {/* --- RIGHT PANEL: SUB-SERVICES --- */}
                     {/* Applied 'no-scrollbar' class here */}
