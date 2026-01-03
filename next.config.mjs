@@ -9,8 +9,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  
-  presets: ["next/babel"]
+
+
 
 }
 

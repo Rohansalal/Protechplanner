@@ -31,7 +31,7 @@ export function PartnerSection() {
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="h-16 md:h-20 w-auto object-contain hover:scale-110 transition-transform duration-300"
+                    className="h-20 md:h-20 w-auto object-contain hover:scale-110 transition-transform duration-300"
                   />
                 </div>
               ))}
