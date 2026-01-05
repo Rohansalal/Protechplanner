@@ -1,57 +1,92 @@
 "use client"
 
-const partnerLogos = [
-  { id: 1, name: "Partner 1", logo: "/partners/partner1.png" },
-  { id: 2, name: "Partner 2", logo: "/partners/partner2.png" },
-  { id: 3, name: "Partner 3", logo: "/partners/partner3.png" },
-  { id: 4, name: "Partner 4", logo: "/partners/partner4.png" },
-  { id: 5, name: "Partner 5", logo: "/partners/partner5.png" },
-  { id: 6, name: "Partner 6", logo: "/partners/partner6.png" },
+import Image from "next/image"
+
+const partners = [
+  "/partners/partner1.png",
+  "/partners/partner2.png",
+  "/partners/partner3.png",
+  "/partners/partner4.png",
+  "/partners/partner5.png",
+  "/partners/partner6.png",
 ]
 
 export function PartnerSection() {
   return (
-    <section className="py-12 bg-white border-b border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <p className="text-center text-sm font-semibold text-slate-500 uppercase tracking-widest mb-8">
-          Trusted by over 500+ Innovative Companies
-        </p>
-
-        <div className="relative w-full overflow-hidden">
-          {/* Gradients for smooth fade */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
-
-          {/* Marquee Row */}
-          <div className="flex w-full overflow-hidden">
-            <div className="flex animate-marquee items-center min-w-full">
-              {[...partnerLogos, ...partnerLogos, ...partnerLogos].map((partner, i) => (
-                <div key={`${partner.id}-${i}`} className="mx-8 md:mx-16 shrink-0 flex items-center justify-center min-w-[150px]">
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="h-20 md:h-20 w-auto object-contain hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-              ))}
-            </div>
+    <section className="w-full py-12 md:py-16 bg-white overflow-hidden">
+      <div className="max-w-[1440px] mx-auto flex flex-col items-center gap-9">
+        {/* Header */}
+        <div className="text-center flex flex-col md:flex-row items-center justify-center gap-2">
+          <div className="text-center">
+            <span className="text-[#215ACD] text-[32px] font-bold font-['Inter'] leading-normal">Trusted</span>
+            <span className="text-[#414141] text-[32px] font-bold font-['Inter'] leading-normal"> Companies</span>
           </div>
         </div>
-      </div>
 
-      <style jsx>{`
-        .animate-marquee {
-          animation: marquee 40s linear infinite;
-        }
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee:hover {
-            animation-play-state: paused;
-        }
-      `}</style>
+        {/* Marquee Container */}
+        <div className="relative w-full overflow-hidden mask-gradient">
+          {/* Mask for smooth fade edges */}
+          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10 hidden md:block" />
+          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10 hidden md:block" />
+
+          <div className="flex w-max animate-marquee hover:[animation-play-state:paused] items-center">
+            {/* First Set */}
+            {partners.map((logo, index) => (
+              <div key={`s1-${index}`} className="relative mx-6 md:mx-10 w-[120px] md:w-[160px] h-[60px] md:h-[80px] flex items-center justify-center">
+                <Image
+                  src={logo}
+                  alt={`Partner ${index + 1}`}
+                  fill
+                  className="object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                />
+              </div>
+            ))}
+            {/* Second Set (Duplicate) */}
+            {partners.map((logo, index) => (
+              <div key={`s2-${index}`} className="relative mx-6 md:mx-10 w-[120px] md:w-[160px] h-[60px] md:h-[80px] flex items-center justify-center">
+                <Image
+                  src={logo}
+                  alt={`Partner ${index + 1}`}
+                  fill
+                  className="object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                />
+              </div>
+            ))}
+            {/* Third Set (Triplicate) */}
+            {partners.map((logo, index) => (
+              <div key={`s3-${index}`} className="relative mx-6 md:mx-10 w-[120px] md:w-[160px] h-[60px] md:h-[80px] flex items-center justify-center">
+                <Image
+                  src={logo}
+                  alt={`Partner ${index + 1}`}
+                  fill
+                  className="object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                />
+              </div>
+            ))}
+            {/* Fourth Set (Quadruplicate - just to be absolutely sure for large screens) */}
+            {partners.map((logo, index) => (
+              <div key={`s4-${index}`} className="relative mx-6 md:mx-10 w-[120px] md:w-[160px] h-[60px] md:h-[80px] flex items-center justify-center">
+                <Image
+                  src={logo}
+                  alt={`Partner ${index + 1}`}
+                  fill
+                  className="object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <style jsx>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-25%); }
+          }
+          .animate-marquee {
+            animation: marquee 40s linear infinite;
+          }
+        `}</style>
+      </div>
     </section>
   )
 }

@@ -71,7 +71,7 @@ export function IndustriesSection() {
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-            Specialized talent <span className="text-primary relative inline-block">
+            Specialized talent <span className="text-[#215ACD] relative inline-block">
               for every industry
               <svg className="absolute w-full h-2 -bottom-1 left-0 text-primary/20" viewBox="0 0 100 10" preserveAspectRatio="none">
                 <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
@@ -90,7 +90,7 @@ export function IndustriesSection() {
             <Link
               href={`/industries/${industry.id}`}
               key={industry.id}
-              className="group relative bg-white rounded-xl p-5 border border-gray-100 shadow-xs hover:shadow-md hover:border-primary/10 transition-all duration-250 flex flex-col h-full"
+              className="group relative bg-[#F1F5FF] rounded-xl p-5 border border-gray-100 shadow-xs hover:shadow-md hover:border-[#215ACD] transition-all duration-250 flex flex-col h-full"
             >
               {/* Icon Box - Smaller */}
               <div className="w-11 h-11 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 mb-4 group-hover:bg-primary/5 group-hover:text-primary group-hover:scale-105 transition-all duration-250">

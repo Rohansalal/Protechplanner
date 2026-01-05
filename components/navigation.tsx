@@ -9,7 +9,8 @@ import {
   MessageSquare, Phone, Headphones, ShoppingCart, MessageCircle, Calendar,
   BarChart3, TrendingUp, PieChart, Eye, AlertCircle, LineChart,
   PenTool, Zap, Users, Megaphone, Code, Smartphone, Palette, Briefcase,
-  CreditCard, BadgePercent, Receipt, ArrowRight
+  CreditCard, BadgePercent, Receipt, ArrowRight,
+  Building2, Key, Store, ShieldCheck, Stethoscope
 } from "lucide-react"
 
 // Icon mapping for subservices
@@ -113,6 +114,45 @@ const iconMap = {
   "calendar-scheduling": Calendar,
   "social-media-management": Megaphone,
 }
+
+const industries = [
+  {
+    title: "Real Estate",
+    slug: "real-estate",
+    icon: Building2,
+    description: "Lead qualification & transaction coordination"
+  },
+  {
+    title: "Property Management",
+    slug: "property",
+    icon: Key,
+    description: "Tenant support & maintenance coordination"
+  },
+  {
+    title: "Small Business",
+    slug: "small-business-owners",
+    icon: Store,
+    description: "Operational support & executive assistance"
+  },
+  {
+    title: "E-Commerce",
+    slug: "ecommerce",
+    icon: ShoppingCart,
+    description: "Order processing & inventory management"
+  },
+  {
+    title: "Insurance & Finance",
+    slug: "insurance",
+    icon: ShieldCheck,
+    description: "Policy renewals & claims processing"
+  },
+  {
+    title: "Healthcare",
+    slug: "healthcare",
+    icon: Stethoscope,
+    description: "Patient scheduling & intake processing"
+  }
+]
 
 const services = [
   {
@@ -281,6 +321,7 @@ function SubServiceIcon({ slug }: { slug: keyof typeof iconMap }) {
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isMobileIndustriesOpen, setIsMobileIndustriesOpen] = useState(false);
   const [hoveredService, setHoveredService] = useState(null);
 
   return (
@@ -290,11 +331,11 @@ export function Navigation() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <Image
-                src="/logo-new.png"
-                alt="Protech Planner Logo"
+                src="/logo-m.png"
+                alt="ProTech Planner Logo"
                 width={200}
                 height={60}
-                className="h-21 w-auto object-contain"
+                className="h-15 w-auto object-contain"
                 priority
               />
             </Link>
@@ -305,7 +346,8 @@ export function Navigation() {
             <div className="ml-12 flex items-baseline space-x-6">
               <Link
                 href="/"
-                className="text-slate-600 hover:text-[#213959] px-4 py-3 rounded-md text-base font-medium transition-colors hover:bg-slate-50"
+                style={{ color: 'black', fontSize: 16, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word' }}
+                className="px-4 py-3 rounded-md transition-colors hover:bg-slate-50"
               >
                 Home
               </Link>
@@ -314,10 +356,13 @@ export function Navigation() {
               <div className="relative group">
                 <Link
                   href="/services"
-                  className="text-slate-600 hover:text-[#213959] px-4 py-3 rounded-md text-base font-medium transition-colors flex items-center gap-2 hover:bg-slate-50"
+                  className="px-4 py-3 rounded-md transition-colors flex items-center gap-2 hover:bg-slate-50"
                 >
-                  Services
-                  <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+                  <span style={{ color: 'black', fontSize: 16, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word' }}>Services</span>
+                  <div style={{ width: 24, height: 24, position: 'relative', overflow: 'hidden' }}>
+                    <div style={{ width: 24, height: 24, left: 0, top: 0, position: 'absolute' }} />
+                    <div style={{ width: 13.31, height: 7.67, left: 5.33, top: 8.33, position: 'absolute', background: 'black', clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }} />
+                  </div>
                 </Link>
 
                 {/* Mega Menu Dropdown */}
@@ -461,21 +506,75 @@ export function Navigation() {
                 </div>
               </div>
 
+              {/* Industries Dropdown */}
+              {/* Industries Dropdown Removed as requested per design, but keeping logic if needed later or hidden.
+                  User asked: "now change the header section only with this industries section also thier so dont remove it"
+                  Verify: The user wanted to KEEP the "Industries" section logic available or just styles?
+                  "header section only with this industries section also thier so dont remove it" -> This likely means Keep the Industries dropdown but maybe style it?
+                  However, the provided design DOES NOT include an "Industries" link.
+                  "Home, Services, About, Blog, Contact" are the only links in the request.
+                  I will comment it out to match the visual design strictly while preserving code if I misinterpreted "dont remove it".
+                  Actually, re-reading: "industries section also thier so dont remove it"
+                  This implies the Industries LOGIC/Page exists, but maybe not in the header?
+                  OR it implies I should ADD Industries to the requested list?
+                  The requested HTML structure explicitly list: Home, Services, About, Blog, Contact. No Industries.
+                  But the text says "industries section also thier so dont remove it".
+                  I will KEEP the Industries dropdown but style it like the others (Black, Inter 16px) to be safe.
+              */}
+              <div className="relative group">
+                <button
+                  className="px-4 py-3 rounded-md transition-colors flex items-center gap-2 hover:bg-slate-50"
+                >
+                  <span style={{ color: 'black', fontSize: 16, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word' }}>Industries</span>
+                  <div style={{ width: 24, height: 24, position: 'relative', overflow: 'hidden' }}>
+                    <div style={{ width: 24, height: 24, left: 0, top: 0, position: 'absolute' }} />
+                    <div style={{ width: 13.31, height: 7.67, left: 5.33, top: 8.33, position: 'absolute', background: 'black', clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }} />
+                  </div>
+                </button>
+
+                <div className="absolute top-full left-0 w-80 bg-white border border-slate-100 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2">
+                  <div className="grid gap-1">
+                    {industries.map((industry) => (
+                      <Link
+                        key={industry.slug}
+                        href={`/industries/${industry.slug}`}
+                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group/item"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-[#213959]/5 text-[#213959] flex items-center justify-center flex-shrink-0 group-hover/item:bg-[#213959] group-hover/item:text-white transition-colors">
+                          <industry.icon className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-slate-800 group-hover/item:text-[#213959]">
+                            {industry.title}
+                          </div>
+                          <div className="text-xs text-slate-500 mt-0.5">
+                            {industry.description}
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
               <Link
                 href="/about"
-                className="text-slate-600 hover:text-[#213959] px-4 py-3 rounded-md text-base font-medium transition-colors hover:bg-slate-50"
+                style={{ color: 'black', fontSize: 16, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word' }}
+                className="px-4 py-3 rounded-md transition-colors hover:bg-slate-50"
               >
                 About
               </Link>
               <Link
                 href="/blog"
-                className="text-slate-600 hover:text-[#213959] px-4 py-3 rounded-md text-base font-medium transition-colors hover:bg-slate-50"
+                style={{ color: 'black', fontSize: 16, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word' }}
+                className="px-4 py-3 rounded-md transition-colors hover:bg-slate-50"
               >
                 Blog
               </Link>
               <Link
                 href="/contact"
-                className="text-slate-600 hover:text-[#213959] px-4 py-3 rounded-md text-base font-medium transition-colors hover:bg-slate-50"
+                style={{ color: 'black', fontSize: 16, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word' }}
+                className="px-4 py-3 rounded-md transition-colors hover:bg-slate-50"
               >
                 Contact
               </Link>
@@ -483,12 +582,11 @@ export function Navigation() {
           </div>
 
           <div className="hidden lg:block">
-            <Button
-              asChild
-              className="bg-[#213959] hover:bg-[#1a2d47] text-white text-base h-12 px-8 font-semibold shadow-lg shadow-indigo-900/20 transition-all hover:scale-105"
-            >
-              <Link href="/contact">Get Started</Link>
-            </Button>
+            <Link href="/contact">
+              <div style={{ paddingLeft: 16, paddingRight: 16, paddingTop: 10, paddingBottom: 10, background: '#215ACD', borderRadius: 4, justifyContent: 'center', alignItems: 'center', gap: 10, display: 'flex' }}>
+                <div style={{ color: 'white', fontSize: 14, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word' }}>Get Started</div>
+              </div>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -574,6 +672,34 @@ export function Navigation() {
                         </div>
                       ))}
                     </div>
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <button
+                  onClick={() => setIsMobileIndustriesOpen(!isMobileIndustriesOpen)}
+                  className="text-slate-700 hover:text-[#213959] w-full text-left px-4 py-4 rounded-xl text-base font-medium flex items-center justify-between border-b border-slate-100 hover:bg-slate-50"
+                >
+                  Industries
+                  <ChevronDown
+                    className={`h-5 w-5 transition-transform ${isMobileIndustriesOpen ? "rotate-180" : ""
+                      }`}
+                  />
+                </button>
+                {isMobileIndustriesOpen && (
+                  <div className="pl-4 space-y-2 mt-3 mb-3">
+                    {industries.map((industry) => (
+                      <Link
+                        key={industry.slug}
+                        href={`/industries/${industry.slug}`}
+                        className="text-slate-700 hover:text-[#213959] block px-4 py-2 rounded-lg text-sm font-medium bg-slate-50 hover:bg-slate-100 flex items-center gap-3"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <industry.icon className="w-4 h-4 text-[#213959]" />
+                        {industry.title}
+                      </Link>
+                    ))}
                   </div>
                 )}
               </div>
