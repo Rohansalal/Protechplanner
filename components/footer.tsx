@@ -4,15 +4,22 @@ import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "luc
 
 export function Footer() {
   return (
-    <footer className="bg-[#215ACD] border-t border-white/10 pt-20 pb-10 text-slate-300">
+    <footer className="bg-gradient-to-br from-[#215ACD] to-[#0F172A] border-t border-white/10 pt-20 pb-10 text-slate-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-white">ProTech Planner</h3>
+          <div className="mb-4">
+            <img
+              src="/logo-m.png"
+              alt="ProTech Planner Logo"
+              className="h-14 w-auto"
+            />
+            
             <p className="text-slate-400 leading-relaxed">
+              <br />
               Professional virtual assistant services to help your business
               thrive. We handle the details so you can focus on growth.
             </p>
+            <br />
             <div className="flex space-x-4">
               <Link
                 href="#"

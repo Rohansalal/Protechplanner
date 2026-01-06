@@ -73,7 +73,7 @@ export function WhyChooseUs() {
         {/* Right Column - Image */}
         <div className="relative rounded-lg overflow-hidden bg-[#E5E5E5] min-h-[400px] lg:min-h-full">
           <Image
-            src="/professional-virtual-assistant-working-on-laptop-i.jpg"
+            src="/image advantage.png"
             alt="Professional Virtual Assistant"
             fill
             className="object-cover"

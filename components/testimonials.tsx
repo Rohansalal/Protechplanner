@@ -52,7 +52,7 @@ export function Testimonials() {
   ]
 
   return (
-    <section className="py-24 bg-gradient-to-br from-[#213959] to-[#0F172A] relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-[#215ACD] to-[#0F172A] relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#215ACD] rounded-full blur-[120px]" />

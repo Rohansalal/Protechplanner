@@ -1,6 +1,12 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
 
 export function ProcessJourney() {
+  const [activeStep, setActiveStep] = useState(0)
+
   const steps = [
     {
       number: "01",
@@ -8,19 +14,7 @@ export function ProcessJourney() {
       duration: "15 - 30 min",
       description:
         "We discuss your business needs, pain points, and specific requirements to identify the perfect VA profile for you.",
-      cardStyle: {
-        background: "#215ACD",
-        boxShadow: "0px 4px 6.099999904632568px rgba(32.95, 90.38, 205.23, 0.10)",
-        outline: "1px #215ACD solid",
-        outlineOffset: "-1px",
-      },
-      titleColor: "text-white",
-      durationBg: "bg-white",
-      durationText: "text-black/60",
-      descColor: "text-[#E3E3E3]",
-      badgeBg: "bg-[#215ACD]",
-      badgeText: "text-white",
-      lineColor: "border-[#215ACD]"
+      image: "/New folder/New folder/discovery call.png",
     },
     {
       number: "02",
@@ -28,17 +22,7 @@ export function ProcessJourney() {
       duration: "24-48 Hours",
       description:
         "Our team selects candidates from our pre-vetted pool who match your industry, time zone, and skill requirements.",
-      cardStyle: {
-        background: "#215ACD",
-        borderRadius: "11px",
-      },
-      titleColor: "text-white",
-      durationBg: "bg-white",
-      durationText: "text-[#414141]",
-      descColor: "text-[#E3E3E3]",
-      badgeBg: "bg-[#215ACD]",
-      badgeText: "text-[#F1F5FF]",
-      lineColor: "border-[#215ACD]"
+      image: "/New folder/New folder/custom matching.png",
     },
     {
       number: "03",
@@ -46,35 +30,15 @@ export function ProcessJourney() {
       duration: "Video Interview",
       description:
         "Interview the best match. If it's a fit, great! If not, we provide more options until you're 100% satisfied.",
-      cardStyle: {
-        background: "#215ACD",
-        borderRadius: "11px",
-      },
-      titleColor: "text-white",
-      durationBg: "bg-white",
-      durationText: "text-[#414141]",
-      descColor: "text-[#CBD2E0]",
-      badgeBg: "bg-[#215ACD]",
-      badgeText: "text-[#F1F5FF]",
-      lineColor: "border-[#F1F5FF]"
+      image: "/New folder/New folder/meet your va.png",
     },
     {
       number: "04",
-      title: "Discovery Call",
-      duration: "15 - 30 min",
+      title: "Launch & Onboard",
+      duration: "Immediate Start",
       description:
-        "We discuss your business needs, pain points, and specific requirements to identify the perfect VA profile for you.",
-      cardStyle: {
-        background: "#F1F5FF",
-        borderRadius: "11px",
-      },
-      titleColor: "text-[#1E1E1E]",
-      durationBg: "bg-white",
-      durationText: "text-[#414141]",
-      descColor: "text-[#414141]",
-      badgeBg: "bg-[#F1F5FF]",
-      badgeText: "text-black",
-      lineColor: "transparent" // Last item has no line
+        "Once selected, we handle the contracts and onboarding so your new VA can start supporting you right away.",
+      image: "/New folder/New folder/Onboarding and launch.png",
     },
   ];
 
@@ -82,7 +46,7 @@ export function ProcessJourney() {
     <section className="w-full px-6 md:px-12 py-12 md:py-20 bg-white">
       <div className="max-w-[1440px] mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col items-center gap-4 mb-12 md:mb-16">
+        <div className="flex flex-col items-center gap-4 mb-12 md:mb-20">
           <h2 className="text-3xl md:text-[40px] font-bold text-center font-['Inter']">
             <span className="text-[#414141]">From Chaos to Clarity in </span>
             <span className="text-[#215ACD]">4 Steps</span>
@@ -96,72 +60,104 @@ export function ProcessJourney() {
         {/* Steps Layout */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Left Column - Step Cards */}
-          <div className="relative flex flex-col gap-6 lg:pl-4">
-            {steps.map((step, index) => (
-              <div key={index} className="relative flex gap-5 lg:gap-6 w-full group">
-                {/* Connecting Line (Dashed) */}
-                {index !== steps.length - 1 && (
-                  <div
-                    className="absolute left-[18px] top-[40px] bottom-[-24px] w-[1px] border-l border-dashed z-0"
-                    style={{ borderColor: step.lineColor === "border-[#215ACD]" ? "#215ACD" : "#F1F5FF" }}
-                  />
-                )}
-
-                {/* Step Number Badge */}
-                <div className="relative z-10 flex-shrink-0">
-                  <div
-                    className={`w-9 h-9 rounded-full flex items-center justify-center`}
-                    style={{ background: step.badgeBg === "bg-[#215ACD]" ? "#215ACD" : "#F1F5FF" }}
-                  >
-                    <span
-                      className={`text-sm font-normal font-['Inter'] ${step.badgeText}`}
-                    >
-                      {step.number}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Step Card */}
-                <div
-                  className="flex-1 rounded-[11px] p-4 lg:px-5 lg:py-5 flex flex-col gap-3 shadow-sm w-full relative"
-                  style={step.cardStyle}
+          <div className="relative flex flex-col gap-24 lg:pl-4">
+            {steps.map((step, index) => {
+              const isActive = index === activeStep;
+              return (
+                <motion.div
+                  key={index}
+                  className="relative flex gap-5 lg:gap-6 w-full"
+                  initial={{ opacity: 0.5 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ margin: "-50% 0px -50% 0px" }}
+                  onViewportEnter={() => setActiveStep(index)}
                 >
-                  <div className="flex justify-between items-center w-full">
-                    <h3
-                      className={`text-[20px] font-semibold font-['Inter'] leading-tight ${step.titleColor}`}
-                    >
-                      {step.title}
-                    </h3>
+                  {/* Connecting Line (Dashed) */}
+                  {index !== steps.length - 1 && (
                     <div
-                      className={`${step.durationBg} rounded-[4px] px-[10px] py-[6px] flex items-center justify-center`}
+                      className="absolute left-[18px] top-[40px] bottom-[-96px] w-[1px] border-l border-dashed z-0 transition-colors duration-500"
+                      style={{ borderColor: isActive ? "#215ACD" : "#E2E8F0" }}
+                    />
+                  )}
+
+                  {/* Step Number Badge */}
+                  <div className="relative z-10 flex-shrink-0">
+                    <motion.div
+                      className="w-9 h-9 rounded-full flex items-center justify-center shadow-sm"
+                      animate={{
+                        backgroundColor: isActive ? "#215ACD" : "#F1F5FF",
+                        color: isActive ? "#FFFFFF" : "#215ACD"
+                      }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <span
-                        className={`text-[14px] font-normal font-['Inter'] ${step.durationText}`}
-                      >
-                        {step.duration}
+                      <span className="text-sm font-bold font-['Inter']">
+                        {step.number}
                       </span>
-                    </div>
+                    </motion.div>
                   </div>
-                  <p
-                    className={`text-[16px] font-normal font-['Inter'] leading-normal ${step.descColor}`}
+
+                  {/* Step Card */}
+                  <motion.div
+                    className="flex-1 rounded-[11px] p-4 lg:px-6 lg:py-6 flex flex-col gap-3 shadow-md w-full relative border"
+                    animate={{
+                      backgroundColor: isActive ? "#215ACD" : "#FFFFFF",
+                      borderColor: isActive ? "#215ACD" : "#F1F5FF",
+                      scale: isActive ? 1.02 : 1,
+                    }}
+                    transition={{ duration: 0.3 }}
                   >
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+                    <div className="flex justify-between items-center w-full">
+                      <motion.h3
+                        className="text-[20px] font-semibold font-['Inter'] leading-tight"
+                        animate={{ color: isActive ? "#FFFFFF" : "#1E1E1E" }}
+                      >
+                        {step.title}
+                      </motion.h3>
+                      <motion.div
+                        className="rounded-[4px] px-[10px] py-[6px] flex items-center justify-center"
+                        animate={{ backgroundColor: isActive ? "#FFFFFF" : "#F1F5FF" }}
+                      >
+                        <motion.span
+                          className="text-[14px] font-normal font-['Inter']"
+                          animate={{ color: isActive ? "#215ACD" : "#64748B" }}
+                        >
+                          {step.duration}
+                        </motion.span>
+                      </motion.div>
+                    </div>
+                    <motion.p
+                      className="text-[16px] font-normal font-['Inter'] leading-relaxed"
+                      animate={{ color: isActive ? "rgba(255,255,255,0.9)" : "#64748B" }}
+                    >
+                      {step.description}
+                    </motion.p>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          {/* Right Column - Illustration */}
-          <div className="hidden lg:flex justify-center items-center h-full pt-8">
-            <div className="relative w-full max-w-[500px] aspect-[1.1]">
-              <Image
-                src="/va-collaboration-premium.png"
-                alt="Virtual Assistant Process Illustration"
-                fill
-                className="object-contain"
-                priority
-              />
+          {/* Right Column - Sticky Illustration */}
+          <div className="hidden lg:block sticky top-24 h-[500px]">
+            <div className="relative w-full h-full rounded-2xl overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -20, opacity: 0 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <Image
+                    src={steps[activeStep].image}
+                    alt={steps[activeStep].title}
+                    fill
+                    className="object-contain p-8"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>

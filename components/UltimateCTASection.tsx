@@ -9,7 +9,7 @@ export function UltimateCTASection() {
         <div
           style={{
             width: '100%',
-            background: '#215ACD',
+            background: 'linear-gradient(to bottom, #215ACD, #0F172A)',
             borderRadius: 8
           }}
           className="relative overflow-hidden py-16 px-6 md:px-16 text-center text-white shadow-xl"
