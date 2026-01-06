@@ -7,7 +7,7 @@ import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
 import { WhyChooseUs } from "@/components/whyChooseUs"
 import { ProcessJourney } from "@/components/ProcessJourney"
-import { FAQSection } from "@/components/FAQ"
+import { FAQ } from "@/components/FAQ"
 import { QuickInquiry } from "@/components/quick-inquiry"
 import { IndustriesSection } from "@/components/IndustriesSection"
 import { UltimateCTASection } from "@/components/UltimateCTASection"
@@ -52,7 +52,7 @@ export default function HomePage() {
       </ScrollAnimation>
 
       <ScrollAnimation>
-        <FAQSection />
+        <FAQ />
       </ScrollAnimation>
 
       <Footer />
