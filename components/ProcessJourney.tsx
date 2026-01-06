@@ -30,7 +30,7 @@ export function ProcessJourney() {
       duration: "Video Interview",
       description:
         "Interview the best match. If it's a fit, great! If not, we provide more options until you're 100% satisfied.",
-      image: "/New folder/New folder/meet your va.png",
+      image: "/New folder/New folder/meet your VA.png",
     },
     {
       number: "04",
