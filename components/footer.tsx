@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "luc
 
 export function Footer() {
   return (
-    <footer className="bg-[#213959] border-t border-white/10 pt-20 pb-10 text-slate-300">
+    <footer className="bg-[#215ACD] border-t border-white/10 pt-20 pb-10 text-slate-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -162,7 +162,8 @@ export function Footer() {
                     India: +91-8377963214
                   </a>
                   <a
-                    href="tel:+18438884894"
+                    href="tel:+1 316-844-6584
+"
                     className="text-slate-400 hover:text-white transition-colors"
                   >
                     USA: +1 316-844-6584

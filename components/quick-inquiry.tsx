@@ -36,7 +36,8 @@ export function QuickInquiry() {
           </Dialog>
 
           <Button asChild size="icon" className="rounded-full w-12 h-12 bg-white text-indigo-900 hover:bg-indigo-50 border border-indigo-100 shadow-lg">
-            <a href="tel:+18438884894">
+            <a href="tel:+1 316-844-6584
+">
               <Phone className="w-5 h-5" />
               <span className="sr-only">Call Us</span>
             </a>

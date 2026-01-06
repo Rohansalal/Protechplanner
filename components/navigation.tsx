@@ -335,7 +335,7 @@ export function Navigation() {
                 alt="ProTech Planner Logo"
                 width={200}
                 height={60}
-                className="h-15 w-auto object-contain"
+                className="h-12 w-auto object-contain"
                 priority
               />
             </Link>

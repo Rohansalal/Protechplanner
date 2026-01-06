@@ -8,6 +8,11 @@ import "./globals.css"
 
 export const metadata: Metadata = {
   title: "ProTech Planner - Premium Virtual Assistant Services",
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
   description:
     "Professional virtual assistant services to streamline your business operations. Expert administrative support, customer service, and business management solutions.",
   keywords: [
