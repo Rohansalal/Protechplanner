@@ -1,4 +1,15 @@
-import { Star, ArrowRight, Quote } from "lucide-react"
+"use client"
+
+import { Star, Quote, ArrowLeft, ArrowRight } from "lucide-react"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation, EffectCoverflow } from 'swiper/modules';
+import Image from "next/image";
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-coverflow';
 
 export function Testimonials() {
   const testimonials = [
@@ -6,75 +17,173 @@ export function Testimonials() {
       name: "Sarah Johnson",
       role: "CEO, TechStart Inc.",
       image: "https://i.pravatar.cc/150?u=1",
-      quote: "The quality of talent matched with us was incredible. Our VA integrated perfectly into our team within days."
+      quote: "The quality of talent matched with us was incredible. Our VA integrated perfectly into our team within days, handling complex scheduling and inbox management with ease."
     },
     {
       name: "Michael Chen",
       role: "Founder, Growth Agency",
       image: "https://i.pravatar.cc/150?u=2",
-      quote: "Before ProTech, I was drowning in admin work. Now, I have 20+ hours back every week to focus on strategy."
+      quote: "Before ProTech, I was drowning in admin work. Now, I have 20+ hours back every week to focus on strategy. The ROI has been immediate and substantial."
     },
     {
       name: "Emily Davis",
       role: "Director of Operations",
       image: "https://i.pravatar.cc/150?u=3",
-      quote: "Professional, reliable, and secure. It's the peace of mind that comes with knowing things are handled correctly."
+      quote: "Professional, reliable, and secure. It's the peace of mind that comes with knowing things are handled correctly. The matching process was spot on."
+    },
+    {
+      name: "David Wilson",
+      role: "CTO, CloudScale",
+      image: "https://i.pravatar.cc/150?u=4",
+      quote: "Finding specialized developers used to take months. ProTech found us a senior backend engineer in 48 hours who hit the ground running immediately."
+    },
+    {
+      name: "Amanda Martinez",
+      role: "Creative Director",
+      image: "https://i.pravatar.cc/150?u=5",
+      quote: "Our social media engagement has tripled since we brought on a specialist through ProTech. They barely needed onboarding and just got the job done."
+    },
+    {
+      name: "Robert Taylor",
+      role: "VP of Sales, MarketFlow",
+      image: "https://i.pravatar.cc/150?u=6",
+      quote: "The lead generation specialist we hired has been a game changer. Our pipeline is consistently full, and the data accuracy is pristine."
     }
   ]
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-gradient-to-br from-[#213959] to-[#0F172A] relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#215ACD] rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#215ACD] rounded-full blur-[120px]" />
+      </div>
+
+      <div className="max-w-[1440px] mx-auto px-4 relative z-10">
 
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-[#213959] mb-4">
-            Trusted by Modern Leaders
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-['Inter']">
+            Built for Every Team
           </h2>
-          <p className="text-lg text-slate-600">
-            Join hundreds of founders and executives who have reclaimed their time.
+          <p className="text-lg text-indigo-100/80 max-w-2xl mx-auto font-['Inter'] leading-relaxed">
+            See how forward-thinking companies are scaling their operations with our dedicated talent.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-slate-50 p-8 rounded-2xl relative border border-slate-100 hover:shadow-lg transition-all duration-300"
-            >
-              <Quote className="w-10 h-10 text-indigo-100 absolute top-6 right-6" />
+        <div className="relative">
+          <Swiper
+            modules={[Autoplay, Pagination, Navigation, EffectCoverflow]}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={1.2}
+            loop={true}
+            speed={800}
+            effect={'coverflow'}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 2.5,
+              slideShadows: false,
+            }}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+            }}
+            className="testimonials-3d py-12"
+          >
+            {testimonials.map((testimonial, index) => (
+              <SwiperSlide key={index} className="transition-all duration-500">
+                {({ isActive }) => (
+                  <div
+                    className={`
+                      relative p-8 md:p-10 rounded-2xl flex flex-col items-center text-center h-full min-h-[400px] transition-all duration-500
+                      ${isActive
+                        ? 'bg-white scale-100 opacity-100 shadow-2xl shadow-black/20 z-10'
+                        : 'bg-white/90 scale-90 opacity-60 blur-[1px] grayscale-[30%]'
+                      }
+                    `}
+                  >
+                    {/* Decorative Quote Mark */}
+                    <div className="mb-6">
+                      <Quote className={`
+                        w-12 h-12 transition-colors duration-300
+                        ${isActive ? 'text-[#215ACD] fill-[#215ACD]/10' : 'text-slate-300'}
+                      `} />
+                    </div>
 
-              <div className="flex gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                ))}
-              </div>
+                    <blockquote className={`
+                      text-lg leading-relaxed mb-8 flex-grow font-['Inter']
+                      ${isActive ? 'text-[#414141]' : 'text-slate-500'}
+                    `}>
+                      "{testimonial.quote}"
+                    </blockquote>
 
-              <blockquote className="text-slate-700 leading-relaxed mb-8 relative z-10">
-                "{testimonial.quote}"
-              </blockquote>
+                    <div className="flex flex-col items-center gap-3 mt-auto">
+                      <div className={`
+                        relative w-16 h-16 rounded-full p-1 transition-all duration-300
+                        ${isActive ? 'bg-gradient-to-r from-[#215ACD] to-[#213959]' : 'bg-transparent'}
+                      `}>
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-full h-full rounded-full object-cover border-2 border-white"
+                        />
+                      </div>
+                      <div className="mt-1">
+                        <div className={`
+                          font-bold text-lg font-['Inter']
+                          ${isActive ? 'text-[#213959]' : 'text-slate-600'}
+                        `}>
+                          {testimonial.name}
+                        </div>
+                        <div className={`
+                          text-sm font-medium tracking-wide
+                          ${isActive ? 'text-[#215ACD]' : 'text-slate-400'}
+                        `}>
+                          {testimonial.role}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-              <div className="flex items-center gap-4">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
-                />
-                <div>
-                  <div className="font-bold text-[#213959]">{testimonial.name}</div>
-                  <div className="text-xs text-slate-500 font-medium uppercase tracking-wide">{testimonial.role}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Clients Strip */}
-        <div className="mt-16 pt-10 border-t border-slate-100 flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-          {/* Placeholders for logos if needed, simply text for now or simple circles */}
-          <div className="font-bold text-xl text-slate-400">Spotify</div>
-          <div className="font-bold text-xl text-slate-400">Slack</div>
-          <div className="font-bold text-xl text-slate-400">Adobe</div>
-          <div className="font-bold text-xl text-slate-400">Asana</div>
+          {/* Custom Pagination Style Override */}
+          <style jsx global>{`
+            .testimonials-3d .swiper-pagination-bullet {
+              background: white;
+              opacity: 0.3;
+              align-self:stretch;
+            }
+            .testimonials-3d .swiper-pagination-bullet-active {
+              background: #215ACD;
+              opacity: 1;
+            }
+            .testimonials-3d {
+              padding-bottom: 60px !important;
+            }
+          `}</style>
         </div>
       </div>
     </section>

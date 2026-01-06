@@ -37,7 +37,7 @@ export function PartnerSection() {
                   src={logo}
                   alt={`Partner ${index + 1}`}
                   fill
-                  className="object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
             ))}
@@ -48,7 +48,7 @@ export function PartnerSection() {
                   src={logo}
                   alt={`Partner ${index + 1}`}
                   fill
-                  className="object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
             ))}
