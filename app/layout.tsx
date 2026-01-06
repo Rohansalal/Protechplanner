@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     description: 'Professional virtual assistant services to streamline your business operations. Expert administrative support, customer service, and business management solutions.',
     images: [
       {
-        url: '/logo.png',
+        url: '/logo-m.png',
         width: 1200,
         height: 630,
         alt: 'ProtechPlanner - Virtual Assistant Services',
