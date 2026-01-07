@@ -13,7 +13,7 @@ export function Footer() {
               alt="ProTech Planner Logo"
               className="h-14 w-auto"
             />
-            
+
             <p className="text-slate-400 leading-relaxed">
               <br />
               Professional virtual assistant services to help your business
@@ -213,7 +213,7 @@ export function Footer() {
 
         <div className="border-t border-[#031132]/10 mt-12 pt-8 text-center">
           <p className="text-slate-500">
-            © 2014 - 2026 ProTech Planner. All rights reserved.
+            © 2016 - 2026 ProTech Planner. All rights reserved.
           </p>
         </div>
       </div>

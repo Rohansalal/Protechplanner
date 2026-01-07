@@ -157,7 +157,7 @@ export function HeroSection() {
   return (
     <div className="w-full bg-white">
       {/* Hero Section */}
-      <section className="max-w-[1440px] mx-auto px-4 md:px-12 py-6 md:py-2">
+      <section className="max-w-[1440px] mx-auto px-4 md:px-12 py-1 md:py-1">
         <div className="relative rounded-lg">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Content */}
@@ -190,87 +190,21 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* Right Content - World Map with Avatars */}
-            <div className="relative w-full h-[400px] lg:h-[500px]">
-              {/* Background Pattern - World Map */}
-              <div className="absolute inset-0 z-0 opacity-100">
-                <Image
-                  src="/world-map.png"
-                  alt="World Map Background"
-                  fill
-                  className="object-contain object-center"
-                  priority
-                />
-              </div>
-
-              {/* Connecting Lines (SVG Overlay) */}
-              <svg className="absolute inset-0 w-full h-full z-10 pointer-events-none" viewBox="0 0 800 600" preserveAspectRatio="none">
-                {/* Lines connecting avatars */}
-                <path d="M 140 240 Q 250 220 390 310" fill="none" stroke="#213959" strokeWidth="2" strokeDasharray="4 6" strokeLinecap="round" className="opacity-40" />
-                <path d="M 470 300 Q 600 250 700 150" fill="none" stroke="#213959" strokeWidth="2" strokeDasharray="4 6" strokeLinecap="round" className="opacity-40" />
-                <path d="M 470 330 Q 600 350 720 320" fill="none" stroke="#213959" strokeWidth="2" strokeDasharray="4 6" strokeLinecap="round" className="opacity-40" />
-                <path d="M 140 280 Q 180 400 250 480" fill="none" stroke="#213959" strokeWidth="2" strokeDasharray="4 6" strokeLinecap="round" className="opacity-40" />
-                {/* 5. Bottom Left Woman -> Hub (Center) */}
-                <path d="M 250 480 Q 320 400 390 320" fill="none" stroke="#213959" strokeWidth="2" strokeDasharray="4 6" strokeLinecap="round" className="opacity-40" />
-              </svg>
-
-              {/* 1. LEFT AGENT (Man with Headset) - LARGE */}
-              <div className="absolute top-[30%] left-[0.5%] z-20">
-                <div className="relative">
-                  <div className="w-10 h-10 lg:w-28 lg:h-28 rounded-full border-4 border-white shadow-2xl overflow-hidden relative z-20 bg-gray-200">
-                    <Image src="/professional-operations-manager.png" alt="Support Agent" fill className="object-cover" />
-                  </div>
-                  {/* Bubble */}
-                  <div className="absolute -top-4 left-66 lg:left-24 bg-[#F1F5FF] px-3 py-2 lg:px-4 lg:py-3 rounded-lg rounded-bl-none shadow-lg border border-slate-200 whitespace-nowrap z-30">
-                    <p className="text-[#213959] text-xs lg:text-sm font-medium">How may I help you? 😊</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* 2. CENTRAL HUB (Woman) - MEDIUM */}
-              <div className="absolute top-[45%] left-[52%] -translate-x-1/2 z-20">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full border-4 border-white shadow-2xl overflow-hidden relative grayscale opacity-80 bg-gray-300">
-                  <Image src="/professional-woman-ceo.png" alt="Central Hub" fill className="object-cover" />
-                </div>
-              </div>
-
-              {/* 3. TOP RIGHT CLIENT (Man) - MEDIUM */}
-              <div className="absolute top-[8%] right-[8%] z-20">
-                <div className="relative">
-                  <div className="w-46 h-46 lg:w-20 lg:h-20 rounded-full border-4 border-white shadow-2xl overflow-hidden relative z-20 bg-gray-200">
-                    <Image src="/professional-founder-headshot.png" alt="Client" fill className="object-cover" />
-                  </div>
-                  {/* Chat Bubble */}
-                  <div className="absolute top-14 -left-48 lg:-left-56 bg-[#526595] px-3 py-2 lg:px-4 lg:py-3 rounded-lg rounded-tr-none shadow-lg whitespace-nowrap z-30">
-                    <p className="text-white text-xs lg:text-sm leading-snug">Can you please check the order status for me?</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* 4. MID RIGHT CLIENT (Woman) - MEDIUM */}
-              <div className="absolute top-[45%] right-[8%] z-20">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full border-4 border-white shadow-2xl overflow-hidden relative bg-gray-200">
-                  <Image src="/professional-woman-headshot.png" alt="Client" fill className="object-cover" />
-                </div>
-              </div>
-
-              {/* 5. BOTTOM LEFT CLIENT (Woman) - MEDIUM */}
-              <div className="absolute top-[70%] left-[28%] z-20">
-                <div className="relative">
-                  <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full border-4 border-white shadow-2xl overflow-hidden relative bg-gray-200">
-                    <Image src="/professional-woman-client-success-manager-headshot.jpg" alt="Client" fill className="object-cover" />
-                  </div>
-                  {/* Bubble */}
-                  <div className="absolute -top-9 -left-60 lg:-left-80 bg-[#526595] px-3 py-2 lg:px-4 lg:py-3 rounded-lg rounded-br-none shadow-lg whitespace-nowrap z-30">
-                    <p className="text-white text-xs lg:text-sm leading-snug">please help me find a watch with a step counter</p>
-                  </div>
-                </div>
-              </div>
+            {/* Right Content - Hero Image */}
+            <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
+              <Image
+                src="/homepage.png"
+                alt="Virtual Assistants Working"
+                fill
+                className="object-contain object-center"
+                priority
+                sizes="(max-width: 940px) 100vw, (max-width: 1240px) 100vw, 50vw"
+              />
             </div>
           </div>
 
           {/* Feature Checkmarks */}
-          <div className="flex flex-wrap items-center gap-2 md:gap-8 mt-8 justify-center lg:justify-start">
+          <div className="flex flex-wrap items-center gap-4 md:gap-8 mt-8 justify-center lg:justify-start">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full border border-[#15D137] flex items-center justify-center flex-shrink-0">
                 <Check className="w-3 h-3 text-[#15D137]" strokeWidth={2} />

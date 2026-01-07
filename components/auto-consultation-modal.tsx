@@ -55,7 +55,7 @@
 //   useEffect(() => {
 //     // For testing/development - always show modal. In production, uncomment the sessionStorage check
 //     // const hasSeenModal = sessionStorage.getItem('consultation-modal-shown')
-    
+
 //     // if (!hasSeenModal) {
 //       const timer = setTimeout(() => {
 //         setIsModalOpen(true)
@@ -74,7 +74,7 @@
 //     e.preventDefault()
 //     console.log("Auto-modal form submitted:", formData)
 //     setIsSubmitted(true)
-    
+
 //     // Close modal after showing success message
 //     setTimeout(() => {
 //       setIsModalOpen(false)
@@ -120,7 +120,7 @@
 //             )}
 //           </DialogDescription>
 //         </DialogHeader>
-        
+
 //         {!isSubmitted ? (
 //           <form onSubmit={handleSubmit} className="space-y-4">
 //             <div className="grid grid-cols-2 gap-4">
@@ -146,7 +146,7 @@
 //                 />
 //               </div>
 //             </div>
-            
+
 //             <div className="space-y-2">
 //               <Label htmlFor="auto-modal-company">Company Name</Label>
 //               <Input
@@ -269,6 +269,7 @@ const MODAL_TIMESTAMP_KEY = 'virtue-assist-consultation-modal-timestamp'
 export function AutoConsultationModal({ serviceName, delaySeconds = 10 }: AutoConsultationModalProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -280,13 +281,13 @@ export function AutoConsultationModal({ serviceName, delaySeconds = 10 }: AutoCo
   useEffect(() => {
     // Check if modal has been shown in this session
     const hasSeenModal = sessionStorage.getItem(MODAL_SHOWN_KEY)
-    
+
     // Optional: Also check if modal was shown recently (within 24 hours) using localStorage
     const lastShownTimestamp = localStorage.getItem(MODAL_TIMESTAMP_KEY)
     const now = Date.now()
     const twentyFourHours = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
-    
-    const wasShownRecently = lastShownTimestamp && 
+
+    const wasShownRecently = lastShownTimestamp &&
       (now - parseInt(lastShownTimestamp)) < twentyFourHours
 
     // Only show modal if it hasn't been shown in this session AND not recently
@@ -307,24 +308,44 @@ export function AutoConsultationModal({ serviceName, delaySeconds = 10 }: AutoCo
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Auto-modal form submitted:", formData)
-    setIsSubmitted(true)
-    
-    // Close modal after showing success message
-    setTimeout(() => {
-      setIsModalOpen(false)
-      setIsSubmitted(false)
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        service: serviceName || "",
-        message: "",
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/auto-consultation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       })
-    }, 3000) // Show success message for 3 seconds
+
+      if (response.ok) {
+        setIsSubmitted(true)
+
+        // Close modal after showing success message
+        setTimeout(() => {
+          setIsModalOpen(false)
+          setIsSubmitted(false)
+          // Reset form
+          setFormData({
+            name: "",
+            email: "",
+            company: "",
+            service: serviceName || "",
+            message: "",
+          })
+        }, 3000)
+      } else {
+        console.error('Failed to submit consultation request')
+        // Optional: Add error toast here
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleCloseModal = () => {
@@ -339,7 +360,7 @@ export function AutoConsultationModal({ serviceName, delaySeconds = 10 }: AutoCo
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleCloseModal}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="bg-white sm:max-w-[500px]">
         <DialogHeader>
           <div className="flex items-center gap-2">
             <Clock className="h-5 w-5 text-primary" />
@@ -355,8 +376,8 @@ export function AutoConsultationModal({ serviceName, delaySeconds = 10 }: AutoCo
               </div>
             ) : (
               <>
-                Get a <span className="font-semibold text-primary">FREE consultation</span> and 
-                <span className="font-semibold text-accent"> 20% off</span> your first project! 
+                Get a <span className="font-semibold text-primary">FREE consultation</span> and
+                <span className="font-semibold text-accent"> 20% off</span> your first project!
                 {serviceName && (
                   <span className="block mt-1">
                     Interested in <span className="font-medium">{serviceName}</span>? Let's discuss your needs.
@@ -366,7 +387,7 @@ export function AutoConsultationModal({ serviceName, delaySeconds = 10 }: AutoCo
             )}
           </DialogDescription>
         </DialogHeader>
-        
+
         {!isSubmitted ? (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
@@ -392,7 +413,7 @@ export function AutoConsultationModal({ serviceName, delaySeconds = 10 }: AutoCo
                 />
               </div>
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="auto-modal-company">Company Name</Label>
               <Input
@@ -403,9 +424,9 @@ export function AutoConsultationModal({ serviceName, delaySeconds = 10 }: AutoCo
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="bg-white rounded-lg space-y-2">
               <Label htmlFor="auto-modal-service">Service Interest</Label>
-              <Select 
+              <Select
                 value={formData.service}
                 onValueChange={(value) => handleInputChange("service", value)}
               >
@@ -415,7 +436,7 @@ export function AutoConsultationModal({ serviceName, delaySeconds = 10 }: AutoCo
                 <SelectContent>
                   {services.map((service) => (
                     <SelectItem key={service.slug} value={service.title}>
-                      {service.title}
+                      {service.title} choose
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -442,10 +463,10 @@ export function AutoConsultationModal({ serviceName, delaySeconds = 10 }: AutoCo
             </div>
 
             <div className="flex gap-3 pt-2">
-              <Button 
-                type="button" 
-                variant="outline" 
-                onClick={handleCloseModal} 
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleCloseModal}
                 className="flex-1"
               >
                 Maybe Later
