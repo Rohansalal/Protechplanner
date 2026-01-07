@@ -5,7 +5,7 @@ import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "luc
 export function Footer() {
   return (
     <footer className="bg-gradient-to-br from-[#f7f7f7] to-[#FAF9F6] border-t border-[#031132]/10 pt-20 pb-10 text-slate-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="mb-4">
             <img

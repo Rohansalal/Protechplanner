@@ -4,8 +4,8 @@ import { ArrowRight, CheckCircle2 } from "lucide-react"
 
 export function UltimateCTASection() {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-21 bg-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
         <div
           style={{
             width: '100%',

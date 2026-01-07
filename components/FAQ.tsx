@@ -9,20 +9,71 @@ export function FAQ() {
         <div className="grid lg:grid-cols-[425px_1fr] gap-6 items-stretch">
 
           {/* Left Column: Header Card */}
-          <div className="bg-[#215ACD] rounded-lg p-8 lg:p-[23px] relative overflow-hidden flex flex-col justify-between min-h-[500px]">
-            <h2 className="text-white text-[42px] font-bold font-['Inter'] leading-[48px] max-w-[380px]">
-              Frequently asked questions?
-            </h2>
+          <div className="bg-[#215ACD] rounded-lg p-7 lg:p-[23px] relative overflow-hidden min-h-[500px]">
+            {/* Large FAQ Watermark Background Text */}
+            <div
+              className="absolute pointer-events-none select-none"
+              style={{
+                left: '-15px',
+                top: '380px',
+                color: 'rgba(255, 255, 255, 0.20)',
+                fontSize: '200px',
+                fontFamily: 'Inter',
+                fontWeight: '900',
+                lineHeight: '1',
+                wordWrap: 'break-word'
+              }}
+            >
+              FAQ
+            </div>
 
-            <div className="mt-auto">
-              <p className="text-white text-base font-normal font-['Inter'] mb-6 max-w-[340px]">
+            <div className="relative z-10">
+              <h2
+                className="text-white mb-8"
+                style={{
+                  fontSize: '42px',
+                  fontFamily: 'Inter',
+                  fontWeight: '700',
+                  lineHeight: '48px',
+                  wordWrap: 'break-word',
+                  maxWidth: '381px'
+                }}
+              >
+                Frequently asked questions?
+              </h2>
+              <p
+                className="text-white mb-6"
+                style={{
+                  fontSize: '16px',
+                  fontFamily: 'Inter',
+                  fontWeight: '400',
+                  wordWrap: 'break-word',
+                  maxWidth: '339px'
+                }}
+              >
                 Everything you need to know about working with ProTech.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-4 py-2.5 rounded border border-white text-white text-sm font-medium font-['Inter'] hover:bg-white/10 transition-colors"
+                className="inline-flex items-center justify-center border border-white text-white hover:bg-white/10 transition-colors"
+                style={{
+                  paddingLeft: '16px',
+                  paddingRight: '16px',
+                  paddingTop: '10px',
+                  paddingBottom: '10px',
+                  borderRadius: '4px'
+                }}
               >
-                Ask us a question
+                <span
+                  style={{
+                    fontSize: '14px',
+                    fontFamily: 'Inter',
+                    fontWeight: '500',
+                    wordWrap: 'break-word'
+                  }}
+                >
+                  Ask us a question
+                </span>
               </Link>
             </div>
           </div>
