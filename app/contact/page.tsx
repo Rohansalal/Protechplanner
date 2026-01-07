@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,11 @@ import {
   Shield,
   Users,
 } from "lucide-react";
+
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 // Country codes
 const countryCodes = [
@@ -77,6 +83,186 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Refs for GSAP animations
+  const heroRef = useRef<HTMLElement>(null);
+  const floatingIconsRef = useRef<HTMLDivElement[]>([]);
+  const statsRef = useRef<HTMLDivElement[]>([]);
+  const formRef = useRef<HTMLDivElement>(null);
+  const contactCardsRef = useRef<HTMLDivElement[]>([]);
+  const whyChooseRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero title animation
+      gsap.from(".hero-title", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      gsap.from(".hero-subtitle", {
+        opacity: 0,
+        y: 30,
+        duration: 1,
+        delay: 0.2,
+        ease: "power3.out",
+      });
+
+      // Floating icons animation
+      floatingIconsRef.current.forEach((icon, index) => {
+        if (icon) {
+          gsap.to(icon, {
+            y: -20,
+            rotation: 10,
+            duration: 2 + index * 0.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: index * 0.2,
+          });
+        }
+      });
+
+      // Stats cards animation
+      statsRef.current.forEach((stat, index) => {
+        if (stat) {
+          gsap.from(stat, {
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.6,
+            delay: 0.6 + index * 0.1,
+            ease: "back.out(1.7)",
+          });
+
+          // Hover effect
+          stat.addEventListener("mouseenter", () => {
+            gsap.to(stat, {
+              scale: 1.05,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
+
+          stat.addEventListener("mouseleave", () => {
+            gsap.to(stat, {
+              scale: 1,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
+        }
+      });
+
+      // Form animation with ScrollTrigger
+      if (formRef.current) {
+        gsap.from(formRef.current, {
+          scrollTrigger: {
+            trigger: formRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 0,
+          x: -50,
+          duration: 1,
+          ease: "power3.out",
+        });
+      }
+
+      // Contact cards stagger animation
+      contactCardsRef.current.forEach((card, index) => {
+        if (card) {
+          gsap.from(card, {
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+            opacity: 0,
+            x: 50,
+            duration: 0.8,
+            delay: index * 0.15,
+            ease: "power3.out",
+          });
+
+          // Hover animation
+          card.addEventListener("mouseenter", () => {
+            gsap.to(card, {
+              x: 8,
+              scale: 1.02,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
+
+          card.addEventListener("mouseleave", () => {
+            gsap.to(card, {
+              x: 0,
+              scale: 1,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
+        }
+      });
+
+      // Why Choose Us card animation
+      if (whyChooseRef.current) {
+        gsap.from(whyChooseRef.current, {
+          scrollTrigger: {
+            trigger: whyChooseRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: "power3.out",
+        });
+
+        // Animate list items
+        const listItems = whyChooseRef.current.querySelectorAll(".feature-item");
+        gsap.from(listItems, {
+          scrollTrigger: {
+            trigger: whyChooseRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 0,
+          x: -20,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "power2.out",
+        });
+      }
+
+      // Parallax effect for background orbs
+      gsap.to(".orb-1", {
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+        y: 200,
+        ease: "none",
+      });
+
+      gsap.to(".orb-2", {
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+        y: -150,
+        ease: "none",
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -105,6 +291,15 @@ export default function ContactPage() {
 
       if (response.ok) {
         setSubmitStatus('success');
+
+        // Success animation
+        gsap.from(".success-message", {
+          opacity: 0,
+          scale: 0.9,
+          duration: 0.5,
+          ease: "back.out(1.7)",
+        });
+
         setFormData({
           name: "",
           email: "",
@@ -145,159 +340,82 @@ export default function ContactPage() {
     formData.message.length >= 10;
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white overflow-hidden">
       <Navigation />
 
-      {/* Hero Section with Animated Background */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-[#215ACD] via-[#1a49a8] to-[#0F172A]">
-        {/* Animated Background Elements */}
+      {/* Hero Section with GSAP Animations */}
+      <section ref={heroRef} className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-[#215ACD] via-[#1a49a8] to-[#0F172A]">
+        {/* Animated Background Elements with Parallax */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div
-            className="absolute bottom-0 left-0 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
+          <div className="orb-1 absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+          <div className="orb-2 absolute bottom-0 left-0 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl" />
 
-          {/* Floating Icons */}
-          <motion.div
+          {/* Floating Icons with GSAP */}
+          <div
+            ref={(el) => { if (el) floatingIconsRef.current[0] = el; }}
             className="absolute top-20 left-[10%] w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm"
-            animate={{
-              y: [0, -20, 0],
-              rotate: [0, 10, 0],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
           >
             <Mail className="w-8 h-8 text-white/80" />
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
+            ref={(el) => { if (el) floatingIconsRef.current[1] = el; }}
             className="absolute top-40 right-[15%] w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm"
-            animate={{
-              y: [0, 25, 0],
-              rotate: [0, -10, 0],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5
-            }}
           >
             <Phone className="w-10 h-10 text-white/80" />
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
+            ref={(el) => { if (el) floatingIconsRef.current[2] = el; }}
             className="absolute bottom-32 left-[20%] w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm"
-            animate={{
-              y: [0, -15, 0],
-              rotate: [0, 15, 0],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
           >
             <Headphones className="w-7 h-7 text-white/80" />
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
+            ref={(el) => { if (el) floatingIconsRef.current[3] = el; }}
             className="absolute bottom-20 right-[10%] w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm"
-            animate={{
-              y: [0, 20, 0],
-              rotate: [0, -15, 0],
-            }}
-            transition={{
-              duration: 6.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.5
-            }}
           >
             <MessageSquare className="w-8 h-8 text-white/80" />
-          </motion.div>
+          </div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 text-center z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block mb-6"
-            >
-              <div className="px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-                <span className="text-white font-medium">💬 We're Here to Help</span>
+          <div className="inline-block mb-6">
+            <div className="px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 hero-badge">
+              <span className="text-white font-medium">💬 We're Here to Help</span>
+            </div>
+          </div>
+
+          <h1 className="hero-title text-5xl md:text-7xl font-bold text-white mb-6 font-['Inter']">
+            Let's Start a{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-yellow-400">
+              Conversation
+            </span>
+          </h1>
+          <p className="hero-subtitle text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-8">
+            Ready to transform your business? We're here to help you succeed with our expert virtual assistant services.
+          </p>
+
+          {/* Quick Stats with GSAP */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12">
+            {[
+              { icon: Users, label: "Happy Clients", value: "2000+" },
+              { icon: Zap, label: "Response Time", value: "< 24h" },
+              { icon: Shield, label: "Success Rate", value: "98%" },
+              { icon: Headphones, label: "Support", value: "24/7" },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                ref={(el) => { if (el) statsRef.current[index] = el; }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 cursor-pointer"
+              >
+                <stat.icon className="w-8 h-8 text-yellow-300 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-white/80 text-sm">{stat.label}</div>
               </div>
-            </motion.div>
-
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-['Inter']">
-              Let's Start a{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-yellow-400">
-                Conversation
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-8">
-              Ready to transform your business? We're here to help you succeed with our expert virtual assistant services.
-            </p>
-
-            {/* Quick Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12"
-            >
-              {[
-                { icon: Users, label: "Happy Clients", value: "2000+" },
-                { icon: Zap, label: "Response Time", value: "< 24h" },
-                { icon: Shield, label: "Success Rate", value: "98%" },
-                { icon: Headphones, label: "Support", value: "24/7" },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
-                >
-                  <stat.icon className="w-8 h-8 text-yellow-300 mx-auto mb-3" />
-                  <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                  <div className="text-white/80 text-sm">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -307,12 +425,7 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-5 gap-12">
 
             {/* Contact Form - Takes 3 columns */}
-            <motion.div
-              className="lg:col-span-3"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
+            <div ref={formRef} className="lg:col-span-3">
               <div className="bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden">
                 <div className="bg-gradient-to-r from-[#215ACD] to-[#1a49a8] p-8 text-white">
                   <div className="flex items-center gap-3 mb-2">
@@ -325,11 +438,7 @@ export default function ContactPage() {
                 <div className="p-8">
                   {/* Success Message */}
                   {submitStatus === 'success' && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="mb-6 p-5 bg-green-50 border-2 border-green-200 rounded-xl"
-                    >
+                    <div className="success-message mb-6 p-5 bg-green-50 border-2 border-green-200 rounded-xl">
                       <div className="flex items-center gap-3 text-green-800">
                         <CheckCircle className="h-6 w-6" />
                         <div>
@@ -339,16 +448,12 @@ export default function ContactPage() {
                           </p>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   )}
 
                   {/* Error Message */}
                   {submitStatus === 'error' && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="mb-6 p-5 bg-red-50 border-2 border-red-200 rounded-xl"
-                    >
+                    <div className="mb-6 p-5 bg-red-50 border-2 border-red-200 rounded-xl">
                       <div className="flex items-center gap-3 text-red-800">
                         <AlertCircle className="h-6 w-6" />
                         <div>
@@ -356,12 +461,12 @@ export default function ContactPage() {
                           <p className="text-red-700 mt-1">{errorMessage}</p>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   )}
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
+                      <div className="space-y-2 form-field">
                         <Label htmlFor="name" className="flex items-center gap-2 text-base font-medium">
                           <User className="h-4 w-4 text-[#215ACD]" />
                           Full Name *
@@ -385,7 +490,7 @@ export default function ContactPage() {
                         )}
                       </div>
 
-                      <div className="space-y-2">
+                      <div className="space-y-2 form-field">
                         <Label htmlFor="email" className="flex items-center gap-2 text-base font-medium">
                           <Mail className="h-4 w-4 text-[#215ACD]" />
                           Email Address *
@@ -404,7 +509,7 @@ export default function ContactPage() {
                     </div>
 
                     {/* Phone Number Field */}
-                    <div className="space-y-2">
+                    <div className="space-y-2 form-field">
                       <Label htmlFor="phone" className="flex items-center gap-2 text-base font-medium">
                         <Phone className="h-4 w-4 text-[#215ACD]" />
                         Phone Number *
@@ -451,7 +556,7 @@ export default function ContactPage() {
                       )}
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-2 form-field">
                       <Label htmlFor="company" className="flex items-center gap-2 text-base font-medium">
                         <Building className="h-4 w-4 text-[#215ACD]" />
                         Company Name
@@ -466,7 +571,7 @@ export default function ContactPage() {
                       />
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-2 form-field">
                       <Label htmlFor="service" className="text-base font-medium">Service Interested In</Label>
                       <Select
                         value={formData.service}
@@ -486,7 +591,7 @@ export default function ContactPage() {
                       </Select>
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-2 form-field">
                       <Label htmlFor="message" className="text-base font-medium">Message *</Label>
                       <Textarea
                         id="message"
@@ -536,15 +641,10 @@ export default function ContactPage() {
                   </form>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Contact Information - Takes 2 columns */}
-            <motion.div
-              className="lg:col-span-2 space-y-6"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
+            <div className="lg:col-span-2 space-y-6">
               <div>
                 <h2 className="text-3xl font-bold mb-2 text-[#414141]">Get in Touch</h2>
                 <p className="text-slate-600 text-lg">
@@ -552,11 +652,11 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              {/* Contact Cards */}
+              {/* Contact Cards with GSAP */}
               <div className="space-y-4">
-                <motion.div
-                  whileHover={{ scale: 1.02, x: 5 }}
-                  className="bg-white p-6 rounded-xl border-2 border-slate-100 hover:border-[#215ACD]/30 hover:shadow-lg transition-all duration-300"
+                <div
+                  ref={(el) => { if (el) contactCardsRef.current[0] = el; }}
+                  className="bg-white p-6 rounded-xl border-2 border-slate-100 hover:border-[#215ACD]/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-14 h-14 bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
@@ -570,11 +670,11 @@ export default function ContactPage() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  whileHover={{ scale: 1.02, x: 5 }}
-                  className="bg-white p-6 rounded-xl border-2 border-slate-100 hover:border-[#215ACD]/30 hover:shadow-lg transition-all duration-300"
+                <div
+                  ref={(el) => { if (el) contactCardsRef.current[1] = el; }}
+                  className="bg-white p-6 rounded-xl border-2 border-slate-100 hover:border-[#215ACD]/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-14 h-14 bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
@@ -587,11 +687,11 @@ export default function ContactPage() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  whileHover={{ scale: 1.02, x: 5 }}
-                  className="bg-white p-6 rounded-xl border-2 border-slate-100 hover:border-[#215ACD]/30 hover:shadow-lg transition-all duration-300"
+                <div
+                  ref={(el) => { if (el) contactCardsRef.current[2] = el; }}
+                  className="bg-white p-6 rounded-xl border-2 border-slate-100 hover:border-[#215ACD]/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-14 h-14 bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
@@ -613,11 +713,11 @@ export default function ContactPage() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  whileHover={{ scale: 1.02, x: 5 }}
-                  className="bg-white p-6 rounded-xl border-2 border-slate-100 hover:border-[#215ACD]/30 hover:shadow-lg transition-all duration-300"
+                <div
+                  ref={(el) => { if (el) contactCardsRef.current[3] = el; }}
+                  className="bg-white p-6 rounded-xl border-2 border-slate-100 hover:border-[#215ACD]/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-14 h-14 bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
@@ -630,14 +730,12 @@ export default function ContactPage() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
 
-              {/* Why Choose Us Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
+              {/* Why Choose Us Card with GSAP */}
+              <div
+                ref={whyChooseRef}
                 className="bg-gradient-to-br from-[#215ACD] to-[#1a49a8] p-8 rounded-2xl shadow-2xl text-white mt-8"
               >
                 <h3 className="text-2xl font-bold mb-6">Why Choose ProTech Planner?</h3>
@@ -650,22 +748,19 @@ export default function ContactPage() {
                     "24/7 customer support",
                     "Trained and vetted professionals"
                   ].map((feature, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.7 + index * 0.1 }}
-                      className="flex items-center gap-3"
+                      className="feature-item flex items-center gap-3"
                     >
                       <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
                         <CheckCircle className="h-4 w-4 text-white" />
                       </div>
                       <span className="font-medium">{feature}</span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
