@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "luc
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-[#215ACD] to-[#0F172A] border-t border-white/10 pt-20 pb-10 text-slate-300">
+    <footer className="bg-gradient-to-br from-[#f7f7f7] to-[#FAF9F6] border-t border-[#031132]/10 pt-20 pb-10 text-slate-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="mb-4">
@@ -23,25 +23,25 @@ export function Footer() {
             <div className="flex space-x-4">
               <Link
                 href="#"
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-slate-400 hover:text-[#031132] transition-colors"
               >
                 <Facebook className="h-5 w-5" />
               </Link>
               <Link
                 href="#"
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-slate-400 hover:text-[#031132] transition-colors"
               >
                 <Twitter className="h-5 w-5" />
               </Link>
               <Link
                 href="#"
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-slate-400 hover:text-[#031132] transition-colors"
               >
                 <Linkedin className="h-5 w-5" />
               </Link>
               <Link
                 href="#"
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-slate-400 hover:text-[#031132] transition-colors"
               >
                 <Instagram className="h-5 w-5" />
               </Link>
@@ -49,12 +49,12 @@ export function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Services</h4>
+            <h4 className="text-lg font-bold text-[#031132]">Services</h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/services"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   Administrative Support
                 </Link>
@@ -62,7 +62,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   Customer Service
                 </Link>
@@ -70,7 +70,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   Appointment Scheduling
                 </Link>
@@ -78,7 +78,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   Social Media Management
                 </Link>
@@ -86,7 +86,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   Business Analytics
                 </Link>
@@ -94,7 +94,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   Digital Marketing
                 </Link>
@@ -103,12 +103,12 @@ export function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Company</h4>
+            <h4 className="text-lg font-bold text-[#031132]">Company</h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/about"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   About Us
                 </Link>
@@ -116,7 +116,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/blog"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   Blog
                 </Link>
@@ -124,7 +124,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   Contact
                 </Link>
@@ -132,7 +132,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   Privacy Policy
                 </Link>
@@ -140,7 +140,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/terms-and-conditions"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   Terms of Service
                 </Link>
@@ -148,7 +148,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/refund-policy"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   Refund Policy
                 </Link>
@@ -157,21 +157,21 @@ export function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Contact Info</h4>
+            <h4 className="text-lg font-bold text-[#031132]">Contact Info</h4>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
                 <Phone className="h-4 w-4 text-slate-400 mt-1 flex-shrink-0" />
                 <div className="flex flex-col gap-1">
                   <a
                     href="tel:+918377963214"
-                    className="text-slate-400 hover:text-white transition-colors"
+                    className="text-slate-400 hover:text-[#031132] transition-colors"
                   >
                     India: +91-8377963214
                   </a>
                   <a
                     href="tel:+1 316-844-6584
 "
-                    className="text-slate-400 hover:text-white transition-colors"
+                    className="text-slate-400 hover:text-[#031132] transition-colors"
                   >
                     USA: +1 316-844-6584
                   </a>
@@ -181,7 +181,7 @@ export function Footer() {
                 <Mail className="h-4 w-4 text-slate-400 flex-shrink-0" />
                 <a
                   href="mailto:info@protechplanner.com"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-[#031132] transition-colors"
                 >
                   info@protechplanner.com
                 </a>
@@ -189,31 +189,31 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-slate-400 mt-1 flex-shrink-0" />
                 <div className="flex flex-col gap-2">
-                  <span className="text-white font-semibold">
+                  <span className="text-[#031132] font-bold">
                     USA Office:
                   </span>
                   <span className="text-slate-400">
                     2123 Bluewillow Dr, Houston, Texas 77042, USA
                   </span>
-                  <span className="text-white font-semibold mt-2">
+                  <span className="text-[#031132] font-bold mt-2">
                     India Office:
                   </span>
                   <span className="text-slate-400">
-                    Mukhiya Complex, 4th Floor, Sector 35, Noida, Uttar Pradesh 201301
+                    Gaur City Center, 10th floor, Sector 4, Greater Noida, Ghaziabad, Uttar Pradesh 201318
                   </span>
                 </div>
               </div>
               <div className="flex items-center gap-3 pt-2">
-                <span className="text-white font-semibold">Working Hours:</span>
+                <span className="text-[#031132] font-bold">Working Hours:</span>
                 <span className="text-slate-400">24X7</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-12 pt-8 text-center">
+        <div className="border-t border-[#031132]/10 mt-12 pt-8 text-center">
           <p className="text-slate-500">
-            © 2024 ProTech Planner. All rights reserved.
+            © 2014 - 2026 ProTech Planner. All rights reserved.
           </p>
         </div>
       </div>
