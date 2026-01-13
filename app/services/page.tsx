@@ -1,25 +1,20 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import Link from "next/link"
-import { FileText, Phone, Calendar, Users, BarChart3, Globe, CheckCircle, ArrowRight, Send } from "lucide-react"
+  FileText,
+  Phone,
+  Calendar,
+  Users,
+  BarChart3,
+  Globe,
+  CheckCircle,
+  ArrowRight,
+  Mail
+} from "lucide-react";
 
 const services = [
   {
@@ -34,8 +29,6 @@ const services = [
       "Travel planning and coordination",
       "Expense tracking and reporting",
     ],
-    pricing: "Starting at $25/hour",
-    popular: false,
     slug: "administrative-support",
   },
   {
@@ -50,8 +43,6 @@ const services = [
       "Complaint resolution and follow-up",
       "Customer satisfaction surveys",
     ],
-    pricing: "Starting at $30/hour",
-    popular: true,
     slug: "customer-service",
   },
   {
@@ -66,8 +57,6 @@ const services = [
       "Rescheduling and cancellation handling",
       "Time zone coordination for global clients",
     ],
-    pricing: "Starting at $20/hour",
-    popular: false,
     slug: "appointment-scheduling",
   },
   {
@@ -82,8 +71,6 @@ const services = [
       "Hashtag research and optimization",
       "Influencer outreach coordination",
     ],
-    pricing: "Starting at $35/hour",
-    popular: false,
     slug: "social-media-management",
   },
   {
@@ -98,8 +85,6 @@ const services = [
       "Dashboard creation and maintenance",
       "Trend analysis and forecasting",
     ],
-    pricing: "Starting at $40/hour",
-    popular: false,
     slug: "business-analytics",
   },
   {
@@ -114,8 +99,6 @@ const services = [
       "Website analytics and optimization",
       "Online reputation management",
     ],
-    pricing: "Starting at $45/hour",
-    popular: true,
     slug: "digital-marketing",
   },
   {
@@ -130,8 +113,6 @@ const services = [
       "Product descriptions",
       "SEO-optimized content",
     ],
-    pricing: "Starting at $30/hour",
-    popular: false,
     slug: "content-writing",
   },
   {
@@ -146,8 +127,6 @@ const services = [
       "Quality assurance and testing",
       "Ongoing maintenance and support",
     ],
-    pricing: "Starting at $50/hour",
-    popular: true,
     slug: "hire-developers",
   },
   {
@@ -162,8 +141,6 @@ const services = [
       "Print design services",
       "Responsive web design",
     ],
-    pricing: "Starting at $40/hour",
-    popular: false,
     slug: "graphic-web-designing",
   },
   {
@@ -178,8 +155,6 @@ const services = [
       "Budget planning and forecasting",
       "Accounts payable/receivable management",
     ],
-    pricing: "Starting at $35/hour",
-    popular: false,
     slug: "finance-accounts",
   },
   {
@@ -194,8 +169,6 @@ const services = [
       "Scalable team solutions",
       "Cultural compatibility training",
     ],
-    pricing: "Starting at $20/hour",
-    popular: true,
     slug: "outsource-india",
   },
   {
@@ -210,8 +183,6 @@ const services = [
       "Litigation support services",
       "Intellectual property services",
     ],
-    pricing: "Starting at $55/hour",
-    popular: false,
     slug: "legal-process-outsourcing",
   },
   {
@@ -226,8 +197,6 @@ const services = [
       "Maintenance and updates",
       "Performance monitoring",
     ],
-    pricing: "Starting at $60/hour",
-    popular: false,
     slug: "mobile-app-development",
   },
   {
@@ -242,8 +211,6 @@ const services = [
       "Data entry and research",
       "Project coordination",
     ],
-    pricing: "Starting at $25/hour",
-    popular: true,
     slug: "hire-virtual-assistance",
   },
   {
@@ -258,8 +225,6 @@ const services = [
       "Technical support services",
       "Multilingual support options",
     ],
-    pricing: "Starting at $28/hour",
-    popular: false,
     slug: "contact-centre-outsourcing",
   },
   {
@@ -274,247 +239,147 @@ const services = [
       "Ongoing compliance monitoring",
       "Tax optimization strategies",
     ],
-    pricing: "Starting at $500/project",
-    popular: false,
     slug: "offshore-business-registration",
   },
-  {
-    icon: BarChart3,
-    title: "Corporate Service Provider",
-    description: "Comprehensive corporate services to support your business operations and growth.",
-    features: [
-      "Corporate secretarial services",
-      "Board meeting coordination",
-      "Regulatory filing and compliance",
-      "Corporate restructuring support",
-      "Due diligence services",
-      "Business advisory services",
-    ],
-    pricing: "Starting at $75/hour",
-    popular: false,
-    slug: "corporate-service-provider",
-  },
-]
+];
 
 export default function ServicesPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    service: "",
-    message: "",
-  })
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-    setIsModalOpen(false)
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      service: "",
-      message: "",
-    })
-  }
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-            Our <span className="text-primary">Virtual Assistant</span> Services
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
-            Discover our comprehensive range of virtual assistant services designed to streamline your operations, boost
-            productivity, and help your business thrive.
-          </p>
+      <section className="relative pt-24 pb-16 overflow-hidden bg-gradient-to-br from-white via-slate-50 to-white">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <div className="flex flex-col items-center gap-6">
+            <h1 className="text-5xl md:text-6xl font-bold text-black">
+              Our Virtual <span className="text-[#215ACD]">Assistant Services</span>
+            </h1>
+            <p className="text-xl text-black max-w-3xl leading-relaxed">
+              Discover our comprehensive range of virtual assistant services designed to streamline your operations, boost productivity, and help your business thrive.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <Card
+              <div
                 key={index}
-                className={`relative border-2 hover:shadow-lg transition-all duration-300 ${
-                  service.popular ? "border-accent shadow-lg" : "hover:border-primary/20"
-                }`}
+                className="relative bg-gradient-to-b from-white to-[#F5F5F5] rounded-lg border border-[#F2F2F2] overflow-hidden hover:shadow-xl transition-all duration-300 group"
               >
-                {service.popular && (
-                  <div className="absolute -top-3 left-6 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                    Most Popular
-                  </div>
-                )}
-                <CardHeader className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                        service.popular ? "bg-accent/20" : "bg-primary/10"
-                      }`}
-                    >
-                      <service.icon className={`h-6 w-6 ${service.popular ? "text-accent" : "text-primary"}`} />
+                {/* Card Content */}
+                <div className="p-6">
+                  {/* Icon and Title */}
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-b from-white to-[#F2F0FE] rounded border border-[#F2F0FE] flex items-center justify-center flex-shrink-0">
+                      <service.icon className="w-6 h-6 text-[#215ACD]" />
                     </div>
-                    <div>
-                      <CardTitle className="text-xl">{service.title}</CardTitle>
-                      <div className={`text-sm font-semibold ${service.popular ? "text-accent" : "text-primary"}`}>
-                        {service.pricing}
-                      </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-medium text-[#414141]">
+                        {service.title}
+                      </h3>
                     </div>
                   </div>
-                  <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <ul className="space-y-3">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground">{feature}</span>
+
+                  {/* Description */}
+                  <p className="text-[#5C5C5C] mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  {/* Features List */}
+                  <ul className="space-y-3 mb-6">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border-2 border-[#15D137] flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <CheckCircle className="w-3 h-3 text-[#15D137]" />
+                        </div>
+                        <span className="text-black text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  <div className="flex gap-3">
-                    <Button asChild variant="outline" className="flex-1 bg-transparent">
-                      <Link href={`/services/${service.slug}`} className="flex items-center justify-center gap-2">
-                        Learn More
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </Button>
-                    <Button
-                      asChild
-                      className={`flex-1 ${
-                        service.popular ? "bg-accent hover:bg-accent/90" : "bg-primary hover:bg-primary/90"
-                      }`}
+
+                  {/* CTA Buttons */}
+                  <div className="flex gap-4">
+                    <Link
+                      href="/contact"
+                      className="flex-1 px-4 py-2.5 bg-[#215ACD] hover:bg-[#1a49a8] text-white rounded text-center text-sm font-normal transition-colors"
                     >
-                      <Link href="/contact" className="flex items-center justify-center gap-2">
-                        Get Started
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </Button>
+                      Get started
+                    </Link>
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="flex-1 px-4 py-2.5 border border-[#215ACD] text-[#215ACD] hover:bg-[#215ACD] hover:text-white rounded text-center text-sm font-medium transition-colors"
+                    >
+                      Learn more
+                    </Link>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-secondary/50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance">Need a Custom Solution?</h2>
-          <p className="text-xl text-muted-foreground text-pretty">
-            We understand that every business is unique. Let's discuss how we can create a tailored virtual assistant
-            package that meets your specific needs.
+      <section className="relative py-24 overflow-hidden bg-[#215ACD]">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden opacity-20">
+          <div className="absolute top-10 right-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-block mb-6 px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+            <span className="text-white font-medium">💬 We're Here to Help</span>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Let's Start a <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-yellow-400">Conversation</span>
+          </h2>
+
+          <p className="text-xl text-white/90 mb-12 leading-relaxed max-w-2xl mx-auto">
+            Ready to transform your business? We're here to help you succeed with our expert virtual assistant services.
           </p>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-              <DialogTrigger asChild>
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
-                  Schedule Free Consultation
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[500px]">
-                <DialogHeader>
-                  <DialogTitle>Schedule Your Free Consultation</DialogTitle>
-                  <DialogDescription>
-                    Tell us about your needs and we'll get back to you within 24 hours with a personalized solution.
-                  </DialogDescription>
-                </DialogHeader>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="modal-name">Full Name *</Label>
-                      <Input
-                        id="modal-name"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange("name", e.target.value)}
-                        placeholder="Your full name"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="modal-email">Email Address *</Label>
-                      <Input
-                        id="modal-email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange("email", e.target.value)}
-                        placeholder="your@email.com"
-                        required
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="modal-company">Company Name</Label>
-                    <Input
-                      id="modal-company"
-                      value={formData.company}
-                      onChange={(e) => handleInputChange("company", e.target.value)}
-                      placeholder="Your company name"
-                    />
-                  </div>
+            <Link href="/contact">
+              <Button size="lg" className="bg-white text-[#215ACD] hover:bg-white/90 px-8 py-6 text-lg font-semibold rounded-lg shadow-lg">
+                <Mail className="mr-2 h-5 w-5" />
+                Contact Us Today
+              </Button>
+            </Link>
+            <Link href="/about">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#215ACD] px-8 py-6 text-lg font-semibold rounded-lg">
+                Learn About Us
+              </Button>
+            </Link>
+          </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="modal-service">Service Interest</Label>
-                    <Select onValueChange={(value) => handleInputChange("service", value)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a service" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {services.map((service) => (
-                          <SelectItem key={service.slug} value={service.slug}>
-                            {service.title}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="modal-message">Tell us about your needs *</Label>
-                    <Textarea
-                      id="modal-message"
-                      value={formData.message}
-                      onChange={(e) => handleInputChange("message", e.target.value)}
-                      placeholder="Describe your requirements and how we can help..."
-                      rows={4}
-                      required
-                    />
-                  </div>
-
-                  <div className="flex gap-3 pt-4">
-                    <Button type="button" variant="outline" onClick={() => setIsModalOpen(false)} className="flex-1">
-                      Cancel
-                    </Button>
-                    <Button type="submit" className="flex-1 bg-primary hover:bg-primary/90">
-                      Send Message
-                      <Send className="ml-2 h-4 w-4" />
-                    </Button>
-                  </div>
-                </form>
-              </DialogContent>
-            </Dialog>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/about">Learn About Our Team</Link>
-            </Button>
+          {/* Quick Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-16">
+            {[
+              { label: "Happy Clients", value: "2000+" },
+              { label: "Response Time", value: "< 24h" },
+              { label: "Success Rate", value: "98%" },
+              { label: "Support", value: "24/7" },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:scale-105 transition-transform"
+              >
+                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-white/80 text-sm">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       <Footer />
     </main>
-  )
+  );
 }

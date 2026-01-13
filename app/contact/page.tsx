@@ -194,7 +194,7 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </section>
-      
+
 
       {/* Contact Form & Info Section */}
       <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
@@ -310,12 +310,12 @@ export default function ContactPage() {
                           onValueChange={(value) => handleInputChange("countryCode", value)}
                           disabled={isSubmitting}
                         >
-                          <SelectTrigger className="w-36 h-12 border-2">
+                          <SelectTrigger className="w-36 h-12 border-2 bg-white">
                             <SelectValue />
                           </SelectTrigger>
-                          <SelectContent className="max-h-60">
+                          <SelectContent className="max-h-60 bg-white z-[100]" position="popper" sideOffset={5}>
                             {countryCodes.map((country) => (
-                              <SelectItem key={country.code} value={country.code}>
+                              <SelectItem key={country.code} value={country.code} className="bg-white hover:bg-slate-100">
                                 <span className="flex items-center gap-2">
                                   <span>{country.flag}</span>
                                   <span>{country.code}</span>
@@ -368,12 +368,12 @@ export default function ContactPage() {
                         onValueChange={(value) => handleInputChange("service", value)}
                         disabled={isSubmitting}
                       >
-                        <SelectTrigger className="h-12 border-2">
+                        <SelectTrigger className="h-12 border-2 bg-white">
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-white z-[100]" position="popper" sideOffset={5}>
                           {services.map((service) => (
-                            <SelectItem key={service} value={service}>
+                            <SelectItem key={service} value={service} className="bg-white hover:bg-slate-100">
                               {service}
                             </SelectItem>
                           ))}
@@ -564,8 +564,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      
-       <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-[#215ACD] via-[#1a49a8] to-[#0F172A]">
+
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-[#215ACD] via-[#1a49a8] to-[#0F172A]">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
