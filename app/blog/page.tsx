@@ -18,79 +18,7 @@ import {
   BookOpen,
   Tag,
 } from "lucide-react";
-
-const blogPosts = [
-  {
-    title: "10 Ways Virtual Assistants Can Transform Your Business Operations",
-    excerpt:
-      "Discover how virtual assistants can streamline your workflows, reduce costs, and help you focus on strategic growth initiatives.",
-    author: "Jennifer Martinez",
-    date: "2024-01-15",
-    readTime: "5 min read",
-    category: "Business Growth",
-    image: "/business-transformation-virtual-assistant-producti.jpg",
-    featured: true,
-  },
-  {
-    title: "The Complete Guide to Outsourcing Customer Service",
-    excerpt:
-      "Learn best practices for outsourcing customer service to virtual assistants while maintaining quality and customer satisfaction.",
-    author: "David Thompson",
-    date: "2024-01-10",
-    readTime: "8 min read",
-    category: "Customer Service",
-    image: "/customer-service-outsourcing-virtual-support.jpg",
-  },
-  {
-    title: "Maximizing ROI: How to Measure Virtual Assistant Performance",
-    excerpt:
-      "Key metrics and strategies to track the success of your virtual assistant partnership and ensure maximum return on investment.",
-    author: "Sarah Kim",
-    date: "2024-01-05",
-    readTime: "6 min read",
-    category: "Performance",
-    image: "/roi-measurement-business-analytics-performance-tra.jpg",
-  },
-  {
-    title: "Remote Work Best Practices: Managing Virtual Teams Effectively",
-    excerpt:
-      "Essential tips for managing virtual assistants and remote teams to ensure productivity, communication, and successful outcomes.",
-    author: "Jennifer Martinez",
-    date: "2023-12-28",
-    readTime: "7 min read",
-    category: "Management",
-    image: "/remote-team-management-virtual-collaboration.jpg",
-  },
-  {
-    title: "Social Media Management: Why You Need a Virtual Assistant",
-    excerpt:
-      "Explore how virtual assistants can elevate your social media presence with consistent posting, engagement, and strategic content.",
-    author: "David Thompson",
-    date: "2023-12-20",
-    readTime: "4 min read",
-    category: "Digital Marketing",
-    image: "/social-media-management-virtual-assistant-marketin.jpg",
-  },
-  {
-    title: "Cost-Effective Business Growth: The Virtual Assistant Advantage",
-    excerpt:
-      "Learn how virtual assistants provide a cost-effective solution for scaling your business without the overhead of full-time employees.",
-    author: "Sarah Kim",
-    date: "2023-12-15",
-    readTime: "5 min read",
-    category: "Business Growth",
-    image: "/cost-effective-business-growth-virtual-assistant-s.jpg",
-  },
-];
-
-const categories = [
-  "All",
-  "Business Growth",
-  "Customer Service",
-  "Performance",
-  "Management",
-  "Digital Marketing",
-];
+import { blogPosts, categories } from "@/lib/blog-data";
 
 // Helper function for consistent date formatting
 const formatDate = (dateString: string) => {
@@ -339,7 +267,7 @@ export default function BlogPage() {
                     </div>
 
                     <Button className="bg-[#215ACD] hover:bg-[#1a49a8] rounded-full px-6 group">
-                      <Link href="#" className="flex items-center gap-2">
+                      <Link href={`/blog/${featuredPost.slug}`} className="flex items-center gap-2">
                         Read More
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </Link>
@@ -425,7 +353,7 @@ export default function BlogPage() {
                       className="w-full mt-4 group-hover:bg-[#215ACD] group-hover:text-white transition-all"
                       asChild
                     >
-                      <Link href="#" className="flex items-center justify-center gap-2">
+                      <Link href={`/blog/${post.slug}`} className="flex items-center justify-center gap-2">
                         Read Article
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </Link>
