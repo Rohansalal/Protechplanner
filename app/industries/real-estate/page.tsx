@@ -27,12 +27,12 @@ export default function RealEstatePage() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="space-y-8 animate-in slide-in-from-left duration-700">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium backdrop-blur-sm">
-                                <span className="flex h-2 w-2 rounded-full bg-blue-400"></span>
+                                <span className="flex h-2 w-2 rounded-full bg-[#215ACD]"></span>
                                 Real Estate Solutions
                             </div>
 
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                                Scale your agency with expert <span className="text-blue-300">Virtual Assistants</span>
+                                Scale your agency with expert <span className="text-[#6BA3FF]">Virtual Assistants</span>
                             </h1>
 
                             <p className="text-lg text-indigo-100/90 leading-relaxed max-w-xl">
@@ -51,7 +51,7 @@ export default function RealEstatePage() {
 
                         <div className="relative lg:h-[600px] animate-in slide-in-from-right duration-700 delay-200 hidden lg:block">
                             {/* Abstract Visual Representation */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent rounded-3xl border border-white/10 backdrop-blur-sm p-8">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#215ACD]/20 to-transparent rounded-3xl border border-white/10 backdrop-blur-sm p-8">
                                 <div className="h-full w-full bg-[#1a2d47] rounded-2xl shadow-2xl border border-white/5 p-6 relative overflow-hidden">
                                     <div className="absolute top-0 right-0 p-4 opacity-20">
                                         <Home className="w-64 h-64 text-white" />
@@ -65,13 +65,13 @@ export default function RealEstatePage() {
                                             </div>
                                         </div>
                                         <div className="grid grid-cols-2 gap-4">
-                                            <div className="h-32 bg-blue-500/20 rounded-xl border border-blue-500/30 p-4 flex flex-col justify-end">
+                                            <div className="h-32 bg-[#215ACD]/20 rounded-xl border border-[#215ACD]/30 p-4 flex flex-col justify-end">
                                                 <div className="text-2xl font-bold text-white mb-1">24/7</div>
-                                                <div className="text-xs text-blue-200">Listing Support</div>
+                                                <div className="text-xs text-[#6BA3FF]">Listing Support</div>
                                             </div>
-                                            <div className="h-32 bg-emerald-500/20 rounded-xl border border-emerald-500/30 p-4 flex flex-col justify-end">
+                                            <div className="h-32 bg-[#1a4aa8]/20 rounded-xl border border-[#1a4aa8]/30 p-4 flex flex-col justify-end">
                                                 <div className="text-2xl font-bold text-white mb-1">3x</div>
-                                                <div className="text-xs text-emerald-200">More Closings</div>
+                                                <div className="text-xs text-[#6BA3FF]">More Closings</div>
                                             </div>
                                         </div>
                                     </div>
@@ -149,12 +149,12 @@ export default function RealEstatePage() {
 
                         <ScrollAnimation className="relative">
                             <div className="bg-[#213959] rounded-3xl p-8 text-center text-white relative overflow-hidden">
-                                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-blue-500 rounded-full opacity-20 blur-3xl"></div>
-                                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-emerald-500 rounded-full opacity-20 blur-3xl"></div>
+                                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-[#215ACD] rounded-full opacity-20 blur-3xl"></div>
+                                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-[#1a4aa8] rounded-full opacity-20 blur-3xl"></div>
 
                                 <div className="relative z-10 py-12">
                                     <h3 className="text-3xl font-bold mb-6">Ready to Grow?</h3>
-                                    <p className="text-blue-200 mb-8 text-lg">Start closing more deals with dedicated support.</p>
+                                    <p className="text-blue-100 mb-8 text-lg">Start closing more deals with dedicated support.</p>
                                     <Button size="lg" className="bg-white text-[#213959] hover:bg-slate-100 h-14 px-8 text-lg font-semibold w-full sm:w-auto">
                                         <Link href="/contact">Get Started Now</Link>
                                     </Button>
@@ -176,7 +176,7 @@ export default function RealEstatePage() {
                     <Accordion type="single" collapsible className="space-y-4">
                         {faqs.map((faq, index) => (
                             <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-slate-200 rounded-lg px-6 data-[state=open]:shadow-md transition-all duration-200">
-                                <AccordionTrigger className="text-lg font-semibold text-[#213959] hover:text-blue-600 text-left">
+                                <AccordionTrigger className="text-lg font-semibold text-[#213959] hover:text-[#215ACD] text-left">
                                     {faq.question}
                                 </AccordionTrigger>
                                 <AccordionContent className="text-slate-600 leading-relaxed pb-4">

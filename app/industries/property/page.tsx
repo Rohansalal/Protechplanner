@@ -27,12 +27,12 @@ export default function PropertyManagementPage() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="space-y-8 animate-in slide-in-from-left duration-700">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium backdrop-blur-sm">
-                                <span className="flex h-2 w-2 rounded-full bg-orange-400"></span>
+                                <span className="flex h-2 w-2 rounded-full bg-[#215ACD]"></span>
                                 Property Management
                             </div>
 
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                                Efficient property management <span className="text-orange-300">support solutions</span>
+                                Efficient property management <span className="text-[#6BA3FF]">support solutions</span>
                             </h1>
 
                             <p className="text-lg text-indigo-100/90 leading-relaxed max-w-xl">
@@ -50,7 +50,7 @@ export default function PropertyManagementPage() {
                         </div>
 
                         <div className="relative lg:h-[600px] animate-in slide-in-from-right duration-700 delay-200 hidden lg:block">
-                            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-transparent rounded-3xl border border-white/10 backdrop-blur-sm p-8">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#215ACD]/20 to-transparent rounded-3xl border border-white/10 backdrop-blur-sm p-8">
                                 <div className="h-full w-full bg-[#1a2d47] rounded-2xl shadow-2xl border border-white/5 p-6 relative overflow-hidden">
                                     <div className="absolute top-0 right-0 p-4 opacity-20">
                                         <Building className="w-64 h-64 text-white" />
@@ -64,13 +64,13 @@ export default function PropertyManagementPage() {
                                             </div>
                                         </div>
                                         <div className="grid grid-cols-2 gap-4">
-                                            <div className="h-32 bg-orange-500/20 rounded-xl border border-orange-500/30 p-4 flex flex-col justify-end">
+                                            <div className="h-32 bg-[#215ACD]/20 rounded-xl border border-[#215ACD]/30 p-4 flex flex-col justify-end">
                                                 <div className="text-2xl font-bold text-white mb-1">24h</div>
-                                                <div className="text-xs text-orange-200">Response Time</div>
+                                                <div className="text-xs text-[#6BA3FF]">Response Time</div>
                                             </div>
-                                            <div className="h-32 bg-indigo-500/20 rounded-xl border border-indigo-500/30 p-4 flex flex-col justify-end">
+                                            <div className="h-32 bg-[#1a4aa8]/20 rounded-xl border border-[#1a4aa8]/30 p-4 flex flex-col justify-end">
                                                 <div className="text-2xl font-bold text-white mb-1">100%</div>
-                                                <div className="text-xs text-indigo-200">Compliance</div>
+                                                <div className="text-xs text-[#6BA3FF]">Compliance</div>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@ export default function PropertyManagementPage() {
                         {services.map((service, index) => (
                             <ScrollAnimation key={index} delay={index * 0.1}>
                                 <div className="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group h-full">
-                                    <div className="w-14 h-14 rounded-xl bg-orange-50 flex items-center justify-center mb-6 group-hover:bg-[#213959] transition-colors duration-300">
+                                    <div className="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center mb-6 group-hover:bg-[#215ACD] transition-colors duration-300">
                                         <service.icon className="w-7 h-7 text-[#213959] group-hover:text-white transition-colors duration-300" />
                                     </div>
                                     <h3 className="text-xl font-bold text-[#213959] mb-3">{service.title}</h3>
@@ -133,7 +133,7 @@ export default function PropertyManagementPage() {
                                 ].map((item, idx) => (
                                     <ScrollAnimation key={idx} delay={idx * 0.2}>
                                         <div className="flex gap-6">
-                                            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center text-[#213959] font-bold text-xl">
+                                            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center text-[#215ACD] font-bold text-xl">
                                                 {item.step}
                                             </div>
                                             <div>
@@ -148,12 +148,12 @@ export default function PropertyManagementPage() {
 
                         <ScrollAnimation className="relative">
                             <div className="bg-[#213959] rounded-3xl p-8 text-center text-white relative overflow-hidden">
-                                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-orange-500 rounded-full opacity-20 blur-3xl"></div>
-                                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-purple-500 rounded-full opacity-20 blur-3xl"></div>
+                                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-[#215ACD] rounded-full opacity-20 blur-3xl"></div>
+                                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-[#1a4aa8] rounded-full opacity-20 blur-3xl"></div>
 
                                 <div className="relative z-10 py-12">
                                     <h3 className="text-3xl font-bold mb-6">Need Reliability?</h3>
-                                    <p className="text-orange-100 mb-8 text-lg">Consistent support for your tenants and properties.</p>
+                                    <p className="text-blue-100 mb-8 text-lg">Consistent support for your tenants and properties.</p>
                                     <Button size="lg" className="bg-white text-[#213959] hover:bg-slate-100 h-14 px-8 text-lg font-semibold w-full sm:w-auto">
                                         <Link href="/contact">Talk to Us</Link>
                                     </Button>
@@ -175,7 +175,7 @@ export default function PropertyManagementPage() {
                     <Accordion type="single" collapsible className="space-y-4">
                         {faqs.map((faq, index) => (
                             <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-slate-200 rounded-lg px-6 data-[state=open]:shadow-md transition-all duration-200">
-                                <AccordionTrigger className="text-lg font-semibold text-[#213959] hover:text-orange-600 text-left">
+                                <AccordionTrigger className="text-lg font-semibold text-[#213959] hover:text-[#215ACD] text-left">
                                     {faq.question}
                                 </AccordionTrigger>
                                 <AccordionContent className="text-slate-600 leading-relaxed pb-4">
