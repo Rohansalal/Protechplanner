@@ -1,109 +1,198 @@
+"use client"
+
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Users, Award, Clock, Shield, ArrowRight, CheckCircle } from "lucide-react"
+import {
+  Users,
+  TrendingUp,
+  Globe,
+  Shield,
+  ArrowRight,
+  CheckCircle,
+  Target,
+  Zap,
+  Heart,
+  Award,
+  Clock,
+  DollarSign,
+  Sparkles
+} from "lucide-react"
 
 const stats = [
-  { icon: Users, label: "Happy Clients", value: "500+" },
-  { icon: Clock, label: "Hours Saved", value: "50,000+" },
-  { icon: Award, label: "Years Experience", value: "8+" },
-  { icon: Shield, label: "Satisfaction Rate", value: "98%" },
+  { icon: DollarSign, label: "Cost Savings", value: "78%", description: "Average reduction in operating costs" },
+  { icon: TrendingUp, label: "Productivity Boost", value: "35%", description: "Increase in workforce efficiency" },
+  { icon: Globe, label: "Market Growth", value: "$8.6B", description: "Projected market by 2028" },
+  { icon: Shield, label: "Client Satisfaction", value: "98%", description: "Satisfaction rate maintained" },
 ]
 
 const team = [
   {
     name: "Jennifer Martinez",
     role: "Founder & CEO",
-    bio: "Former Fortune 500 executive with 15+ years in operations management. Passionate about helping businesses scale efficiently.",
+    bio: "Former Fortune 500 executive with 15+ years in operations management. Passionate about helping businesses scale efficiently through strategic virtual assistance.",
     image: "/professional-woman-ceo-executive-headshot.jpg",
   },
   {
     name: "David Thompson",
     role: "Head of Operations",
-    bio: "Expert in process optimization and team management. Ensures our virtual assistants deliver exceptional service quality.",
+    bio: "Expert in process optimization and team management with a proven track record of delivering exceptional service quality across global teams.",
     image: "/professional-operations-manager.png",
   },
   {
     name: "Sarah Kim",
     role: "Client Success Manager",
-    bio: "Dedicated to client satisfaction and relationship building. Helps businesses maximize their virtual assistant partnerships.",
+    bio: "Dedicated to building lasting partnerships and ensuring our clients maximize the value of their virtual assistant relationships.",
     image: "/professional-woman-client-success-manager-headshot.jpg",
   },
 ]
 
 const values = [
   {
+    icon: Award,
     title: "Excellence",
-    description: "We maintain the highest standards in everything we do, from recruitment to service delivery.",
+    description: "We maintain the highest standards in everything we do, from our rigorous 5-step vetting process to ongoing training and quality assurance.",
+    color: "bg-blue-50 text-[#215ACD]"
   },
   {
+    icon: Shield,
     title: "Reliability",
-    description: "Our clients depend on us, and we never let them down. Consistency is at the core of our service.",
+    description: "Our clients depend on us for critical business operations. We deliver consistent, dependable support with 99.9% uptime and accountability.",
+    color: "bg-indigo-50 text-[#213959]"
   },
   {
+    icon: Zap,
     title: "Innovation",
-    description: "We continuously evolve our processes and adopt new technologies to serve our clients better.",
+    description: "We leverage cutting-edge AI tools, automation, and cloud-based technologies to provide efficient, modern virtual assistance solutions.",
+    color: "bg-sky-50 text-[#215ACD]"
   },
   {
+    icon: Heart,
     title: "Partnership",
-    description: "We see ourselves as an extension of your team, working together toward your business goals.",
+    description: "We're not just service providers—we're an extension of your team, invested in your success and committed to your business goals.",
+    color: "bg-blue-50 text-[#213959]"
+  },
+]
+
+const differentiators = [
+  {
+    title: "Highly Educated Professionals",
+    description: "91% of our virtual assistants hold college degrees, bringing expertise and professionalism to every task.",
+    icon: Award
+  },
+  {
+    title: "24/7 Global Coverage",
+    description: "With assistants across all time zones, we provide round-the-clock support to keep your business running smoothly.",
+    icon: Clock
+  },
+  {
+    title: "Specialized Expertise",
+    description: "From administrative support to marketing, bookkeeping, and technical services—we match you with the right specialist.",
+    icon: Target
+  },
+  {
+    title: "Proven ROI",
+    description: "Our clients save an average of 67% in operating costs while boosting productivity by up to 35%.",
+    icon: TrendingUp
   },
 ]
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section - Blue Gradient */}
+      <section className="relative bg-gradient-to-br from-[#215ACD] via-[#1a4aa8] to-[#213959] text-white py-24 overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance leading-tight">
-                About <span className="text-primary">ProTech Planner</span>
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
+                <Sparkles className="h-4 w-4" />
+                <span className="text-sm font-medium">Trusted by 500+ Businesses Worldwide</span>
+              </div>
+              <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+                Empowering Businesses Through Expert Virtual Assistance
               </h1>
-              <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
-                Founded in 2016, ProTech Planner has been helping businesses worldwide streamline their operations
-                through expert virtual assistant services. We believe that every business deserves access to
-                professional support that scales with their growth.
+              <p className="text-xl text-blue-100 leading-relaxed">
+                Since 2016, ProTech Planner has been revolutionizing how businesses operate by providing
+                world-class virtual assistant services that drive efficiency, reduce costs, and fuel growth.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-accent" />
-                  <span>Trusted by 500+ businesses worldwide</span>
+                  <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="h-4 w-4 text-white" />
+                  </div>
+                  <span className="text-lg">Rigorous 5-step vetting process for all assistants</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-accent" />
-                  <span>Rigorous 5-step vetting process</span>
+                  <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="h-4 w-4 text-white" />
+                  </div>
+                  <span className="text-lg">24/7 support across all global time zones</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-accent" />
-                  <span>24/7 support across all time zones</span>
+                  <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="h-4 w-4 text-white" />
+                  </div>
+                  <span className="text-lg">AI-powered tools and modern automation</span>
                 </div>
               </div>
             </div>
             <div className="relative">
-              <img src="/diverse-team-of-virtual-assistants-working-togethe.jpg" alt="VirtueAssist Pro team" className="rounded-lg shadow-2xl" />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+                <img
+                  src="/diverse-team-of-virtual-assistants-working-togethe.jpg"
+                  alt="ProTech Planner team"
+                  className="w-full h-auto"
+                />
+              </div>
+              {/* Floating Stats Card */}
+              <div className="absolute -bottom-6 -left-6 bg-white text-gray-900 p-6 rounded-xl shadow-2xl max-w-xs">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-[#215ACD] rounded-lg flex items-center justify-center">
+                    <Users className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-[#215ACD]">500+</div>
+                    <div className="text-sm text-gray-600">Happy Clients</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-background">
+      {/* Stats Section - White Background with Blue Accents */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              Industry-Leading Results
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Our virtual assistant services deliver measurable impact backed by real data
+            </p>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <Card key={index} className="text-center border-2 hover:border-primary/20 transition-colors">
-                <CardContent className="p-6 space-y-4">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                    <stat.icon className="h-8 w-8 text-primary" />
+              <Card key={index} className="text-center border-2 border-gray-100 hover:border-[#215ACD]/30 hover:shadow-lg transition-all duration-300 group">
+                <CardContent className="p-8 space-y-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#215ACD] to-[#213959] rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                    <stat.icon className="h-8 w-8 text-white" />
                   </div>
-                  <div className="text-3xl font-bold text-primary">{stat.value}</div>
-                  <div className="text-muted-foreground">{stat.label}</div>
+                  <div className="text-4xl font-bold text-[#215ACD]">{stat.value}</div>
+                  <div className="font-semibold text-gray-900">{stat.label}</div>
+                  <div className="text-sm text-gray-600">{stat.description}</div>
                 </CardContent>
               </Card>
             ))}
@@ -111,43 +200,81 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-20 bg-secondary/50">
+      {/* Mission Section - Light Blue Background */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl lg:text-5xl font-bold text-balance">Our Mission</h2>
-          <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
-            To empower businesses of all sizes by providing exceptional virtual assistant services that free up valuable
-            time, reduce operational costs, and enable focus on core business activities. We're committed to being the
-            trusted partner that helps our clients achieve their goals through reliable, professional support.
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-[#215ACD] rounded-2xl mb-4">
+            <Target className="h-8 w-8 text-white" />
+          </div>
+          <h2 className="text-3xl lg:text-5xl font-bold text-gray-900">Our Mission</h2>
+          <p className="text-xl text-gray-700 leading-relaxed">
+            To empower businesses of all sizes by providing exceptional virtual assistant services that
+            <span className="font-semibold text-[#215ACD]"> free up valuable time</span>,
+            <span className="font-semibold text-[#215ACD]"> reduce operational costs by up to 78%</span>, and
+            <span className="font-semibold text-[#215ACD]"> boost productivity by 35%</span>.
+            We're committed to being the trusted partner that helps our clients focus on what truly matters—growing their business.
           </p>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 bg-background">
+      {/* Why We're Different Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Why ProTech Planner Stands Out
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We're not just another virtual assistant service—we're your strategic partner in business growth
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {differentiators.map((item, index) => (
+              <Card key={index} className="border-2 border-gray-100 hover:border-[#215ACD]/30 hover:shadow-xl transition-all duration-300 group">
+                <CardContent className="p-8 space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#215ACD] to-[#213959] rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <item.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+                      <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section - Light Background */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold text-balance">Meet Our Leadership Team</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Our experienced leadership team brings decades of combined expertise in business operations, client
-              service, and team management.
+            <h2 className="text-3xl lg:text-5xl font-bold text-gray-900">Meet Our Leadership Team</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Experienced professionals dedicated to delivering excellence in virtual assistance
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {team.map((member, index) => (
-              <Card key={index} className="border-2 hover:border-primary/20 transition-colors">
-                <CardContent className="p-6 space-y-4 text-center">
-                  <img
-                    src={member.image || "/placeholder.svg"}
-                    alt={member.name}
-                    className="w-32 h-32 rounded-full object-cover mx-auto"
-                  />
-                  <div>
-                    <h3 className="text-xl font-bold">{member.name}</h3>
-                    <div className="text-primary font-semibold">{member.role}</div>
+              <Card key={index} className="border-2 border-gray-100 hover:border-[#215ACD]/30 hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                <CardContent className="p-0">
+                  <div className="relative h-48 bg-gradient-to-br from-[#215ACD] to-[#213959] flex items-center justify-center overflow-hidden">
+                    <img
+                      src={member.image || "/placeholder.svg"}
+                      alt={member.name}
+                      className="w-36 h-36 rounded-full object-cover border-4 border-white shadow-lg group-hover:scale-110 transition-transform"
+                    />
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">{member.bio}</p>
+                  <div className="p-6 space-y-3 text-center">
+                    <h3 className="text-xl font-bold text-gray-900">{member.name}</h3>
+                    <div className="text-[#215ACD] font-semibold text-sm uppercase tracking-wide">{member.role}</div>
+                    <p className="text-gray-600 leading-relaxed text-sm">{member.bio}</p>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -155,22 +282,29 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-20 bg-secondary/50">
+      {/* Values Section - White Background */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold text-balance">Our Core Values</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              These values guide everything we do and shape how we serve our clients every day.
+            <h2 className="text-3xl lg:text-5xl font-bold text-gray-900">Our Core Values</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              These principles guide every decision we make and every service we deliver
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {values.map((value, index) => (
-              <Card key={index} className="border-2 hover:border-primary/20 transition-colors">
-                <CardContent className="p-6 space-y-3">
-                  <h3 className="text-xl font-bold text-primary">{value.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{value.description}</p>
+              <Card key={index} className="border-2 border-gray-100 hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                <CardContent className="p-8 space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className={`w-14 h-14 ${value.color} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                      <value.icon className="h-7 w-7" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-3">{value.title}</h3>
+                      <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -178,22 +312,27 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance">
-            Ready to Experience the VirtueAssist Pro Difference?
+      {/* CTA Section - Blue Gradient */}
+      <section className="relative py-24 bg-gradient-to-br from-[#215ACD] via-[#1a4aa8] to-[#213959] text-white overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 relative z-10">
+          <h2 className="text-3xl lg:text-5xl font-bold">
+            Ready to Transform Your Business?
           </h2>
-          <p className="text-xl text-primary-foreground/90 text-pretty">
-            Join the hundreds of businesses that trust us with their most important tasks. Let's discuss how we can help
-            your business thrive.
+          <p className="text-xl text-blue-100">
+            Join 500+ businesses that have already saved 78% in costs and boosted productivity by 35%.
+            Let's discuss how ProTech Planner can help you achieve your goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               asChild
               size="lg"
-              variant="secondary"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground"
+              className="bg-white hover:bg-gray-100 text-[#215ACD] font-semibold text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all"
             >
               <Link href="/contact">
                 Start Your Partnership Today
@@ -204,7 +343,7 @@ export default function AboutPage() {
               asChild
               size="lg"
               variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
+              className="border-2 border-white text-white hover:bg-white hover:text-[#215ACD] bg-transparent font-semibold text-lg px-8 py-6 transition-all"
             >
               <Link href="/services">Explore Our Services</Link>
             </Button>
