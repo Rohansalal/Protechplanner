@@ -1,305 +1,372 @@
-// app/services/customer-service/email-support/page.tsx
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { AutoConsultationModal } from "@/components/auto-consultation-modal"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
-import { Mail, CheckCircle, ArrowRight, Clock, Users, Zap, Shield, FileText } from "lucide-react"
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  Mail,
+  ArrowRight,
+  CheckCircle,
+  Inbox,
+  Send,
+  Clock,
+  Target,
+  Shield,
+  Zap,
+  FileText
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { AutoConsultationModal } from "@/components/auto-consultation-modal";
+import { Button } from "@/components/ui/button";
+
+const FEATURES = [
+  {
+    icon: Inbox,
+    title: "Email Ticket Management",
+    description: "Systematic email organization with priority classification, tagging, and efficient ticket routing to ensure no email goes unanswered."
+  },
+  {
+    icon: Send,
+    title: "Professional Responses",
+    description: "Well-crafted, on-brand email responses that maintain your company's voice and professionalism in every interaction."
+  },
+  {
+    icon: Clock,
+    title: "Fast Response Times",
+    description: "Average response time under 2 hours for priority emails, with 24-hour maximum for all inquiries."
+  },
+  {
+    icon: FileText,
+    title: "Template Library",
+    description: "Custom email templates for common scenarios, ensuring consistency while saving time on repetitive responses."
+  }
+];
+
+const BENEFITS = [
+  "Handle 100+ emails daily with precision",
+  "Reduce response time by 70%",
+  "Maintain consistent brand voice",
+  "Automated follow-up sequences",
+  "Detailed email analytics and reporting",
+  "Integration with major email platforms"
+];
+
+const EMAIL_TYPES = [
+  {
+    title: "Customer Inquiries",
+    description: "Product questions, pricing, availability, and general information requests.",
+    metric: "<2hr response"
+  },
+  {
+    title: "Technical Support",
+    description: "Troubleshooting assistance, setup guides, and technical issue resolution.",
+    metric: "Priority handling"
+  },
+  {
+    title: "Order Support",
+    description: "Order status, shipping updates, returns, and refund processing.",
+    metric: "Same-day resolution"
+  },
+  {
+    title: "Complaints & Escalations",
+    description: "Professional handling of complaints with empathy and swift resolution.",
+    metric: "Executive escalation"
+  }
+];
+
+const STATS = [
+  { value: "<2hrs", label: "Average Response Time" },
+  { value: "100+", label: "Emails Daily" },
+  { value: "98%", label: "Customer Satisfaction" }
+];
 
 export default function EmailSupportPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-green-50/20 to-white pt-5 pb-20 md:pt-7 md:pb-28 px-2">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-sm text-[#5C5C5C] mb-8"
+          >
+            <Link href="/services" className="hover:text-[#215ACD] transition-colors">Services</Link>
+            <span>/</span>
+            <Link href="/services/customer-service" className="hover:text-[#215ACD] transition-colors">Customer Service</Link>
+            <span>/</span>
+            <span className="text-[#215ACD] font-medium">Email Support</span>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-accent/20 flex items-center justify-center">
-                  <Mail className="h-6 w-6 text-accent" />
-                </div>
-                <span className="text-accent font-semibold">Email Support</span>
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-                Professional <span className="text-accent">Email Support</span> for Comprehensive Customer Care
-              </h1>
-              <p className="text-xl text-muted-foreground text-pretty leading-relaxed mb-8">
-                Manage your customer email communications efficiently with our professional email support services. We ensure timely, accurate, and brand-consistent responses.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
-                  <Link href="/contact">
-                    Start Email Support
-                    <ArrowRight className="ml-2 h-5 w-5" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-blue-50 text-[#215ACD] px-4 py-2 rounded-full text-sm font-medium mb-6"
+              >
+                <Mail className="w-4 h-4" />
+                Email Support Services
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-bold font-['Inter'] mb-6"
+              >
+                <span className="text-black">Never Miss </span>
+                <span className="text-[#215ACD]">Another</span>
+                <br />
+                <span className="text-black">Customer Email</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-[18px] md:text-[20px] leading-relaxed text-[#414141] mb-8"
+              >
+                Professional email support that ensures every customer inquiry receives a timely, helpful, and on-brand response.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Button
+                  asChild
+                  className="bg-[#215ACD] hover:bg-[#1a49a8] text-white px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/contact">Get Started Today</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#215ACD] text-[#215ACD] hover:bg-[#F1F5FF] px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/services/customer-service">
+                    <ArrowRight className="w-4 h-4 mr-2 rotate-180" />
+                    Back to Services
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/services/customer-service">View All Customer Services</Link>
-                </Button>
-              </div>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200"
+              >
+                {STATS.map((stat, index) => (
+                  <div key={index}>
+                    <div className="text-[28px] md:text-[36px] font-bold text-[#215ACD]">{stat.value}</div>
+                    <div className="text-[13px] text-[#5C5C5C] mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-            <div className="relative">
-              <img
-                src="/email-support-virtual-team.jpg"
-                alt="Professional Email Support Team"
-                className="rounded-lg shadow-2xl"
+
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="relative h-[500px] hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-transparent rounded-2xl" />
+              <Image
+                src="https://placehold.co/600x500/eef2ff/215acd?text=Email+Support"
+                alt="Email Support Services"
+                fill
+                className="object-contain drop-shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Blog-Style Content Boxes */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Features Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Complete Email Management Solutions</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              From simple inquiries to complex technical support, we handle all your email communication needs with precision and professionalism.
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Comprehensive </span>
+              <span className="text-[#215ACD]">Email Solutions</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              From inbox management to professional responses, we handle all aspects of email customer service.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Blog Box 1 */}
-            <Card className="border-2 hover:border-accent/20 hover:shadow-lg transition-all duration-300">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <Clock className="h-5 w-5 text-accent" />
-                  </div>
-                  <Badge variant="secondary" className="text-accent">Quick Response</Badge>
+            {FEATURES.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow"
+              >
+                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                  <feature.icon className="w-7 h-7 text-[#215ACD]" />
                 </div>
-                <CardTitle className="text-2xl">Timely Email Management</CardTitle>
-                <CardDescription className="text-base leading-relaxed">
-                  Never leave customers waiting with our prompt email response service. We guarantee quick turnaround times for all customer inquiries.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">2-hour response time guarantee</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">24/7 email monitoring</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Priority email classification</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Urgent issue escalation</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Blog Box 2 */}
-            <Card className="border-2 hover:border-accent/20 hover:shadow-lg transition-all duration-300">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <FileText className="h-5 w-5 text-accent" />
-                  </div>
-                  <Badge variant="secondary" className="text-accent">Template Library</Badge>
-                </div>
-                <CardTitle className="text-2xl">Custom Response Templates</CardTitle>
-                <CardDescription className="text-base leading-relaxed">
-                  Maintain consistent brand voice with our customized email templates for common inquiries, while handling unique cases with personalized responses.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Brand-aligned response templates</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Personalized response customization</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Multi-language support</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Template optimization</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Blog Box 3 */}
-            <Card className="border-2 hover:border-accent/20 hover:shadow-lg transition-all duration-300">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <Zap className="h-5 w-5 text-accent" />
-                  </div>
-                  <Badge variant="secondary" className="text-accent">Advanced Features</Badge>
-                </div>
-                <CardTitle className="text-2xl">Ticket Management System</CardTitle>
-                <CardDescription className="text-base leading-relaxed">
-                  Efficiently manage high email volumes with our sophisticated ticket management system that ensures no customer inquiry gets overlooked.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Automated ticket assignment</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">SLA tracking and management</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Follow-up automation</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Performance analytics dashboard</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* Blog Box 4 */}
-            <Card className="border-2 hover:border-accent/20 hover:shadow-lg transition-all duration-300">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <Shield className="h-5 w-5 text-accent" />
-                  </div>
-                  <Badge variant="secondary" className="text-accent">Security & Compliance</Badge>
-                </div>
-                <CardTitle className="text-2xl">Secure Email Handling</CardTitle>
-                <CardDescription className="text-base leading-relaxed">
-                  Protect sensitive customer information with our secure email handling procedures and compliance with data protection regulations.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Encrypted email communication</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">GDPR and privacy compliance</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Secure data storage</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">Regular security audits</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section - Same structure as other pages */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Email Support Pricing</h2>
-          <p className="text-xl text-muted-foreground text-pretty mb-12">
-            Affordable pricing plans based on your email volume and support requirements.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Starter",
-                price: "$20/hour",
-                description: "Basic email support for small businesses",
-                features: ["Up to 50 emails daily", "Standard response times", "Basic templates", "Email reporting"],
-              },
-              {
-                name: "Professional",
-                price: "$30/hour",
-                description: "Comprehensive email management",
-                features: [
-                  "Up to 200 emails daily",
-                  "2-hour response guarantee",
-                  "Custom templates",
-                  "Ticket management",
-                  "Performance analytics",
-                ],
-                popular: true,
-              },
-              {
-                name: "Enterprise",
-                price: "Custom",
-                description: "High-volume email support solution",
-                features: [
-                  "Unlimited email volume",
-                  "1-hour response guarantee",
-                  "Advanced ticket system",
-                  "Dedicated team",
-                  "Custom integrations",
-                ],
-              },
-            ].map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? "border-accent shadow-lg" : ""}`}>
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                    Most Popular
-                  </div>
-                )}
-                <CardHeader className="text-center">
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                  <div className="text-3xl font-bold text-accent">{plan.price}</div>
-                  <CardDescription>{plan.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild className="w-full bg-accent hover:bg-accent/90">
-                    <Link href="/contact">Get Started</Link>
-                  </Button>
-                </CardContent>
-              </Card>
+                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{feature.title}</h3>
+                <p className="text-[#5C5C5C] leading-relaxed">{feature.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Email Types Section */}
+      <section className="py-20 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Email Types </span>
+              <span className="text-[#215ACD]">We Handle</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              Our team expertly manages all types of customer emails with appropriate urgency and care.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {EMAIL_TYPES.map((type, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl p-6 border border-slate-100 hover:border-[#215ACD]/30 transition-colors"
+              >
+                <h3 className="text-[18px] font-semibold text-[#414141] mb-3">{type.title}</h3>
+                <p className="text-[#5C5C5C] text-[14px] leading-relaxed mb-4">{type.description}</p>
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-[#215ACD] px-3 py-1 rounded-full text-xs font-medium">
+                  <Target className="w-3 h-3" />
+                  {type.metric}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-6">
+                <span className="text-[#414141]">Why Choose Our </span>
+                <span className="text-[#215ACD]">Email Support?</span>
+              </h2>
+
+              <div className="space-y-4 mb-8">
+                {BENEFITS.map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#215ACD]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-[#215ACD]" />
+                    </div>
+                    <span className="text-[#414141]">{benefit}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-2xl p-8 text-white">
+                <Zap className="w-10 h-10 mb-4" />
+                <h3 className="text-[24px] font-bold mb-3">Lightning Fast</h3>
+                <p className="text-white/90 mb-4">
+                  Our email support team responds to priority emails within 2 hours, ensuring your customers never wait long for answers.
+                </p>
+                <div className="bg-white/10 rounded-lg p-4">
+                  <div className="text-3xl font-bold mb-1">&lt;2hrs</div>
+                  <div className="text-sm text-white/80">Average response time</div>
+                </div>
+              </div>
+
+              <div className="bg-[#F8F9FB] rounded-2xl p-8">
+                <Shield className="w-10 h-10 text-[#215ACD] mb-4" />
+                <h3 className="text-[24px] font-bold text-[#414141] mb-3">Quality Control</h3>
+                <p className="text-[#5C5C5C]">
+                  Every email is reviewed for tone, accuracy, and brand alignment before sending, ensuring perfect communication every time.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance">Ready to Streamline Your Email Support?</h2>
-          <p className="text-xl text-muted-foreground text-pretty">
-            Let our professional email support team handle your customer communications with efficiency and expertise.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
-              <Link href="/contact">
-                Start Email Support
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/services/customer-service">View All Customer Services</Link>
-            </Button>
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-[24px] overflow-hidden p-12 md:p-16">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <h2 className="text-[32px] md:text-[42px] font-bold text-white mb-6">
+                Ready for Professional Email Support?
+              </h2>
+              <p className="text-white/90 text-[18px] md:text-[20px] mb-8">
+                Let our team handle your customer emails with speed, professionalism, and care.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  asChild
+                  className="bg-white hover:bg-slate-100 text-[#215ACD] px-8 py-6 rounded text-[15px] font-medium min-w-[200px]"
+                >
+                  <Link href="/contact">
+                    Start Email Support
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded text-[15px] font-medium bg-transparent min-w-[200px]"
+                >
+                  <Link href="/services/customer-service">View All Services</Link>
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 mt-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Fast responses
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Quality assured
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Brand aligned
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -307,5 +374,5 @@ export default function EmailSupportPage() {
       <Footer />
       <AutoConsultationModal serviceName="Email Support" />
     </main>
-  )
+  );
 }

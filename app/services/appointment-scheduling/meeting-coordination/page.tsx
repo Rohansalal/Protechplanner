@@ -1,277 +1,366 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { AutoConsultationModal } from "@/components/auto-consultation-modal"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Settings, CheckCircle, ArrowRight, Zap, Shield, Users, Video, FileText } from "lucide-react"
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  Users,
+  ArrowRight,
+  CheckCircle,
+  Video,
+  MapPin,
+  Coffee,
+  Clock,
+  Globe,
+  Zap,
+  Shield
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { AutoConsultationModal } from "@/components/auto-consultation-modal";
+import { Button } from "@/components/ui/button";
+
+const FEATURES = [
+  {
+    icon: Video,
+    title: "Virtual Meeting Setup",
+    description: "Coordinate Zoom, Teams, Google Meet, and other video conferencing platforms with automatic link generation."
+  },
+  {
+    icon: MapPin,
+    title: "Venue Coordination",
+    description: "Book meeting rooms, conference spaces, and venues with availability checking and confirmation management."
+  },
+  {
+    icon: Users,
+    title: "Multi-Participant Scheduling",
+    description: "Find optimal meeting times across multiple participants, time zones, and calendar systems."
+  },
+  {
+    icon: Coffee,
+    title: "Logistics Management",
+    description: "Arrange catering, equipment, materials, and all meeting logistics for seamless execution."
+  }
+];
+
+const BENEFITS = [
+  "Save 5+ hours weekly on meeting coordination",
+  "Reduce scheduling conflicts by 90%",
+  "Automatic meeting link generation",
+  "Handle 100+ meetings per month",
+  "Real-time availability checking",
+  "Professional meeting invitations"
+];
+
+const MEETING_TYPES = [
+  {
+    emoji: "💼",
+    title: "Business Meetings",
+    description: "Client meetings, sales calls, and business development sessions"
+  },
+  {
+    emoji: "👥",
+    title: "Team Meetings",
+    description: "Internal team syncs, standups, and department meetings"
+  },
+  {
+    emoji: "🎓",
+    title: "Training Sessions",
+    description: "Workshops, webinars, and educational sessions"
+  },
+  {
+    emoji: "🌐",
+    title: "Virtual Events",
+    description: "Conferences, seminars, and large-scale virtual gatherings"
+  }
+];
+
+const STATS = [
+  { value: "5hrs", label: "Saved Weekly" },
+  { value: "100+", label: "Meetings Monthly" },
+  { value: "90%", label: "Conflict Reduction" }
+];
 
 export default function MeetingCoordinationPage() {
-  const processes = [
-    {
-      step: "1",
-      title: "Meeting Planning",
-      description: "Define meeting objectives, agenda, and participant requirements"
-    },
-    {
-      step: "2",
-      title: "Logistics Setup",
-      description: "Arrange venue, technology, and materials for the meeting"
-    },
-    {
-      step: "3",
-      title: "Participant Coordination",
-      description: "Manage invitations, confirmations, and attendance tracking"
-    },
-    {
-      step: "4",
-      title: "Execution Support",
-      description: "Provide on-demand support during the meeting execution"
-    }
-  ]
-
-  const meetingTypes = [
-    {
-      type: "Virtual Meetings",
-      features: ["Zoom/Teams Setup", "Recording Management", "Technical Support", "Virtual Breakouts"],
-      bestFor: "Remote teams and clients"
-    },
-    {
-      type: "In-Person Meetings",
-      features: ["Venue Booking", "Catering Arrangements", "Equipment Setup", "On-site Support"],
-      bestFor: "Important client meetings"
-    },
-    {
-      type: "Hybrid Meetings",
-      features: ["Dual Platform Setup", "Remote Participant Support", "Audio-Visual Integration", "Live Streaming"],
-      bestFor: "Mixed attendance meetings"
-    }
-  ]
-
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-green-50/20 to-white pt-5 pb-20 md:pt-7 md:pb-28 px-2">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-sm text-[#5C5C5C] mb-8"
+          >
+            <Link href="/services" className="hover:text-[#215ACD] transition-colors">Services</Link>
+            <span>/</span>
+            <Link href="/services/appointment-scheduling" className="hover:text-[#215ACD] transition-colors">Appointment Scheduling</Link>
+            <span>/</span>
+            <span className="text-[#215ACD] font-medium">Meeting Coordination</span>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Settings className="h-6 w-6 text-primary" />
-                </div>
-                <span className="text-primary font-semibold">Meeting Coordination</span>
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-                Professional <span className="text-primary">Meeting Coordination</span>
-              </h1>
-              <p className="text-xl text-muted-foreground text-pretty leading-relaxed mb-8">
-                End-to-end meeting coordination services that ensure your meetings run smoothly and achieve their objectives. From logistics to execution, we handle every detail so you can focus on the content.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link href="/contact">
-                    Get Meeting Support
-                    <ArrowRight className="ml-2 h-5 w-5" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-violet-50 text-[#215ACD] px-4 py-2 rounded-full text-sm font-medium mb-6"
+              >
+                <Users className="w-4 h-4" />
+                Meeting Coordination Services
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-bold font-['Inter'] mb-6"
+              >
+                <span className="text-black">Effortless </span>
+                <span className="text-[#215ACD]">Meeting</span>
+                <br />
+                <span className="text-black">Coordination</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-[18px] md:text-[20px] leading-relaxed text-[#414141] mb-8"
+              >
+                Professional meeting coordination that handles all the details—from scheduling to logistics—so you can focus on what matters.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Button
+                  asChild
+                  className="bg-[#215ACD] hover:bg-[#1a49a8] text-white px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/contact">Get Started Today</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#215ACD] text-[#215ACD] hover:bg-[#F1F5FF] px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/services/appointment-scheduling">
+                    <ArrowRight className="w-4 h-4 mr-2 rotate-180" />
+                    Back to Services
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/services/appointment-scheduling">View All Scheduling Services</Link>
-                </Button>
-              </div>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200"
+              >
+                {STATS.map((stat, index) => (
+                  <div key={index}>
+                    <div className="text-[28px] md:text-[36px] font-bold text-[#215ACD]">{stat.value}</div>
+                    <div className="text-[13px] text-[#5C5C5C] mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-            <div className="relative">
-              <img
-                src="/meeting-coordination-hero.jpg"
-                alt="Meeting Coordination"
-                className="rounded-lg shadow-2xl"
+
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="relative h-[500px] hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-violet-100/30 to-transparent rounded-2xl" />
+              <Image
+                src="https://placehold.co/600x500/f5f3ff/215acd?text=Meeting+Coordination"
+                alt="Meeting Coordination Services"
+                fill
+                className="object-contain drop-shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Comprehensive Meeting Management</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Full-service meeting coordination for professional and productive gatherings
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Complete </span>
+              <span className="text-[#215ACD]">Meeting Management</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              From scheduling to execution, we handle every aspect of your meetings professionally.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Users,
-                title: "Participant Management",
-                description: "Complete attendee coordination from invitation to follow-up"
-              },
-              {
-                icon: Video,
-                title: "Technical Setup",
-                description: "Professional audio-visual and technology setup for all meeting types"
-              },
-              {
-                icon: FileText,
-                title: "Agenda Preparation",
-                description: "Comprehensive agenda development and material preparation"
-              },
-              {
-                icon: Shield,
-                title: "Logistics Coordination",
-                description: "End-to-end logistics management for seamless execution"
-              },
-              {
-                icon: Zap,
-                title: "Real-time Support",
-                description: "On-demand support during meetings for any issues that arise"
-              },
-              {
-                icon: Settings,
-                title: "Follow-up Management",
-                description: "Action item tracking and meeting minutes distribution"
-              }
-            ].map((feature, index) => (
-              <Card key={index} className="text-center border-0 shadow-lg">
-                <CardHeader>
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <feature.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{feature.description}</CardDescription>
-                </CardContent>
-              </Card>
+          <div className="grid md:grid-cols-2 gap-8">
+            {FEATURES.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow"
+              >
+                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                  <feature.icon className="w-7 h-7 text-[#215ACD]" />
+                </div>
+                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{feature.title}</h3>
+                <p className="text-[#5C5C5C] leading-relaxed">{feature.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Meeting Types */}
-      <section className="py-20 bg-secondary/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Meeting Types Section */}
+      <section className="py-20 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Meeting Types We Coordinate</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Expertise across all meeting formats and requirements
-            </p>
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">All Types of </span>
+              <span className="text-[#215ACD]">Meetings</span>
+            </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {meetingTypes.map((meeting, index) => (
-              <Card key={index} className="border-2 text-center">
-                <CardHeader>
-                  <CardTitle className="text-xl">{meeting.type}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    {meeting.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center gap-2 justify-center">
-                        <CheckCircle className="h-4 w-4 text-accent" />
-                        <span className="text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="bg-primary/10 p-3 rounded-lg">
-                    <p className="text-sm font-semibold text-primary">Best for: {meeting.bestFor}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Our Meeting Coordination Process</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {processes.map((process, index) => (
-              <Card key={index} className="text-center border-0 shadow-lg">
-                <CardHeader>
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl font-bold text-primary">{process.step}</span>
-                  </div>
-                  <CardTitle className="text-xl">{process.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{process.description}</CardDescription>
-                </CardContent>
-              </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {MEETING_TYPES.map((type, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
+              >
+                <div className="text-5xl mb-4">{type.emoji}</div>
+                <h3 className="text-[18px] font-semibold text-[#414141] mb-2">{type.title}</h3>
+                <p className="text-[#5C5C5C] text-sm">{type.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-secondary/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Meeting Coordination Benefits</h2>
-          </div>
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-6">
+                <span className="text-[#414141]">Why Choose Our </span>
+                <span className="text-[#215ACD]">Meeting Coordination?</span>
+              </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: "Time Savings",
-                value: "8+ hours",
-                description: "Weekly time saved on meeting preparation and coordination"
-              },
-              {
-                title: "Meeting Quality",
-                value: "90%",
-                description: "Higher participant satisfaction with professionally coordinated meetings"
-              },
-              {
-                title: "Productivity Gain",
-                value: "40%",
-                description: "More productive meetings with proper preparation and follow-up"
-              },
-              {
-                title: "Cost Reduction",
-                value: "35%",
-                description: "Reduced meeting costs through efficient coordination"
-              }
-            ].map((benefit, index) => (
-              <Card key={index} className="text-center border-0 shadow-lg">
-                <CardHeader>
-                  <div className="text-3xl font-bold text-primary mb-2">{benefit.value}</div>
-                  <CardTitle className="text-xl">{benefit.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{benefit.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
+              <div className="space-y-4">
+                {BENEFITS.map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#215ACD]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-[#215ACD]" />
+                    </div>
+                    <span className="text-[#414141]">{benefit}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-2xl p-8 text-white">
+                <Zap className="w-10 h-10 mb-4" />
+                <h3 className="text-[24px] font-bold mb-3">Save 5+ Hours Weekly</h3>
+                <p className="text-white/90 mb-4">
+                  Our meeting coordination saves an average of 5 hours per week by eliminating scheduling back-and-forth.
+                </p>
+                <div className="bg-white/10 rounded-lg p-4">
+                  <div className="text-3xl font-bold mb-1">5hrs</div>
+                  <div className="text-sm text-white/80">Average time saved per week</div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <Globe className="w-10 h-10 text-[#215ACD] mb-4" />
+                <h3 className="text-[24px] font-bold text-[#414141] mb-3">Global Coordination</h3>
+                <p className="text-[#5C5C5C]">
+                  Expert handling of multi-timezone meetings with automatic time conversion and optimal scheduling.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance">Ready for Flawless Meetings?</h2>
-          <p className="text-xl text-muted-foreground text-pretty">
-            Let our meeting coordination experts handle the logistics so you can focus on what matters most.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-              <Link href="/contact">
-                Start Meeting Coordination
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/services/appointment-scheduling">Browse All Services</Link>
-            </Button>
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-[24px] overflow-hidden p-12 md:p-16">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <h2 className="text-[32px] md:text-[42px] font-bold text-white mb-6">
+                Ready to Simplify Meeting Coordination?
+              </h2>
+              <p className="text-white/90 text-[18px] md:text-[20px] mb-8">
+                Let our team handle all your meeting logistics so you can focus on what's discussed, not scheduling.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  asChild
+                  className="bg-white hover:bg-slate-100 text-[#215ACD] px-8 py-6 rounded text-[15px] font-medium min-w-[200px]"
+                >
+                  <Link href="/contact">
+                    Start Coordination Service
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded text-[15px] font-medium bg-transparent min-w-[200px]"
+                >
+                  <Link href="/services/appointment-scheduling">View All Services</Link>
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 mt-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Multi-platform
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Global support
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Full logistics
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -279,5 +368,5 @@ export default function MeetingCoordinationPage() {
       <Footer />
       <AutoConsultationModal serviceName="Meeting Coordination" />
     </main>
-  )
+  );
 }

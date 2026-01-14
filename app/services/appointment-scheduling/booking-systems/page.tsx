@@ -1,300 +1,364 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { AutoConsultationModal } from "@/components/auto-consultation-modal"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Users, CheckCircle, ArrowRight, Calendar, Mail, Phone, Globe, Settings, Shield, Clock } from "lucide-react"
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  Globe,
+  ArrowRight,
+  CheckCircle,
+  Calendar,
+  CreditCard,
+  Bell,
+  Users,
+  Smartphone,
+  Zap,
+  Shield
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { AutoConsultationModal } from "@/components/auto-consultation-modal";
+import { Button } from "@/components/ui/button";
+
+const FEATURES = [
+  {
+    icon: Calendar,
+    title: "Online Booking Portal",
+    description: "Custom-branded booking pages that integrate seamlessly with your website and social media platforms."
+  },
+  {
+    icon: CreditCard,
+    title: "Payment Integration",
+    description: "Accept deposits and payments at the time of booking with secure payment gateway integration."
+  },
+  {
+    icon: Bell,
+    title: "Automated Confirmations",
+    description: "Instant booking confirmations via email and SMS with calendar invites and meeting details."
+  },
+  {
+    icon: Users,
+    title: "Group Booking Management",
+    description: "Handle individual and group bookings with capacity management and waitlist functionality."
+  }
+];
+
+const BENEFITS = [
+  "24/7 online booking availability",
+  "Reduce no-shows by 80% with automated reminders",
+  "Accept bookings from any device",
+  "Integrate with 50+ calendar platforms",
+  "Customizable booking rules and restrictions",
+  "Real-time availability updates"
+];
+
+const BOOKING_TYPES = [
+  {
+    emoji: "👤",
+    title: "One-on-One",
+    description: "Individual appointments with automatic scheduling and reminders"
+  },
+  {
+    emoji: "👥",
+    title: "Group Sessions",
+    description: "Manage group bookings with capacity limits and waitlists"
+  },
+  {
+    emoji: "🔄",
+    title: "Recurring",
+    description: "Set up recurring appointments with flexible scheduling options"
+  },
+  {
+    emoji: "⚡",
+    title: "Instant Booking",
+    description: "Real-time booking confirmation for immediate appointments"
+  }
+];
+
+const STATS = [
+  { value: "24/7", label: "Booking Availability" },
+  { value: "80%", label: "No-Show Reduction" },
+  { value: "50+", label: "Integrations" }
+];
 
 export default function BookingSystemsPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-green-50/20 to-white pt-5 pb-20 md:pt-7 md:pb-28 px-2">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-sm text-[#5C5C5C] mb-8"
+          >
+            <Link href="/services" className="hover:text-[#215ACD] transition-colors">Services</Link>
+            <span>/</span>
+            <Link href="/services/appointment-scheduling" className="hover:text-[#215ACD] transition-colors">Appointment Scheduling</Link>
+            <span>/</span>
+            <span className="text-[#215ACD] font-medium">Booking Systems</span>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Users className="h-6 w-6 text-primary" />
-                </div>
-                <span className="text-primary font-semibold">Booking Systems</span>
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-                Streamline Your <span className="text-primary">Booking Process</span>
-              </h1>
-              <p className="text-xl text-muted-foreground text-pretty leading-relaxed mb-8">
-                Professional appointment booking and confirmation services to streamline your client interactions and improve booking efficiency.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link href="/contact">
-                    Get Booking System
-                    <ArrowRight className="ml-2 h-5 w-5" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-violet-50 text-[#215ACD] px-4 py-2 rounded-full text-sm font-medium mb-6"
+              >
+                <Globe className="w-4 h-4" />
+                Booking Systems Services
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-bold font-['Inter'] mb-6"
+              >
+                <span className="text-black">Seamless </span>
+                <span className="text-[#215ACD]">Online Booking</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-[18px] md:text-[20px] leading-relaxed text-[#414141] mb-8"
+              >
+                Professional booking systems that make it easy for customers to schedule appointments 24/7 while reducing no-shows and administrative work.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Button
+                  asChild
+                  className="bg-[#215ACD] hover:bg-[#1a49a8] text-white px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/contact">Get Started Today</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#215ACD] text-[#215ACD] hover:bg-[#F1F5FF] px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/services/appointment-scheduling">
+                    <ArrowRight className="w-4 h-4 mr-2 rotate-180" />
+                    Back to Services
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/contact">Schedule Consultation</Link>
-                </Button>
-              </div>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200"
+              >
+                {STATS.map((stat, index) => (
+                  <div key={index}>
+                    <div className="text-[28px] md:text-[36px] font-bold text-[#215ACD]">{stat.value}</div>
+                    <div className="text-[13px] text-[#5C5C5C] mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-            <div className="relative">
-              <img
-                src="/professional-virtual-assistant-working-on-laptop-i.jpg"
-                alt="Professional Booking System Management"
-                className="rounded-lg shadow-2xl"
+
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="relative h-[500px] hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-violet-100/30 to-transparent rounded-2xl" />
+              <Image
+                src="https://placehold.co/600x500/f5f3ff/215acd?text=Booking+Systems"
+                alt="Booking Systems Services"
+                fill
+                className="object-contain drop-shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Complete Booking Solutions</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              From online booking platforms to client communication, we handle every aspect of your appointment booking process.
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Complete </span>
+              <span className="text-[#215ACD]">Booking Solution</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              Everything you need to accept and manage online bookings efficiently and professionally.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Globe,
-                title: "Online Booking Platforms",
-                description: "Custom online booking systems that integrate seamlessly with your website and business operations.",
-                features: [
-                  "Custom booking forms",
-                  "Real-time availability",
-                  "Payment integration",
-                  "Mobile optimization"
-                ]
-              },
-              {
-                icon: Mail,
-                title: "Automated Confirmations",
-                description: "Professional email confirmations and reminders to keep clients informed and reduce no-shows.",
-                features: [
-                  "Instant confirmations",
-                  "Custom email templates",
-                  "Multi-language support",
-                  "Branded communications"
-                ]
-              },
-              {
-                icon: Phone,
-                title: "Client Communication",
-                description: "Professional phone and email communication to handle bookings and client inquiries.",
-                features: [
-                  "Phone booking support",
-                  "Email inquiry management",
-                  "Client relationship building",
-                  "Follow-up communications"
-                ]
-              },
-              {
-                icon: Settings,
-                title: "System Integration",
-                description: "Seamless integration with your existing CRM, calendar, and business management systems.",
-                features: [
-                  "CRM integration",
-                  "Calendar synchronization",
-                  "Database management",
-                  "API connections"
-                ]
-              },
-              {
-                icon: Shield,
-                title: "Data Security",
-                description: "Secure handling of client information and booking data with industry-standard protection.",
-                features: [
-                  "Data encryption",
-                  "Privacy compliance",
-                  "Secure storage",
-                  "Access controls"
-                ]
-              },
-              {
-                icon: Clock,
-                title: "24/7 Availability",
-                description: "Round-the-clock booking support to capture every potential appointment opportunity.",
-                features: [
-                  "24/7 online booking",
-                  "After-hours support",
-                  "Emergency bookings",
-                  "Global time zone support"
-                ]
-              }
-            ].map((feature, index) => (
-              <Card key={index} className="border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <feature.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
-                  <CardDescription className="text-base leading-relaxed">{feature.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {feature.features.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-20 bg-secondary/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Our Booking System Process</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              A systematic approach to implementing and managing your appointment booking system.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                step: "01",
-                title: "System Analysis",
-                description: "Comprehensive analysis of your current booking process and requirements."
-              },
-              {
-                step: "02",
-                title: "Platform Setup",
-                description: "Implementation of the optimal booking platform for your business needs."
-              },
-              {
-                step: "03",
-                title: "Integration & Testing",
-                description: "Seamless integration with your existing systems and thorough testing."
-              },
-              {
-                step: "04",
-                title: "Launch & Support",
-                description: "Go-live support and ongoing management of your booking system."
-              }
-            ].map((step, index) => (
-              <div key={index} className="text-center space-y-4">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto">
-                  <span className="text-2xl font-bold text-primary-foreground">{step.step}</span>
+          <div className="grid md:grid-cols-2 gap-8">
+            {FEATURES.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow"
+              >
+                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                  <feature.icon className="w-7 h-7 text-[#215ACD]" />
                 </div>
-                <h3 className="text-xl font-bold">{step.title}</h3>
-                <p className="text-muted-foreground">{step.description}</p>
-              </div>
+                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{feature.title}</h3>
+                <p className="text-[#5C5C5C] leading-relaxed">{feature.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Booking System Pricing</h2>
-          <p className="text-xl text-muted-foreground text-pretty mb-12">
-            Choose the booking system package that fits your appointment management needs.
-          </p>
+      {/* Booking Types Section */}
+      <section className="py-20 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Flexible </span>
+              <span className="text-[#215ACD]">Booking Options</span>
+            </h2>
+          </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Basic",
-                price: "$30/hour",
-                description: "Essential booking support for small practices",
-                features: [
-                  "Basic online booking",
-                  "Email confirmations",
-                  "Simple scheduling",
-                  "Client notifications"
-                ]
-              },
-              {
-                name: "Professional",
-                price: "$40/hour",
-                description: "Advanced booking systems for growing businesses",
-                features: [
-                  "Custom booking forms",
-                  "Multi-channel support",
-                  "System integration",
-                  "Advanced notifications",
-                  "Analytics dashboard"
-                ],
-                popular: true
-              },
-              {
-                name: "Enterprise",
-                price: "Custom",
-                description: "Complete booking solutions for large organizations",
-                features: [
-                  "Custom platform development",
-                  "Advanced integrations",
-                  "Multi-location support",
-                  "API access",
-                  "Dedicated support"
-                ]
-              }
-            ].map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? "border-accent shadow-lg" : ""}`}>
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                    Most Popular
-                  </div>
-                )}
-                <CardHeader className="text-center">
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                  <div className="text-3xl font-bold text-primary">{plan.price}</div>
-                  <CardDescription>{plan.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild className="w-full">
-                    <Link href="/contact">Get Started</Link>
-                  </Button>
-                </CardContent>
-              </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {BOOKING_TYPES.map((type, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
+              >
+                <div className="text-5xl mb-4">{type.emoji}</div>
+                <h3 className="text-[18px] font-semibold text-[#414141] mb-2">{type.title}</h3>
+                <p className="text-[#5C5C5C] text-sm">{type.description}</p>
+              </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-6">
+                <span className="text-[#414141]">Why Choose Our </span>
+                <span className="text-[#215ACD]">Booking Systems?</span>
+              </h2>
+
+              <div className="space-y-4">
+                {BENEFITS.map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#215ACD]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-[#215ACD]" />
+                    </div>
+                    <span className="text-[#414141]">{benefit}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-2xl p-8 text-white">
+                <Bell className="w-10 h-10 mb-4" />
+                <h3 className="text-[24px] font-bold mb-3">Reduce No-Shows by 80%</h3>
+                <p className="text-white/90 mb-4">
+                  Automated reminders via email and SMS ensure your customers never forget their appointments.
+                </p>
+                <div className="bg-white/10 rounded-lg p-4">
+                  <div className="text-3xl font-bold mb-1">80%</div>
+                  <div className="text-sm text-white/80">Average no-show reduction</div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <Smartphone className="w-10 h-10 text-[#215ACD] mb-4" />
+                <h3 className="text-[24px] font-bold text-[#414141] mb-3">Mobile-Friendly</h3>
+                <p className="text-[#5C5C5C]">
+                  Fully responsive booking pages that work perfectly on all devices, making it easy for customers to book on the go.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance">
-            Ready to Streamline Your Booking Process?
-          </h2>
-          <p className="text-xl text-primary-foreground/90 text-pretty">
-            Let our booking system experts help you create a seamless appointment booking experience for your clients.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              <Link href="/contact">
-                Start Booking System
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent">
-              <Link href="/services/appointment-scheduling">View All Scheduling Services</Link>
-            </Button>
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-[24px] overflow-hidden p-12 md:p-16">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <h2 className="text-[32px] md:text-[42px] font-bold text-white mb-6">
+                Ready to Launch Your Booking System?
+              </h2>
+              <p className="text-white/90 text-[18px] md:text-[20px] mb-8">
+                Start accepting appointments 24/7 with our professional booking system setup and management.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  asChild
+                  className="bg-white hover:bg-slate-100 text-[#215ACD] px-8 py-6 rounded text-[15px] font-medium min-w-[200px]"
+                >
+                  <Link href="/contact">
+                    Start Booking System
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded text-[15px] font-medium bg-transparent min-w-[200px]"
+                >
+                  <Link href="/services/appointment-scheduling">View All Services</Link>
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 mt-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  24/7 booking
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Auto reminders
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Payment ready
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -302,5 +366,5 @@ export default function BookingSystemsPage() {
       <Footer />
       <AutoConsultationModal serviceName="Booking Systems" />
     </main>
-  )
+  );
 }

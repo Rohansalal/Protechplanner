@@ -1,100 +1,430 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { AutoConsultationModal } from "@/components/auto-consultation-modal"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { DollarSign, ArrowRight, CheckCircle } from "lucide-react"
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  CreditCard,
+  ArrowRight,
+  CheckCircle,
+  Receipt,
+  PieChart,
+  TrendingDown,
+  FileText,
+  Calculator,
+  Shield,
+  Zap
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { AutoConsultationModal } from "@/components/auto-consultation-modal";
+import { Button } from "@/components/ui/button";
+
+const SERVICES = [
+  {
+    icon: Receipt,
+    title: "Expense Tracking & Recording",
+    description: "Systematic recording of all business expenses with proper categorization, receipt management, and real-time tracking."
+  },
+  {
+    icon: FileText,
+    title: "Expense Report Creation",
+    description: "Professional expense reports formatted to your company standards with all supporting documentation organized and attached."
+  },
+  {
+    icon: Calculator,
+    title: "Reconciliation & Verification",
+    description: "Match expenses to bank statements, credit card bills, and receipts to ensure accuracy and catch discrepancies early."
+  },
+  {
+    icon: PieChart,
+    title: "Budget Analysis & Insights",
+    description: "Monthly spending analysis, budget variance reports, and actionable insights to optimize your business expenses."
+  }
+];
+
+const BENEFITS = [
+  "Reduce expense processing time by 75%",
+  "Eliminate lost receipts and missing documentation",
+  "Real-time visibility into spending patterns",
+  "Ensure tax compliance and maximize deductions",
+  "Automated expense categorization and coding",
+  "Integration with accounting software"
+];
+
+const EXPENSE_CATEGORIES = [
+  {
+    title: "Travel & Entertainment",
+    description: "Flights, hotels, meals, client entertainment, and business travel expenses.",
+    icon: "✈️"
+  },
+  {
+    title: "Office & Supplies",
+    description: "Office supplies, equipment, software subscriptions, and workspace costs.",
+    icon: "🏢"
+  },
+  {
+    title: "Professional Services",
+    description: "Consultants, contractors, legal fees, and professional service expenses.",
+    icon: "💼"
+  },
+  {
+    title: "Marketing & Advertising",
+    description: "Ad spend, marketing tools, promotional materials, and campaign costs.",
+    icon: "📊"
+  }
+];
+
+const PROCESS_STEPS = [
+  {
+    step: "1",
+    title: "Receipt Collection",
+    description: "Submit receipts via email, mobile app, or cloud storage"
+  },
+  {
+    step: "2",
+    title: "Data Entry",
+    description: "We extract and record all expense details accurately"
+  },
+  {
+    step: "3",
+    title: "Categorization",
+    description: "Expenses are properly categorized and coded"
+  },
+  {
+    step: "4",
+    title: "Report Generation",
+    description: "Receive comprehensive expense reports on schedule"
+  }
+];
+
+const STATS = [
+  { value: "75%", label: "Time Saved" },
+  { value: "99.9%", label: "Accuracy Rate" },
+  { value: "$50K+", label: "Avg. Annual Savings" }
+];
 
 export default function ExpenseManagementPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section */}
+      {/* <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-emerald-50/20 to-white pt-32 pb-20 md:pt-40 md:pb-32 px-6"> */}
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-green-50/20 to-white pt-5 pb-20 md:pt-7 md:pb-28 px-2">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-sm text-[#5C5C5C] mb-8"
+          >
+            <Link href="/services" className="hover:text-[#215ACD] transition-colors">Services</Link>
+            <span>/</span>
+            <Link href="/services/administrative-support" className="hover:text-[#215ACD] transition-colors">Administrative Support</Link>
+            <span>/</span>
+            <span className="text-[#215ACD] font-medium">Expense Management</span>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <DollarSign className="h-6 w-6 text-primary" />
-                </div>
-                <span className="text-primary font-semibold">Administrative Support</span>
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-                Expense Management
-              </h1>
-              <p className="text-xl text-muted-foreground text-pretty leading-relaxed mb-8">
-                Track and organize business expenses for accurate financial reporting.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link href="/contact">
-                    Get Started
-                    <ArrowRight className="ml-2 h-5 w-5" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-emerald-50 text-[#215ACD] px-4 py-2 rounded-full text-sm font-medium mb-6"
+              >
+                <CreditCard className="w-4 h-4" />
+                Expense Management Services
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-bold font-['Inter'] mb-6"
+              >
+                <span className="text-black">Master Your </span>
+                <span className="text-[#215ACD]">Business</span>
+                <br />
+                <span className="text-black">Expenses</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-[18px] md:text-[20px] leading-relaxed text-[#414141] mb-8"
+              >
+                Stop chasing receipts and struggling with expense reports. Our expert team manages your business expenses with precision, ensuring accuracy and compliance.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Button
+                  asChild
+                  className="bg-[#215ACD] hover:bg-[#1a49a8] text-white px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/contact">Get Started Today</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#215ACD] text-[#215ACD] hover:bg-[#F1F5FF] px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/services/administrative-support">
+                    <ArrowRight className="w-4 h-4 mr-2 rotate-180" />
+                    Back to Services
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/services/administrative-support">Back to Administrative Support</Link>
-                </Button>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200"
+              >
+                {STATS.map((stat, index) => (
+                  <div key={index}>
+                    <div className="text-[28px] md:text-[36px] font-bold text-[#215ACD]">{stat.value}</div>
+                    <div className="text-[13px] text-[#5C5C5C] mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="relative h-[500px] hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/30 to-transparent rounded-2xl" />
+              <Image
+                src="https://placehold.co/600x500/f0fdf4/215acd?text=Expense+Management"
+                alt="Expense Management Services"
+                fill
+                className="object-contain drop-shadow-2xl"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Complete </span>
+              <span className="text-[#215ACD]">Expense Solutions</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              From receipt tracking to financial reporting, we handle every aspect of your expense management.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {SERVICES.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow"
+              >
+                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                  <service.icon className="w-7 h-7 text-[#215ACD]" />
+                </div>
+                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{service.title}</h3>
+                <p className="text-[#5C5C5C] leading-relaxed">{service.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-20 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">How It </span>
+              <span className="text-[#215ACD]">Works</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              A simple, streamlined process that takes the hassle out of expense management.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {PROCESS_STEPS.map((process, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl p-6 text-center relative"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-[#215ACD] to-[#1a49a8] text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                  {process.step}
+                </div>
+                <h3 className="text-[18px] font-semibold text-[#414141] mb-3">{process.title}</h3>
+                <p className="text-[#5C5C5C] text-[14px] leading-relaxed">{process.description}</p>
+                {index < PROCESS_STEPS.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-[#215ACD]/20" />
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Expense Categories Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Expense </span>
+              <span className="text-[#215ACD]">Categories</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              We manage all types of business expenses with expert categorization and tracking.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {EXPENSE_CATEGORIES.map((category, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-[#F8F9FB] rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
+              >
+                <div className="text-4xl mb-4">{category.icon}</div>
+                <h3 className="text-[18px] font-semibold text-[#414141] mb-3">{category.title}</h3>
+                <p className="text-[#5C5C5C] text-[14px] leading-relaxed">{category.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-6">
+                <span className="text-[#414141]">Why Choose Our </span>
+                <span className="text-[#215ACD]">Expense Services?</span>
+              </h2>
+
+              <div className="space-y-4 mb-8">
+                {BENEFITS.map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#215ACD]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-[#215ACD]" />
+                    </div>
+                    <span className="text-[#414141]">{benefit}</span>
+                  </motion.div>
+                ))}
               </div>
             </div>
-            <div className="relative">
-              <img
-                src="/financial-charts-and-accounting-workspace.jpg"
-                alt="Expense tracking and reporting"
-                className="rounded-lg shadow-2xl"
-              />
+
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-2xl p-8 text-white">
+                <TrendingDown className="w-10 h-10 mb-4" />
+                <h3 className="text-[24px] font-bold mb-3">Maximize Tax Deductions</h3>
+                <p className="text-white/90 mb-4">
+                  Proper expense categorization and documentation ensures you capture every eligible tax deduction, potentially saving thousands annually.
+                </p>
+                <div className="bg-white/10 rounded-lg p-4">
+                  <div className="text-3xl font-bold mb-1">$50K+</div>
+                  <div className="text-sm text-white/80">Average annual tax savings</div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <Shield className="w-10 h-10 text-[#215ACD] mb-4" />
+                <h3 className="text-[24px] font-bold text-[#414141] mb-3">Audit-Ready Records</h3>
+                <p className="text-[#5C5C5C]">
+                  All expenses are properly documented and organized, making audits stress-free and ensuring compliance with tax regulations.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-background">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-2">
-              <CardHeader>
-                <CardTitle>Workstreams</CardTitle>
-                <CardDescription>Simple, audit-friendly processes</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {[
-                    "Receipt capture and categorization",
-                    "Reimbursement workflows",
-                    "Monthly expense reports",
-                    "Budget tracking dashboards",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle className="h-4 w-4 text-accent mt-1" />
-                      <span className="text-sm text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="border-2">
-              <CardHeader>
-                <CardTitle>Controls</CardTitle>
-                <CardDescription>Accuracy, compliance, and speed</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {[
-                    "Policy-compliant approvals",
-                    "Duplicate detection",
-                    "GL mapping and coding",
-                    "Quarterly spend reviews",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle className="h-4 w-4 text-accent mt-1" />
-                      <span className="text-sm text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+      {/* CTA Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-[24px] overflow-hidden p-12 md:p-16">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <h2 className="text-[32px] md:text-[42px] font-bold text-white mb-6">
+                Ready to Simplify Expense Management?
+              </h2>
+              <p className="text-white/90 text-[18px] md:text-[20px] mb-8">
+                Stop wasting time on expense tracking. Let our experts handle it while you focus on growing your business.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  asChild
+                  className="bg-white hover:bg-slate-100 text-[#215ACD] px-8 py-6 rounded text-[15px] font-medium min-w-[200px]"
+                >
+                  <Link href="/contact">
+                    Get Started Now
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded text-[15px] font-medium bg-transparent min-w-[200px]"
+                >
+                  <Link href="/services/administrative-support">View All Services</Link>
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 mt-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  99.9% accuracy
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Tax compliant
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Real-time tracking
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -102,7 +432,5 @@ export default function ExpenseManagementPage() {
       <Footer />
       <AutoConsultationModal serviceName="Expense Management" />
     </main>
-  )
+  );
 }
-
-
