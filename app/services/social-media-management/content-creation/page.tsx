@@ -1,191 +1,384 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { AutoConsultationModal } from "@/components/auto-consultation-modal"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { FileText, ArrowRight, Image, Video, PenTool, Palette, Zap, CheckCircle, Users } from "lucide-react"
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  FileText,
+  ArrowRight,
+  CheckCircle,
+  Image as ImageIcon,
+  Video,
+  PenTool,
+  Palette,
+  Zap,
+  Users,
+  Target,
+  TrendingUp,
+  Shield
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { AutoConsultationModal } from "@/components/auto-consultation-modal";
+import { Button } from "@/components/ui/button";
+
+const SERVICES = [
+  {
+    icon: ImageIcon,
+    title: "Visual Graphics",
+    description: "Eye-catching static and animated graphics designed for all social media platforms and optimized for engagement."
+  },
+  {
+    icon: Video,
+    title: "Video Content",
+    description: "Engaging short-form and long-form video content including Reels, TikToks, and YouTube videos."
+  },
+  {
+    icon: PenTool,
+    title: "Copywriting",
+    description: "Compelling captions, headlines, and messaging that resonates with your audience and drives action."
+  },
+  {
+    icon: Palette,
+    title: "Brand Design",
+    description: "Consistent visual identity across all content maintaining your brand guidelines and aesthetic."
+  }
+];
+
+const BENEFITS = [
+  "Professional content that stands out in crowded feeds",
+  "Brand-aligned messaging and visual consistency",
+  "Platform-optimized formats for maximum reach",
+  "Trending styles and formats to stay relevant",
+  "Fast turnaround without compromising quality",
+  "Unlimited revisions until you're satisfied"
+];
+
+const USE_CASES = [
+  {
+    title: "Product Launches",
+    description: "Create buzz around new products with eye-catching announcement content.",
+    metrics: "10K+ impressions"
+  },
+  {
+    title: "Brand Storytelling",
+    description: "Share your brand's journey and values through compelling visual narratives.",
+    metrics: "85% engagement"
+  },
+  {
+    title: "Educational Content",
+    description: "Inform and educate your audience with valuable, shareable content.",
+    metrics: "500+ shares"
+  },
+  {
+    title: "Promotional Campaigns",
+    description: "Drive sales and conversions with persuasive promotional content.",
+    metrics: "30% conversion"
+  }
+];
+
+const STATS = [
+  { value: "10K+", label: "Content Pieces" },
+  { value: "95%", label: "Approval Rate" },
+  { value: "48hrs", label: "Avg Turnaround" }
+];
 
 export default function ContentCreationPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-purple-50/20 to-white pt-5 pb-20 md:pt-7 md:pb-28 px-2">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-sm text-[#5C5C5C] mb-8"
+          >
+            <Link href="/services" className="hover:text-[#215ACD] transition-colors">Services</Link>
+            <span>/</span>
+            <Link href="/services/social-media-management" className="hover:text-[#215ACD] transition-colors">Social Media Management</Link>
+            <span>/</span>
+            <span className="text-[#215ACD] font-medium">Content Creation</span>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <FileText className="h-6 w-6 text-primary" />
-                </div>
-                <span className="text-primary font-semibold">Content Creation</span>
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-                Captivating Content That <span className="text-primary">Drives Engagement</span>
-              </h1>
-              <p className="text-xl text-muted-foreground text-pretty leading-relaxed mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-purple-50 text-[#215ACD] px-4 py-2 rounded-full text-sm font-medium mb-6"
+              >
+                <FileText className="w-4 h-4" />
+                Content Creation
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-bold font-['Inter'] mb-6"
+              >
+                <span className="text-black">Captivating </span>
+                <span className="text-[#215ACD]">Content</span>
+                <br />
+                <span className="text-black">That Drives Results</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-[18px] md:text-[20px] leading-relaxed text-[#414141] mb-8"
+              >
                 Professional content creation services that tell your brand's story and connect with your audience across all social media platforms.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link href="/contact">
-                    Create My Content
-                    <ArrowRight className="ml-2 h-5 w-5" />
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Button
+                  asChild
+                  className="bg-[#215ACD] hover:bg-[#1a49a8] text-white px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/contact">Create My Content</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#215ACD] text-[#215ACD] hover:bg-[#F1F5FF] px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/services/social-media-management">
+                    <ArrowRight className="w-4 h-4 mr-2 rotate-180" />
+                    Back to Services
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/services/social-media-management">View All Services</Link>
-                </Button>
-              </div>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200"
+              >
+                {STATS.map((stat, index) => (
+                  <div key={index}>
+                    <div className="text-[28px] md:text-[36px] font-bold text-[#215ACD]">{stat.value}</div>
+                    <div className="text-[13px] text-[#5C5C5C] mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-            <div className="relative">
-              <img
-                src="/social-media-content-creation.jpg"
-                alt="Social Media Content Creation Services"
-                className="rounded-lg shadow-2xl"
+
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="relative h-[500px] hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-100/30 to-transparent rounded-2xl" />
+              <Image
+                src="https://placehold.co/600x500/f3e8ff/215acd?text=Content+Creation"
+                alt="Content Creation Services"
+                fill
+                className="object-contain drop-shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Content Types Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Complete Content Solutions</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Complete Content </span>
+              <span className="text-[#215ACD]">Solutions</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
               From static graphics to dynamic videos, we create content that captures attention and drives results.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {[
-              {
-                icon: Image,
-                title: "Visual Graphics",
-                description: "Eye-catching static and animated graphics for all platforms",
-                features: ["Custom templates", "Brand-aligned designs", "Platform-optimized sizes", "Trending styles"]
-              },
-              {
-                icon: Video,
-                title: "Video Content",
-                description: "Engaging video content that tells your brand story",
-                features: ["Short-form videos", "Reels & TikTok", "Story content", "Video editing"]
-              },
-              {
-                icon: PenTool,
-                title: "Copywriting",
-                description: "Compelling captions and messaging that resonates",
-                features: ["Engaging captions", "Hashtag strategy", "Call-to-actions", "Brand voice consistency"]
-              },
-              {
-                icon: Palette,
-                title: "Brand Design",
-                description: "Consistent visual identity across all content",
-                features: ["Brand guidelines", "Color palettes", "Typography", "Visual hierarchy"]
-              },
-              {
-                icon: Zap,
-                title: "Interactive Content",
-                description: "Content that encourages audience participation",
-                features: ["Polls & quizzes", "Interactive stories", "User-generated content", "Contests"]
-              },
-              {
-                icon: Users,
-                title: "Strategy Development",
-                description: "Content strategy aligned with business goals",
-                features: ["Content planning", "Audience research", "Competitive analysis", "Performance optimization"]
-              }
-            ].map((service, index) => (
-              <Card key={index} className="border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <service.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+          <div className="grid md:grid-cols-2 gap-8">
+            {SERVICES.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow"
+              >
+                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                  <service.icon className="w-7 h-7 text-[#215ACD]" />
+                </div>
+                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{service.title}</h3>
+                <p className="text-[#5C5C5C] leading-relaxed">{service.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Content Process */}
-      <section className="py-20 bg-secondary/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Use Cases Section */}
+      <section className="py-20 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Our Content Creation Process</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              A streamlined process that ensures consistent, high-quality content delivery.
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Common </span>
+              <span className="text-[#215ACD]">Use Cases</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              See how businesses leverage our content creation expertise to achieve their goals.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              {
-                step: "01",
-                title: "Discovery & Strategy",
-                description: "We learn about your brand, audience, and goals to create a tailored content strategy."
-              },
-              {
-                step: "02",
-                title: "Content Planning",
-                description: "Development of content calendar and creative concepts aligned with your objectives."
-              },
-              {
-                step: "03",
-                title: "Creation & Production",
-                description: "Our team creates engaging content optimized for each social media platform."
-              },
-              {
-                step: "04",
-                title: "Review & Optimization",
-                description: "Content review, performance analysis, and continuous optimization based on results."
-              }
-            ].map((process, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
-                  {process.step}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {USE_CASES.map((useCase, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl p-6 border border-slate-100 hover:border-[#215ACD]/30 transition-colors"
+              >
+                <h3 className="text-[18px] font-semibold text-[#414141] mb-3">{useCase.title}</h3>
+                <p className="text-[#5C5C5C] text-[14px] leading-relaxed mb-4">{useCase.description}</p>
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-[#215ACD] px-3 py-1 rounded-full text-xs font-medium">
+                  <Target className="w-3 h-3" />
+                  {useCase.metrics}
                 </div>
-                <h3 className="text-xl font-bold mb-3">{process.title}</h3>
-                <p className="text-muted-foreground">{process.description}</p>
-              </div>
+              </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-6">
+                <span className="text-[#414141]">Why Choose Our </span>
+                <span className="text-[#215ACD]">Content Services?</span>
+              </h2>
+
+              <div className="space-y-4 mb-8">
+                {BENEFITS.map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#215ACD]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-[#215ACD]" />
+                    </div>
+                    <span className="text-[#414141]">{benefit}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-2xl p-8 text-white">
+                <TrendingUp className="w-10 h-10 mb-4" />
+                <h3 className="text-[24px] font-bold mb-3">Creative Excellence</h3>
+                <p className="text-white/90 mb-4">
+                  Our creative team stays ahead of trends to ensure your content is always fresh, engaging, and effective.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Trend analysis & research
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    A/B testing optimization
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Performance tracking
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-[#F8F9FB] rounded-2xl p-8">
+                <Zap className="w-10 h-10 text-[#215ACD] mb-4" />
+                <h3 className="text-[24px] font-bold text-[#414141] mb-3">Fast Turnaround</h3>
+                <p className="text-[#5C5C5C]">
+                  Get high-quality content delivered quickly. Our streamlined process ensures you never miss a posting opportunity.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance">Ready to Elevate Your Content?</h2>
-          <p className="text-xl text-muted-foreground text-pretty">
-            Let us create compelling content that captures attention and drives engagement for your brand.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-              <Link href="/contact">
-                Start Creating Content
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/services/social-media-management">Back to Services</Link>
-            </Button>
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-[24px] overflow-hidden p-12 md:p-16">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <h2 className="text-[32px] md:text-[42px] font-bold text-white mb-6">
+                Ready to Elevate Your Content?
+              </h2>
+              <p className="text-white/90 text-[18px] md:text-[20px] mb-8">
+                Let us create compelling content that captures attention and drives engagement for your brand.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  asChild
+                  className="bg-white hover:bg-slate-100 text-[#215ACD] px-8 py-6 rounded text-[15px] font-medium min-w-[200px]"
+                >
+                  <Link href="/contact">
+                    Start Creating Content
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded text-[15px] font-medium bg-transparent min-w-[200px]"
+                >
+                  <Link href="/services/social-media-management">Back to Services</Link>
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 mt-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  10K+ pieces created
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  48hr turnaround
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Unlimited revisions
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -193,5 +386,5 @@ export default function ContentCreationPage() {
       <Footer />
       <AutoConsultationModal serviceName="Content Creation" />
     </main>
-  )
+  );
 }

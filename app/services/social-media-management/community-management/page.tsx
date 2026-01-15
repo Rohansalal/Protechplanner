@@ -1,201 +1,325 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { AutoConsultationModal } from "@/components/auto-consultation-modal"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { MessageCircle, ArrowRight, Users, Heart, Shield, Zap, TrendingUp, CheckCircle } from "lucide-react"
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  MessageCircle,
+  ArrowRight,
+  CheckCircle,
+  Users,
+  Heart,
+  MessageSquare,
+  AlertCircle,
+  Target,
+  TrendingUp,
+  Zap
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { AutoConsultationModal } from "@/components/auto-consultation-modal";
+import { Button } from "@/components/ui/button";
+
+const SERVICES = [
+  {
+    icon: MessageSquare,
+    title: "Comment Moderation",
+    description: "Professional moderation of comments across all platforms to maintain positive brand image and community standards."
+  },
+  {
+    icon: Users,
+    title: "Direct Message Handling",
+    description: "Timely responses to direct messages and inquiries, ensuring no customer question goes unanswered."
+  },
+  {
+    icon: Heart,
+    title: "Follower Engagement",
+    description: "Active engagement with followers through likes, replies, and meaningful interactions to build loyalty."
+  },
+  {
+    icon: AlertCircle,
+    title: "Crisis Management",
+    description: "Swift and professional handling of negative feedback or PR issues to protect your brand reputation."
+  }
+];
+
+const BENEFITS = [
+  "90% response rate within 2 hours",
+  "Build authentic relationships with followers",
+  "Increase customer satisfaction and loyalty",
+  "Protect brand reputation 24/7",
+  "Turn critics into brand advocates",
+  "Boost engagement rates by 200%"
+];
+
+const USE_CASES = [
+  {
+    title: "Customer Support",
+    description: "Provide instant support and resolve customer issues directly through social channels.",
+    metrics: "90% satisfaction"
+  },
+  {
+    title: "Brand Advocacy",
+    description: "Identify and nurture brand advocates who amplify your message organically.",
+    metrics: "500+ advocates"
+  },
+  {
+    title: "Reputation Management",
+    description: "Monitor and respond to mentions, reviews, and feedback across all platforms.",
+    metrics: "24/7 monitoring"
+  },
+  {
+    title: "Community Building",
+    description: "Foster a thriving community around your brand with active engagement and discussions.",
+    metrics: "85% engagement"
+  }
+];
+
+const STATS = [
+  { value: "90%", label: "Response Rate" },
+  { value: "2hrs", label: "Avg Response Time" },
+  { value: "200%", label: "Engagement Boost" }
+];
 
 export default function CommunityManagementPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-purple-50/20 to-white pt-5 pb-20 md:pt-7 md:pb-28 px-2">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-sm text-[#5C5C5C] mb-8"
+          >
+            <Link href="/services" className="hover:text-[#215ACD] transition-colors">Services</Link>
+            <span>/</span>
+            <Link href="/services/social-media-management" className="hover:text-[#215ACD] transition-colors">Social Media Management</Link>
+            <span>/</span>
+            <span className="text-[#215ACD] font-medium">Community Management</span>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <MessageCircle className="h-6 w-6 text-primary" />
-                </div>
-                <span className="text-primary font-semibold">Community Management</span>
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-                Build Loyal Communities That <span className="text-primary">Drive Growth</span>
-              </h1>
-              <p className="text-xl text-muted-foreground text-pretty leading-relaxed mb-8">
-                Expert community management that transforms followers into brand advocates and builds meaningful relationships with your audience.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link href="/contact">
-                    Grow My Community
-                    <ArrowRight className="ml-2 h-5 w-5" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-purple-50 text-[#215ACD] px-4 py-2 rounded-full text-sm font-medium mb-6"
+              >
+                <MessageCircle className="w-4 h-4" />
+                Community Management
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-bold font-['Inter'] mb-6"
+              >
+                <span className="text-black">Build </span>
+                <span className="text-[#215ACD]">Thriving</span>
+                <br />
+                <span className="text-black">Communities</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-[18px] md:text-[20px] leading-relaxed text-[#414141] mb-8"
+              >
+                Active community management and engagement to build strong relationships with your followers and turn them into loyal brand advocates.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Button
+                  asChild
+                  className="bg-[#215ACD] hover:bg-[#1a49a8] text-white px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/contact">Get Started Today</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#215ACD] text-[#215ACD] hover:bg-[#F1F5FF] px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/services/social-media-management">
+                    <ArrowRight className="w-4 h-4 mr-2 rotate-180" />
+                    Back to Services
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/services/social-media-management">View All Services</Link>
-                </Button>
-              </div>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200"
+              >
+                {STATS.map((stat, index) => (
+                  <div key={index}>
+                    <div className="text-[28px] md:text-[36px] font-bold text-[#215ACD]">{stat.value}</div>
+                    <div className="text-[13px] text-[#5C5C5C] mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-            <div className="relative">
-              <img
-                src="/social-media-community-management.jpg"
-                alt="Social Media Community Management Services"
-                className="rounded-lg shadow-2xl"
+
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="relative h-[500px] hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-100/30 to-transparent rounded-2xl" />
+              <Image
+                src="https://placehold.co/600x500/f3e8ff/215acd?text=Community+Management"
+                alt="Community Management Services"
+                fill
+                className="object-contain drop-shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Community Services */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Complete Community Management</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              From daily engagement to crisis management, we handle all aspects of building and nurturing your online community.
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Complete Community </span>
+              <span className="text-[#215ACD]">Solutions</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              From moderation to engagement, we handle all aspects of building and nurturing your online community.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {[
-              {
-                icon: Users,
-                title: "Audience Engagement",
-                description: "Active engagement that builds genuine relationships with your followers",
-                features: ["Comment responses", "Direct message management", "Conversation starters", "Relationship building"]
-              },
-              {
-                icon: Heart,
-                title: "Brand Advocacy",
-                description: "Turn satisfied customers into loyal brand advocates",
-                features: ["Advocate identification", "Loyalty programs", "User-generated content", "Testimonial collection"]
-              },
-              {
-                icon: Shield,
-                title: "Crisis Management",
-                description: "Professional handling of negative feedback and crisis situations",
-                features: ["24/7 monitoring", "Issue escalation", "Damage control", "Reputation recovery"]
-              },
-              {
-                icon: Zap,
-                title: "Real-time Monitoring",
-                description: "Continuous monitoring of conversations and brand mentions",
-                features: ["Brand mention tracking", "Sentiment analysis", "Trend monitoring", "Opportunity identification"]
-              },
-              {
-                icon: TrendingUp,
-                title: "Community Growth",
-                description: "Strategies to organically grow and expand your community",
-                features: ["Growth campaigns", "Community events", "Partnership building", "Member acquisition"]
-              },
-              {
-                icon: MessageCircle,
-                title: "Conversation Management",
-                description: "Facilitate meaningful conversations and discussions",
-                features: ["Discussion moderation", "Content promotion", "Question management", "Feedback collection"]
-              }
-            ].map((service, index) => (
-              <Card key={index} className="border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <service.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+          <div className="grid md:grid-cols-2 gap-8">
+            {SERVICES.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow"
+              >
+                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                  <service.icon className="w-7 h-7 text-[#215ACD]" />
+                </div>
+                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{service.title}</h3>
+                <p className="text-[#5C5C5C] leading-relaxed">{service.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Response Metrics */}
-      <section className="py-20 bg-secondary/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Use Cases Section */}
+      <section className="py-20 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Common </span>
+              <span className="text-[#215ACD]">Use Cases</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              See how businesses leverage our community management expertise to build loyal audiences.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {USE_CASES.map((useCase, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl p-6 border border-slate-100 hover:border-[#215ACD]/30 transition-colors"
+              >
+                <h3 className="text-[18px] font-semibold text-[#414141] mb-3">{useCase.title}</h3>
+                <p className="text-[#5C5C5C] text-[14px] leading-relaxed mb-4">{useCase.description}</p>
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-[#215ACD] px-3 py-1 rounded-full text-xs font-medium">
+                  <Target className="w-3 h-3" />
+                  {useCase.metrics}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Rapid Response Standards</h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                We maintain industry-leading response times to ensure your community feels heard and valued.
-              </p>
-              
-              <div className="space-y-6">
-                {[
-                  {
-                    type: "Direct Messages",
-                    time: "Under 1 hour",
-                    description: "Quick responses to customer inquiries and messages"
-                  },
-                  {
-                    type: "Comments & Mentions",
-                    time: "Within 2 hours",
-                    description: "Timely engagement with comments and brand mentions"
-                  },
-                  {
-                    type: "Negative Feedback",
-                    time: "Immediate",
-                    description: "Priority handling of complaints and negative feedback"
-                  },
-                  {
-                    type: "Crisis Situations",
-                    time: "24/7 Monitoring",
-                    description: "Round-the-clock monitoring for urgent situations"
-                  }
-                ].map((metric, index) => (
-                  <div key={index} className="bg-background rounded-lg p-6 shadow-sm">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-semibold text-lg">{metric.type}</h3>
-                      <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                        {metric.time}
-                      </div>
+              <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-6">
+                <span className="text-[#414141]">Why Choose Our </span>
+                <span className="text-[#215ACD]">Community Services?</span>
+              </h2>
+
+              <div className="space-y-4 mb-8">
+                {BENEFITS.map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#215ACD]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-[#215ACD]" />
                     </div>
-                    <p className="text-muted-foreground">{metric.description}</p>
-                  </div>
+                    <span className="text-[#414141]">{benefit}</span>
+                  </motion.div>
                 ))}
               </div>
             </div>
-            
-            <div className="bg-background rounded-lg p-8 shadow-lg">
-              <h3 className="text-2xl font-bold mb-6 text-center">Community Growth Impact</h3>
-              <div className="space-y-6">
-                {[
-                  { metric: "Response Rate", value: "98%", improvement: "+45%" },
-                  { metric: "Engagement Rate", value: "5.2%", improvement: "+62%" },
-                  { metric: "Customer Satisfaction", value: "4.8/5", improvement: "+38%" },
-                  { metric: "Community Growth", value: "234%", improvement: "+189%" },
-                  { metric: "Brand Mentions", value: "156%", improvement: "+87%" }
-                ].map((item, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between mb-2">
-                      <span className="font-medium">{item.metric}</span>
-                      <span className="font-bold">{item.value}</span>
-                    </div>
-                    <div className="w-full bg-secondary rounded-full h-2">
-                      <div 
-                        className="bg-accent h-2 rounded-full" 
-                        style={{ width: `${Math.min(100, parseInt(item.improvement) + 20)}%` }}
-                      ></div>
-                    </div>
-                    <div className="text-right text-sm text-muted-foreground mt-1">
-                      Improvement: {item.improvement}
-                    </div>
-                  </div>
-                ))}
+
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-2xl p-8 text-white">
+                <TrendingUp className="w-10 h-10 mb-4" />
+                <h3 className="text-[24px] font-bold mb-3">Proactive Engagement</h3>
+                <p className="text-white/90 mb-4">
+                  We don't just respond - we proactively engage with your community to foster meaningful conversations and relationships.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Real-time monitoring
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Sentiment analysis
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Engagement tracking
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-[#F8F9FB] rounded-2xl p-8">
+                <Zap className="w-10 h-10 text-[#215ACD] mb-4" />
+                <h3 className="text-[24px] font-bold text-[#414141] mb-3">Rapid Response</h3>
+                <p className="text-[#5C5C5C]">
+                  Our team responds to comments and messages within 2 hours on average, ensuring your community feels heard and valued.
+                </p>
               </div>
             </div>
           </div>
@@ -203,22 +327,56 @@ export default function CommunityManagementPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance">Ready to Build a Thriving Community?</h2>
-          <p className="text-xl text-muted-foreground text-pretty">
-            Let us help you create meaningful connections with your audience and turn followers into brand advocates.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-              <Link href="/contact">
-                Start Community Building
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/services/social-media-management">Back to Services</Link>
-            </Button>
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-[24px] overflow-hidden p-12 md:p-16">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <h2 className="text-[32px] md:text-[42px] font-bold text-white mb-6">
+                Ready to Build Your Community?
+              </h2>
+              <p className="text-white/90 text-[18px] md:text-[20px] mb-8">
+                Let our experts help you build a thriving, engaged community that drives real business results.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  asChild
+                  className="bg-white hover:bg-slate-100 text-[#215ACD] px-8 py-6 rounded text-[15px] font-medium min-w-[200px]"
+                >
+                  <Link href="/contact">
+                    Start Building Community
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded text-[15px] font-medium bg-transparent min-w-[200px]"
+                >
+                  <Link href="/services/social-media-management">Back to Services</Link>
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 mt-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  90% response rate
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  2hr avg response
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  24/7 monitoring
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -226,5 +384,5 @@ export default function CommunityManagementPage() {
       <Footer />
       <AutoConsultationModal serviceName="Community Management" />
     </main>
-  )
+  );
 }

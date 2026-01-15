@@ -1,253 +1,412 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { AutoConsultationModal } from "@/components/auto-consultation-modal"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Palette, CheckCircle, ArrowRight, Monitor, Smartphone, Printer, Eye, Zap, Users } from "lucide-react"
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  Palette,
+  ArrowRight,
+  CheckCircle,
+  Sparkles,
+  Layout,
+  Smartphone,
+  FileImage,
+  Share2,
+  Printer,
+  Target,
+  TrendingUp,
+  Zap,
+  Shield
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { AutoConsultationModal } from "@/components/auto-consultation-modal";
+import { Button } from "@/components/ui/button";
+
+const SERVICES = [
+  {
+    icon: Sparkles,
+    title: "Brand Identity Design",
+    description: "Complete brand identity packages including logos, color schemes, typography, and brand guidelines.",
+    link: "/services/graphic-web-designing/brand-identity-design"
+  },
+  {
+    icon: Layout,
+    title: "Web Design & UI/UX",
+    description: "Modern, responsive website designs with intuitive user interfaces and exceptional user experiences.",
+    link: "/services/graphic-web-designing/web-design-ui-ux"
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile App Design",
+    description: "Beautiful, user-friendly mobile app interfaces for iOS and Android platforms.",
+    link: "/services/graphic-web-designing/mobile-app-design"
+  },
+  {
+    icon: Share2,
+    title: "Social Media Graphics",
+    description: "Eye-catching social media graphics, posts, stories, and ad creatives for all platforms.",
+    link: "/services/graphic-web-designing/social-media-graphics"
+  },
+  {
+    icon: FileImage,
+    title: "Digital Marketing Design",
+    description: "Compelling marketing materials including banners, infographics, email templates, and landing pages.",
+    link: "/services/graphic-web-designing/digital-marketing-design"
+  },
+  {
+    icon: Printer,
+    title: "Print Design",
+    description: "Professional print materials including brochures, business cards, flyers, and packaging design.",
+    link: "/services/graphic-web-designing/print-design"
+  }
+];
+
+const BENEFITS = [
+  "Award-winning designers with 10+ years experience",
+  "Unlimited revisions until you're 100% satisfied",
+  "Fast 24-48 hour turnaround on most projects",
+  "Modern designs that convert visitors to customers",
+  "Full brand consistency across all materials",
+  "Source files and complete ownership included"
+];
+
+const USE_CASES = [
+  {
+    title: "Brand Launch",
+    description: "Complete brand identity from logo to website for new business launches.",
+    metrics: "Full package"
+  },
+  {
+    title: "Website Redesign",
+    description: "Modern website redesigns that improve user experience and conversions.",
+    metrics: "3x conversion boost"
+  },
+  {
+    title: "Marketing Campaigns",
+    description: "Cohesive design assets for multi-channel marketing campaigns.",
+    metrics: "50+ assets"
+  },
+  {
+    title: "App Interface",
+    description: "Intuitive mobile app UI/UX design that users love.",
+    metrics: "4.8+ app rating"
+  }
+];
+
+const STATS = [
+  { value: "1000+", label: "Designs Created" },
+  { value: "98%", label: "Client Satisfaction" },
+  { value: "24-48hrs", label: "Avg Turnaround" }
+];
 
 export default function GraphicWebDesigningPage() {
-  const services = [
-    {
-      icon: Eye,
-      title: "Brand Identity Design",
-      description: "Create a memorable brand identity that reflects your values and resonates with your target audience.",
-      features: [
-        "Logo design & branding",
-        "Brand guidelines",
-        "Color palette & typography",
-        "Business card design",
-      ],
-      link: "/services/graphic-web-designing/brand-identity-design"
-    },
-    {
-      icon: Monitor,
-      title: "Web Design & UI/UX",
-      description: "Design beautiful, user-friendly websites that provide exceptional user experiences and drive conversions.",
-      features: ["Responsive web design", "UI/UX optimization", "Landing page design", "E-commerce design"],
-      link: "/services/graphic-web-designing/web-design-ui-ux"
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile App Design",
-      description: "Create intuitive mobile app interfaces that engage users and provide seamless experiences.",
-      features: [
-        "iOS & Android design",
-        "App wireframing",
-        "User flow optimization",
-        "Interactive prototypes",
-      ],
-      link: "/services/graphic-web-designing/mobile-app-design"
-    },
-    {
-      icon: Printer,
-      title: "Print Design",
-      description: "Professional print materials that make a lasting impression and effectively communicate your message.",
-      features: ["Brochures & flyers", "Business stationery", "Packaging design", "Marketing materials"],
-      link: "/services/graphic-web-designing/print-design"
-    },
-    {
-      icon: Users,
-      title: "Social Media Graphics",
-      description: "Eye-catching social media designs that boost engagement and strengthen your online presence.",
-      features: ["Social media templates", "Post graphics", "Story designs", "Cover images"],
-      link: "/services/graphic-web-designing/social-media-graphics"
-    },
-    {
-      icon: Zap,
-      title: "Digital Marketing Design",
-      description: "Compelling marketing visuals that capture attention and drive conversions across digital channels.",
-      features: ["Banner ads", "Email templates", "Infographics", "Presentation design"],
-      link: "/services/graphic-web-designing/digital-marketing-design"
-    },
-  ]
-
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-pink-50/20 to-white pt-5 pb-20 md:pt-7 md:pb-28 px-2">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-sm text-[#5C5C5C] mb-8"
+          >
+            <Link href="/services" className="hover:text-[#215ACD] transition-colors">Services</Link>
+            <span>/</span>
+            <span className="text-[#215ACD] font-medium">Graphic & Web Designing</span>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Palette className="h-6 w-6 text-primary" />
-                </div>
-                <span className="text-primary font-semibold">Graphic & Web Design Services</span>
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-                Creative <span className="text-primary">Design Solutions</span> That Convert
-              </h1>
-              <p className="text-xl text-muted-foreground text-pretty leading-relaxed mb-8">
-                Professional graphic and web design services to enhance your brand identity, create stunning user
-                experiences, and drive business growth.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link href="/contact">
-                    Start Your Design Project
-                    <ArrowRight className="ml-2 h-5 w-5" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-pink-50 text-[#215ACD] px-4 py-2 rounded-full text-sm font-medium mb-6"
+              >
+                <Palette className="w-4 h-4" />
+                Graphic & Web Designing
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-bold font-['Inter'] mb-6"
+              >
+                <span className="text-black">Designs That </span>
+                <span className="text-[#215ACD]">Captivate</span>
+                <br />
+                <span className="text-black">Brands That Inspire</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-[18px] md:text-[20px] leading-relaxed text-[#414141] mb-8"
+              >
+                Professional graphic design and web design services that bring your brand vision to life with stunning visuals and exceptional user experiences.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Button
+                  asChild
+                  className="bg-[#215ACD] hover:bg-[#1a49a8] text-white px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/contact">Get Started Today</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#215ACD] text-[#215ACD] hover:bg-[#F1F5FF] px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/services">
+                    <ArrowRight className="w-4 h-4 mr-2 rotate-180" />
+                    Back to Services
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/contact">View Our Portfolio</Link>
-                </Button>
-              </div>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200"
+              >
+                {STATS.map((stat, index) => (
+                  <div key={index}>
+                    <div className="text-[28px] md:text-[36px] font-bold text-[#215ACD]">{stat.value}</div>
+                    <div className="text-[13px] text-[#5C5C5C] mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-            <div className="relative">
-              <img src="/creative-design-workspace-with-computer-and-graphi.jpg" alt="Design Workspace" className="rounded-lg shadow-2xl" />
-            </div>
+
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="relative h-[500px] hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-100/30 to-transparent rounded-2xl" />
+              <Image
+                src="https://placehold.co/600x500/fce7f3/215acd?text=Design+Services"
+                alt="Graphic & Web Designing Services"
+                fill
+                className="object-contain drop-shadow-2xl"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Design Services */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Comprehensive Design Services</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              From brand identity to web design, we create visual solutions that captivate your audience and drive
-              results.
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Complete Design </span>
+              <span className="text-[#215ACD]">Solutions</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              From brand identity to web design, we create cohesive visual experiences that elevate your brand.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card
+            {SERVICES.map((service, index) => (
+              <motion.div
                 key={index}
-                className="border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300 group flex flex-col h-full"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow group"
               >
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <service.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow flex flex-col">
-                  <ul className="space-y-2 mb-4 flex-grow">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {service.link && (
-                    <div className="mt-auto pt-4">
-                      <Button asChild variant="outline" className="w-full group-hover:bg-primary/10 transition-colors">
-                        <Link href={service.link}>
-                          Learn More
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                  <service.icon className="w-7 h-7 text-[#215ACD]" />
+                </div>
+                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{service.title}</h3>
+                <p className="text-[#5C5C5C] leading-relaxed mb-4">{service.description}</p>
+                <Link
+                  href={service.link}
+                  className="inline-flex items-center text-[#215ACD] font-medium hover:gap-2 transition-all"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4 ml-1 group-hover:ml-2 transition-all" />
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-secondary/50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Design Packages</h2>
-          <p className="text-xl text-muted-foreground text-pretty mb-12">
-            Flexible design solutions to fit your budget and project requirements.
-          </p>
+      {/* Use Cases Section */}
+      <section className="py-20 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Common </span>
+              <span className="text-[#215ACD]">Use Cases</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              See how businesses leverage our design expertise to build memorable brands.
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Basic",
-                price: "$40/hour",
-                description: "Perfect for small design projects and startups",
-                features: ["Logo design", "Basic branding", "Simple web layouts", "2 revisions included"],
-              },
-              {
-                name: "Professional",
-                price: "$60/hour",
-                description: "Comprehensive design solutions for growing businesses",
-                features: [
-                  "Complete brand identity",
-                  "Responsive web design",
-                  "Marketing materials",
-                  "Unlimited revisions",
-                  "Source files included",
-                ],
-                popular: true,
-              },
-              {
-                name: "Premium",
-                price: "$80/hour",
-                description: "Advanced design services for enterprises",
-                features: [
-                  "Custom design strategy",
-                  "Multi-platform design",
-                  "Animation & interactions",
-                  "Priority support",
-                  "Dedicated designer",
-                ],
-              },
-            ].map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? "border-accent shadow-lg" : ""}`}>
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                    Most Popular
-                  </div>
-                )}
-                <CardHeader className="text-center">
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                  <div className="text-3xl font-bold text-primary">{plan.price}</div>
-                  <CardDescription>{plan.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild className="w-full">
-                    <Link href="/contact">Get Started</Link>
-                  </Button>
-                </CardContent>
-              </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {USE_CASES.map((useCase, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl p-6 border border-slate-100 hover:border-[#215ACD]/30 transition-colors"
+              >
+                <h3 className="text-[18px] font-semibold text-[#414141] mb-3">{useCase.title}</h3>
+                <p className="text-[#5C5C5C] text-[14px] leading-relaxed mb-4">{useCase.description}</p>
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-[#215ACD] px-3 py-1 rounded-full text-xs font-medium">
+                  <Target className="w-3 h-3" />
+                  {useCase.metrics}
+                </div>
+              </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-6">
+                <span className="text-[#414141]">Why Choose Our </span>
+                <span className="text-[#215ACD]">Design Services?</span>
+              </h2>
+
+              <div className="space-y-4 mb-8">
+                {BENEFITS.map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#215ACD]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-[#215ACD]" />
+                    </div>
+                    <span className="text-[#414141]">{benefit}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-2xl p-8 text-white">
+                <TrendingUp className="w-10 h-10 mb-4" />
+                <h3 className="text-[24px] font-bold mb-3">Conversion-Focused Design</h3>
+                <p className="text-white/90 mb-4">
+                  Our designs aren't just beautiful - they're strategically crafted to convert visitors into customers and drive business results.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    User psychology principles
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    A/B tested layouts
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Mobile-first approach
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-[#F8F9FB] rounded-2xl p-8">
+                <Zap className="w-10 h-10 text-[#215ACD] mb-4" />
+                <h3 className="text-[24px] font-bold text-[#414141] mb-3">Rapid Delivery</h3>
+                <p className="text-[#5C5C5C]">
+                  Get professional designs delivered in 24-48 hours with unlimited revisions until you're completely satisfied.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance">Ready to Transform Your Brand?</h2>
-          <p className="text-xl text-muted-foreground text-pretty">
-            Let's create stunning designs that capture your brand essence and drive business growth.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-              <Link href="/contact">
-                Start Your Design Project
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/services">View All Services</Link>
-            </Button>
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-[24px] overflow-hidden p-12 md:p-16">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <h2 className="text-[32px] md:text-[42px] font-bold text-white mb-6">
+                Ready to Transform Your Brand?
+              </h2>
+              <p className="text-white/90 text-[18px] md:text-[20px] mb-8">
+                Let our award-winning designers create stunning visuals that elevate your brand and captivate your audience.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  asChild
+                  className="bg-white hover:bg-slate-100 text-[#215ACD] px-8 py-6 rounded text-[15px] font-medium min-w-[200px]"
+                >
+                  <Link href="/contact">
+                    Start Your Project
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded text-[15px] font-medium bg-transparent min-w-[200px]"
+                >
+                  <Link href="/services">View All Services</Link>
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 mt-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  1000+ designs
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  98% satisfaction
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  24-48hr delivery
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <Footer />
-      <AutoConsultationModal serviceName="Graphic and Web Designing" />
+      <AutoConsultationModal serviceName="Graphic & Web Designing" />
     </main>
-  )
+  );
 }

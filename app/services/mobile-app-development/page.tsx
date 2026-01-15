@@ -1,330 +1,406 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { AutoConsultationModal } from "@/components/auto-consultation-modal"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Smartphone, CheckCircle, ArrowRight, Monitor, Zap, Shield, Users, Code } from "lucide-react"
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  Smartphone,
+  ArrowRight,
+  CheckCircle,
+  Apple,
+  Chrome,
+  Layers,
+  Shield as ShieldIcon,
+  Palette,
+  Server,
+  Target,
+  TrendingUp,
+  Zap,
+  Shield
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { AutoConsultationModal } from "@/components/auto-consultation-modal";
+import { Button } from "@/components/ui/button";
+
+const SERVICES = [
+  {
+    icon: Apple,
+    title: "Native iOS Development",
+    description: "High-performance native iOS apps built with Swift and SwiftUI for optimal user experience.",
+    link: "/services/mobile-app-development/native-ios"
+  },
+  {
+    icon: Chrome,
+    title: "Native Android Development",
+    description: "Robust native Android apps developed with Kotlin and Jetpack Compose for seamless performance.",
+    link: "/services/mobile-app-development/native-android"
+  },
+  {
+    icon: Layers,
+    title: "Cross-Platform Development",
+    description: "Cost-effective cross-platform apps using React Native and Flutter for iOS and Android.",
+    link: "/services/mobile-app-development/cross-platform"
+  },
+  {
+    icon: Palette,
+    title: "UI/UX Design",
+    description: "Intuitive, beautiful mobile app interfaces designed for maximum user engagement and retention.",
+    link: "/services/mobile-app-development/ui-ux-design"
+  },
+  {
+    icon: Server,
+    title: "Backend Development",
+    description: "Scalable backend infrastructure and APIs to power your mobile applications.",
+    link: "/services/mobile-app-development/backend-development"
+  },
+  {
+    icon: ShieldIcon,
+    title: "App Security & Testing",
+    description: "Comprehensive security audits and testing to ensure your app is secure and bug-free.",
+    link: "/services/mobile-app-development/app-security-testing"
+  }
+];
+
+const BENEFITS = [
+  "Expert developers with 8+ years experience",
+  "Launch apps 40% faster than industry average",
+  "99.9% crash-free rate in production",
+  "App Store and Play Store optimization",
+  "Post-launch support and maintenance",
+  "Agile development with bi-weekly sprints"
+];
+
+const USE_CASES = [
+  {
+    title: "E-commerce Apps",
+    description: "Feature-rich shopping apps with payment integration and order tracking.",
+    metrics: "4.8+ rating"
+  },
+  {
+    title: "On-Demand Services",
+    description: "Uber-like apps for food delivery, ride-sharing, and service booking.",
+    metrics: "Real-time tracking"
+  },
+  {
+    title: "Social Networking",
+    description: "Engaging social platforms with messaging, feeds, and user profiles.",
+    metrics: "1M+ users"
+  },
+  {
+    title: "Enterprise Apps",
+    description: "Custom business apps for productivity, CRM, and internal operations.",
+    metrics: "Secure & scalable"
+  }
+];
+
+const STATS = [
+  { value: "200+", label: "Apps Launched" },
+  { value: "4.8/5", label: "Avg App Rating" },
+  { value: "99.9%", label: "Crash-Free Rate" }
+];
 
 export default function MobileAppDevelopmentPage() {
-  const services = [
-    {
-      icon: Smartphone,
-      title: "Native iOS Development",
-      description: "High-performance native iOS applications built with Swift and optimized for Apple devices.",
-      features: [
-        "Swift programming",
-        "iOS SDK integration",
-        "App Store optimization",
-        "Apple guidelines compliance",
-      ],
-      link: "/services/mobile-app-development/native-ios"
-    },
-    {
-      icon: Monitor,
-      title: "Native Android Development",
-      description: "Feature-rich Android applications developed with Kotlin for optimal performance and user experience.",
-      features: ["Kotlin development", "Android SDK", "Google Play optimization", "Material Design"],
-      link: "/services/mobile-app-development/native-android"
-    },
-    {
-      icon: Zap,
-      title: "Cross-Platform Development",
-      description: "Cost-effective cross-platform apps using React Native and Flutter for multiple platforms.",
-      features: ["React Native", "Flutter development", "Code reusability", "Faster time-to-market"],
-      link: "/services/mobile-app-development/cross-platform"
-    },
-    {
-      icon: Shield,
-      title: "App Security & Testing",
-      description: "Comprehensive security implementation and rigorous testing to ensure app reliability and safety.",
-      features: ["Security audits", "Penetration testing", "Performance testing", "Quality assurance"],
-      link: "/services/mobile-app-development/app-security-testing"
-    },
-    {
-      icon: Users,
-      title: "UI/UX Design",
-      description: "Intuitive and engaging mobile app interfaces designed for optimal user experience and conversion.",
-      features: ["User interface design", "User experience optimization", "Prototyping", "Usability testing"],
-      link: "/services/mobile-app-development/ui-ux-design"
-    },
-    {
-      icon: Code,
-      title: "Backend Development",
-      description: "Robust backend infrastructure and APIs to power your mobile applications with scalable solutions.",
-      features: ["API development", "Database design", "Cloud integration", "Real-time features"],
-      link: "/services/mobile-app-development/backend-development"
-    },
-  ]
-
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-sky-50/20 to-white pt-5 pb-20 md:pt-7 md:pb-28 px-2">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-sm text-[#5C5C5C] mb-8"
+          >
+            <Link href="/services" className="hover:text-[#215ACD] transition-colors">Services</Link>
+            <span>/</span>
+            <span className="text-[#215ACD] font-medium">Mobile App Development</span>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Smartphone className="h-6 w-6 text-primary" />
-                </div>
-                <span className="text-primary font-semibold">Mobile App Development</span>
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-                Build Powerful <span className="text-primary">Mobile Apps</span> That Users Love
-              </h1>
-              <p className="text-xl text-muted-foreground text-pretty leading-relaxed mb-8">
-                End-to-end mobile application development for iOS and Android platforms. From concept to app store, we
-                create engaging mobile experiences that drive user engagement and business growth.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link href="/contact">
-                    Start Your App Project
-                    <ArrowRight className="ml-2 h-5 w-5" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-sky-50 text-[#215ACD] px-4 py-2 rounded-full text-sm font-medium mb-6"
+              >
+                <Smartphone className="w-4 h-4" />
+                Mobile App Development
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-bold font-['Inter'] mb-6"
+              >
+                <span className="text-black">Build Apps </span>
+                <span className="text-[#215ACD]">Users Love</span>
+                <br />
+                <span className="text-black">Launch Faster</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-[18px] md:text-[20px] leading-relaxed text-[#414141] mb-8"
+              >
+                Professional mobile app development services for iOS and Android. From concept to launch, we build high-performance apps that drive business growth.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Button
+                  asChild
+                  className="bg-[#215ACD] hover:bg-[#1a49a8] text-white px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/contact">Start Your App</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#215ACD] text-[#215ACD] hover:bg-[#F1F5FF] px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/services">
+                    <ArrowRight className="w-4 h-4 mr-2 rotate-180" />
+                    Back to Services
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/contact">View App Portfolio</Link>
-                </Button>
-              </div>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200"
+              >
+                {STATS.map((stat, index) => (
+                  <div key={index}>
+                    <div className="text-[28px] md:text-[36px] font-bold text-[#215ACD]">{stat.value}</div>
+                    <div className="text-[13px] text-[#5C5C5C] mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-            <div className="relative">
-              <img src="/mobile-app-development-workspace-with-phones-and-c.jpg" alt="Mobile App Development" className="rounded-lg shadow-2xl" />
-            </div>
+
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="relative h-[500px] hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-sky-100/30 to-transparent rounded-2xl" />
+              <Image
+                src="https://placehold.co/600x500/e0f2fe/215acd?text=Mobile+Apps"
+                alt="Mobile App Development Services"
+                fill
+                className="object-contain drop-shadow-2xl"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services Overview */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Complete Mobile Development Services</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              From native iOS and Android apps to cross-platform solutions, we deliver mobile applications that exceed
-              expectations.
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Complete Mobile App </span>
+              <span className="text-[#215ACD]">Solutions</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              From native iOS and Android to cross-platform solutions, we build apps for every platform and use case.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card
+            {SERVICES.map((service, index) => (
+              <motion.div
                 key={index}
-                className="border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300 group flex flex-col h-full"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow group"
               >
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <service.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow flex flex-col">
-                  <ul className="space-y-2 mb-4 flex-grow">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {service.link && (
-                    <div className="mt-auto pt-4">
-                      <Button asChild variant="outline" className="w-full group-hover:bg-primary/10 transition-colors">
-                        <Link href={service.link}>
-                          Learn More
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
+                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                  <service.icon className="w-7 h-7 text-[#215ACD]" />
+                </div>
+                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{service.title}</h3>
+                <p className="text-[#5C5C5C] leading-relaxed mb-4">{service.description}</p>
+                <Link
+                  href={service.link}
+                  className="inline-flex items-center text-[#215ACD] font-medium hover:gap-2 transition-all"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4 ml-1 group-hover:ml-2 transition-all" />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section */}
+      <section className="py-20 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Common </span>
+              <span className="text-[#215ACD]">Use Cases</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              See how businesses leverage our mobile app expertise to reach and engage their customers.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {USE_CASES.map((useCase, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl p-6 border border-slate-100 hover:border-[#215ACD]/30 transition-colors"
+              >
+                <h3 className="text-[18px] font-semibold text-[#414141] mb-3">{useCase.title}</h3>
+                <p className="text-[#5C5C5C] text-[14px] leading-relaxed mb-4">{useCase.description}</p>
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-[#215ACD] px-3 py-1 rounded-full text-xs font-medium">
+                  <Target className="w-3 h-3" />
+                  {useCase.metrics}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-6">
+                <span className="text-[#414141]">Why Choose Our </span>
+                <span className="text-[#215ACD]">App Development?</span>
+              </h2>
+
+              <div className="space-y-4 mb-8">
+                {BENEFITS.map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#215ACD]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-[#215ACD]" />
                     </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-20 bg-secondary/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Why Choose Our Mobile Development?</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              We deliver more than just apps - we create complete mobile solutions with ongoing support and maintenance.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: "Expert Developers",
-                description: "Seasoned mobile developers with 5+ years of experience in iOS and Android development",
-              },
-              {
-                title: "Agile Methodology",
-                description: "Iterative development process with regular updates and client collaboration",
-              },
-              {
-                title: "Quality Assurance",
-                description: "Rigorous testing across multiple devices and platforms for flawless performance",
-              },
-              {
-                title: "Ongoing Support",
-                description: "Comprehensive maintenance and update services after app launch",
-              },
-            ].map((benefit, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-primary">{index + 1}</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{benefit.title}</h3>
-                <p className="text-muted-foreground text-pretty">{benefit.description}</p>
+                    <span className="text-[#414141]">{benefit}</span>
+                  </motion.div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* Development Process */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Our Development Process</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              A systematic approach to mobile app development that ensures quality, timely delivery, and client
-              satisfaction.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                step: "01",
-                title: "Discovery & Planning",
-                description:
-                  "Understanding your requirements, target audience, and creating a comprehensive development roadmap.",
-              },
-              {
-                step: "02",
-                title: "Design & Prototyping",
-                description: "Creating wireframes, UI/UX designs, and interactive prototypes for user validation.",
-              },
-              {
-                step: "03",
-                title: "Development & Testing",
-                description: "Agile development with continuous testing to ensure quality and performance standards.",
-              },
-              {
-                step: "04",
-                title: "Launch & Support",
-                description: "App store submission, launch support, and ongoing maintenance for optimal performance.",
-              },
-            ].map((process, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold mx-auto mb-4">
-                  {process.step}
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
-                <p className="text-muted-foreground text-pretty">{process.description}</p>
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-2xl p-8 text-white">
+                <Shield className="w-10 h-10 mb-4" />
+                <h3 className="text-[24px] font-bold mb-3">Enterprise-Grade Quality</h3>
+                <p className="text-white/90 mb-4">
+                  Our apps are built with enterprise-grade security, scalability, and performance standards.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Secure authentication
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Data encryption
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Scalable architecture
+                  </li>
+                </ul>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-secondary/50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">App Development Pricing</h2>
-          <p className="text-xl text-muted-foreground text-pretty mb-12">
-            Flexible pricing options for mobile app development projects of all sizes and complexities.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Basic App",
-                price: "$60/hour",
-                description: "Simple apps with basic functionality",
-                features: ["Single platform", "Basic UI/UX", "Standard features", "3 months support"],
-              },
-              {
-                name: "Professional App",
-                price: "$80/hour",
-                description: "Feature-rich apps for growing businesses",
-                features: [
-                  "Cross-platform",
-                  "Custom UI/UX",
-                  "Advanced features",
-                  "Backend integration",
-                  "6 months support",
-                ],
-                popular: true,
-              },
-              {
-                name: "Enterprise App",
-                price: "$120/hour",
-                description: "Complex apps with enterprise-grade features",
-                features: [
-                  "Multi-platform",
-                  "Premium design",
-                  "Complex integrations",
-                  "Dedicated team",
-                  "12 months support",
-                ],
-              },
-            ].map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? "border-accent shadow-lg" : ""}`}>
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                    Most Popular
-                  </div>
-                )}
-                <CardHeader className="text-center">
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                  <div className="text-3xl font-bold text-primary">{plan.price}</div>
-                  <CardDescription>{plan.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild className="w-full">
-                    <Link href="/contact">Get Started</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+              <div className="bg-[#F8F9FB] rounded-2xl p-8">
+                <Zap className="w-10 h-10 text-[#215ACD] mb-4" />
+                <h3 className="text-[24px] font-bold text-[#414141] mb-3">Rapid Development</h3>
+                <p className="text-[#5C5C5C]">
+                  Launch your app 40% faster with our agile development process and experienced team.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance">Ready to Build Your Mobile App?</h2>
-          <p className="text-xl text-muted-foreground text-pretty">
-            Transform your idea into a successful mobile application that engages users and drives business growth.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-              <Link href="/contact">
-                Start Your App Project
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/services">View All Services</Link>
-            </Button>
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-[24px] overflow-hidden p-12 md:p-16">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <h2 className="text-[32px] md:text-[42px] font-bold text-white mb-6">
+                Ready to Build Your Mobile App?
+              </h2>
+              <p className="text-white/90 text-[18px] md:text-[20px] mb-8">
+                Let our expert developers bring your app idea to life with cutting-edge technology and beautiful design.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  asChild
+                  className="bg-white hover:bg-slate-100 text-[#215ACD] px-8 py-6 rounded text-[15px] font-medium min-w-[200px]"
+                >
+                  <Link href="/contact">
+                    Start Your Project
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded text-[15px] font-medium bg-transparent min-w-[200px]"
+                >
+                  <Link href="/services">View All Services</Link>
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 mt-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  200+ apps launched
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  4.8/5 avg rating
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  99.9% crash-free
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -332,5 +408,5 @@ export default function MobileAppDevelopmentPage() {
       <Footer />
       <AutoConsultationModal serviceName="Mobile App Development" />
     </main>
-  )
+  );
 }

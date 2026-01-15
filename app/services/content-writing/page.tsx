@@ -1,581 +1,412 @@
-// import { Navigation } from "@/components/navigation"
-// import { Footer } from "@/components/footer"
-// import { AutoConsultationModal } from "@/components/auto-consultation-modal"
-// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-// import { Button } from "@/components/ui/button"
-// import Link from "next/link"
-// import { FileText, CheckCircle, ArrowRight, PenTool, BookOpen, Mail, Globe, Users, Zap } from "lucide-react"
+"use client";
 
-// export default function ContentWritingPage() {
-//   return (
-//     <main className="min-h-screen">
-//       <Navigation />
+import { motion } from "framer-motion";
+import {
+  PenTool,
+  ArrowRight,
+  CheckCircle,
+  FileText,
+  Globe,
+  Share2,
+  Mail,
+  BookOpen,
+  Briefcase,
+  Target,
+  TrendingUp,
+  Zap,
+  Shield
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { AutoConsultationModal } from "@/components/auto-consultation-modal";
+import { Button } from "@/components/ui/button";
 
-//       {/* Hero Section */}
-//       <section className="bg-gradient-to-br from-background to-secondary py-20">
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//           <div className="grid lg:grid-cols-2 gap-12 items-center">
-//             <div>
-//               <div className="flex items-center gap-3 mb-6">
-//                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-//                   <FileText className="h-6 w-6 text-primary" />
-//                 </div>
-//                 <span className="text-primary font-semibold">Content Writing Services</span>
-//               </div>
-//               <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-//                 Compelling <span className="text-primary">Content</span> That Converts
-//               </h1>
-//               <p className="text-xl text-muted-foreground text-pretty leading-relaxed mb-8">
-//                 Professional content writing services to engage your audience, boost your brand, and drive conversions
-//                 across all digital platforms.
-//               </p>
-//               <div className="flex flex-col sm:flex-row gap-4">
-//                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-//                   <Link href="/contact">
-//                     Get Quality Content
-//                     <ArrowRight className="ml-2 h-5 w-5" />
-//                   </Link>
-//                 </Button>
-//                 <Button asChild variant="outline" size="lg">
-//                   <Link href="/contact">View Writing Samples</Link>
-//                 </Button>
-//               </div>
-//             </div>
-//             <div className="relative">
-//               <img src="/content-writing-workspace-with-laptop-and-document.jpg" alt="Content Writing Workspace" className="rounded-lg shadow-2xl" />
-//             </div>
-//           </div>
-//         </div>
-//       </section>
+const SERVICES = [
+  {
+    icon: FileText,
+    title: "Blog Posts & Articles",
+    description: "Engaging, SEO-optimized blog posts and articles that attract readers and establish your authority.",
+    link: "/services/content-writing/blog-posts-articles"
+  },
+  {
+    icon: Globe,
+    title: "Website Copy",
+    description: "Compelling website copy that converts visitors into customers with clear, persuasive messaging.",
+    link: "/services/content-writing/website-copy"
+  },
+  {
+    icon: Share2,
+    title: "Social Media Content",
+    description: "Creative social media content that engages your audience and builds brand awareness.",
+    link: "/services/content-writing/social-media-content"
+  },
+  {
+    icon: Mail,
+    title: "Email Marketing",
+    description: "Persuasive email campaigns that nurture leads and drive conversions with strategic messaging.",
+    link: "/services/content-writing/email-marketing"
+  },
+  {
+    icon: BookOpen,
+    title: "Technical Writing",
+    description: "Clear, accurate technical documentation, guides, and manuals for complex products and services.",
+    link: "/services/content-writing/technical-writing"
+  },
+  {
+    icon: Briefcase,
+    title: "Marketing Materials",
+    description: "Professional brochures, case studies, white papers, and sales materials that drive results.",
+    link: "/services/content-writing/marketing-materials"
+  }
+];
 
-//       {/* Content Types */}
-//       <section className="py-20 bg-background">
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//           <div className="text-center mb-16">
-//             <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Content That Drives Results</h2>
-//             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-//               From blog posts to marketing copy, we create content that resonates with your audience and achieves your
-//               business objectives.
-//             </p>
-//           </div>
+const BENEFITS = [
+  "Professional writers with industry expertise",
+  "SEO-optimized content for better rankings",
+  "Unlimited revisions until perfect",
+  "Fast turnaround without quality compromise",
+  "Consistent brand voice across all content",
+  "Plagiarism-free, original content guaranteed"
+];
 
-//           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-//             {[
-//               {
-//                 icon: BookOpen,
-//                 title: "Blog Posts & Articles",
-//                 description:
-//                   "Engaging, SEO-optimized blog content that establishes your expertise and drives organic traffic.",
-//                 features: [
-//                   "SEO-optimized writing",
-//                   "Industry research",
-//                   "Engaging storytelling",
-//                   "Call-to-action integration",
-//                 ],
-//               },
-//               {
-//                 icon: Globe,
-//                 title: "Website Copy",
-//                 description:
-//                   "Compelling website content that converts visitors into customers and clearly communicates your value proposition.",
-//                 features: ["Landing page copy", "Product descriptions", "About us pages", "Service descriptions"],
-//               },
-//               {
-//                 icon: Users,
-//                 title: "Social Media Content",
-//                 description:
-//                   "Engaging social media posts that build community and drive engagement across all platforms.",
-//                 features: [
-//                   "Platform-specific content",
-//                   "Hashtag research",
-//                   "Visual content ideas",
-//                   "Engagement strategies",
-//                 ],
-//               },
-//               {
-//                 icon: Mail,
-//                 title: "Email Marketing",
-//                 description:
-//                   "Persuasive email content that nurtures leads and drives conversions through strategic messaging.",
-//                 features: [
-//                   "Newsletter content",
-//                   "Email sequences",
-//                   "Subject line optimization",
-//                   "Personalization strategies",
-//                 ],
-//               },
-//               {
-//                 icon: PenTool,
-//                 title: "Marketing Materials",
-//                 description:
-//                   "Professional marketing copy for brochures, case studies, whitepapers, and promotional materials.",
-//                 features: ["Case study writing", "Whitepaper creation", "Brochure copy", "Press releases"],
-//               },
-//               {
-//                 icon: Zap,
-//                 title: "Technical Writing",
-//                 description:
-//                   "Clear, concise technical documentation that makes complex information accessible to your audience.",
-//                 features: ["User manuals", "API documentation", "How-to guides", "Technical specifications"],
-//               },
-//             ].map((service, index) => (
-//               <Card
-//                 key={index}
-//                 className="border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300"
-//               >
-//                 <CardHeader>
-//                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-//                     <service.icon className="h-6 w-6 text-primary" />
-//                   </div>
-//                   <CardTitle className="text-xl">{service.title}</CardTitle>
-//                   <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
-//                 </CardHeader>
-//                 <CardContent>
-//                   <ul className="space-y-2">
-//                     {service.features.map((feature, featureIndex) => (
-//                       <li key={featureIndex} className="flex items-start gap-3">
-//                         <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-//                         <span className="text-sm text-muted-foreground">{feature}</span>
-//                       </li>
-//                     ))}
-//                   </ul>
-//                 </CardContent>
-//               </Card>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
+const USE_CASES = [
+  {
+    title: "Content Marketing",
+    description: "Build authority and attract organic traffic with high-quality blog content.",
+    metrics: "500+ articles/month"
+  },
+  {
+    title: "Website Launch",
+    description: "Complete website copywriting for new business launches and rebrands.",
+    metrics: "50+ pages"
+  },
+  {
+    title: "Lead Nurturing",
+    description: "Email sequences that guide prospects through your sales funnel.",
+    metrics: "40% conversion"
+  },
+  {
+    title: "Product Documentation",
+    description: "Clear technical documentation that helps users succeed with your product.",
+    metrics: "Custom projects"
+  }
+];
 
-//       {/* Process Section */}
-//       <section className="py-20 bg-secondary/50">
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//           <div className="text-center mb-16">
-//             <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Our Content Creation Process</h2>
-//             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-//               A systematic approach to creating content that aligns with your brand voice and achieves your marketing
-//               goals.
-//             </p>
-//           </div>
-
-//           <div className="grid md:grid-cols-4 gap-8">
-//             {[
-//               {
-//                 step: "01",
-//                 title: "Discovery & Research",
-//                 description:
-//                   "We start by understanding your brand, audience, and objectives through comprehensive research.",
-//               },
-//               {
-//                 step: "02",
-//                 title: "Content Strategy",
-//                 description:
-//                   "Develop a tailored content strategy that aligns with your business goals and target audience.",
-//               },
-//               {
-//                 step: "03",
-//                 title: "Writing & Creation",
-//                 description:
-//                   "Our expert writers create compelling, original content that resonates with your audience.",
-//               },
-//               {
-//                 step: "04",
-//                 title: "Review & Optimization",
-//                 description: "Thorough editing, SEO optimization, and quality assurance before final delivery.",
-//               },
-//             ].map((process, index) => (
-//               <div key={index} className="text-center">
-//                 <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold mx-auto mb-4">
-//                   {process.step}
-//                 </div>
-//                 <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
-//                 <p className="text-muted-foreground text-pretty">{process.description}</p>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Pricing Section */}
-//       <section className="py-20 bg-background">
-//         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-//           <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Transparent Pricing</h2>
-//           <p className="text-xl text-muted-foreground text-pretty mb-12">
-//             Quality content writing services at competitive rates with no hidden fees.
-//           </p>
-
-//           <div className="grid md:grid-cols-3 gap-8">
-//             {[
-//               {
-//                 name: "Basic",
-//                 price: "$30/hour",
-//                 description: "Perfect for small businesses and startups",
-//                 features: [
-//                   "Blog posts (500-800 words)",
-//                   "Basic SEO optimization",
-//                   "2 revisions included",
-//                   "48-hour turnaround",
-//                 ],
-//               },
-//               {
-//                 name: "Professional",
-//                 price: "$45/hour",
-//                 description: "Ideal for growing businesses",
-//                 features: [
-//                   "Long-form content (1000+ words)",
-//                   "Advanced SEO optimization",
-//                   "Unlimited revisions",
-//                   "24-hour turnaround",
-//                   "Content strategy consultation",
-//                 ],
-//                 popular: true,
-//               },
-//               {
-//                 name: "Premium",
-//                 price: "$60/hour",
-//                 description: "For enterprises requiring specialized content",
-//                 features: [
-//                   "Technical & specialized writing",
-//                   "Industry expert writers",
-//                   "Priority support",
-//                   "Same-day turnaround",
-//                   "Dedicated account manager",
-//                 ],
-//               },
-//             ].map((plan, index) => (
-//               <Card key={index} className={`relative ${plan.popular ? "border-accent shadow-lg" : ""}`}>
-//                 {plan.popular && (
-//                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-semibold">
-//                     Most Popular
-//                   </div>
-//                 )}
-//                 <CardHeader className="text-center">
-//                   <CardTitle className="text-2xl">{plan.name}</CardTitle>
-//                   <div className="text-3xl font-bold text-primary">{plan.price}</div>
-//                   <CardDescription>{plan.description}</CardDescription>
-//                 </CardHeader>
-//                 <CardContent>
-//                   <ul className="space-y-3 mb-6">
-//                     {plan.features.map((feature, featureIndex) => (
-//                       <li key={featureIndex} className="flex items-start gap-3">
-//                         <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-//                         <span>{feature}</span>
-//                       </li>
-//                     ))}
-//                   </ul>
-//                   <Button asChild className="w-full">
-//                     <Link href="/contact">Get Started</Link>
-//                   </Button>
-//                 </CardContent>
-//               </Card>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* CTA Section */}
-//       <section className="py-20 bg-secondary/50">
-//         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-//           <h2 className="text-3xl lg:text-4xl font-bold text-balance">Ready to Elevate Your Content?</h2>
-//           <p className="text-xl text-muted-foreground text-pretty">
-//             Let's create compelling content that engages your audience and drives your business forward.
-//           </p>
-//           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-//             <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-//               <Link href="/contact">
-//                 Start Your Project
-//                 <ArrowRight className="ml-2 h-5 w-5" />
-//               </Link>
-//             </Button>
-//             <Button asChild variant="outline" size="lg">
-//               <Link href="/services">View All Services</Link>
-//             </Button>
-//           </div>
-//         </div>
-//       </section>
-
-//       <Footer />
-//       <AutoConsultationModal serviceName="Content Writing" />
-//     </main>
-//   )
-// }
-
-// app/services/content-writing/page.tsx
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { AutoConsultationModal } from "@/components/auto-consultation-modal"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { FileText, CheckCircle, ArrowRight, PenTool, BookOpen, Mail, Globe, Users, Zap } from "lucide-react"
+const STATS = [
+  { value: "10K+", label: "Content Pieces" },
+  { value: "98%", label: "Client Satisfaction" },
+  { value: "24-48hrs", label: "Avg Turnaround" }
+];
 
 export default function ContentWritingPage() {
-  const services = [
-    {
-      id: "blog-posts-articles",
-      icon: BookOpen,
-      title: "Blog Posts & Articles",
-      description: "Engaging, SEO-optimized blog content that establishes your expertise and drives organic traffic.",
-      features: [
-        "SEO-optimized writing",
-        "Industry research",
-        "Engaging storytelling",
-        "Call-to-action integration",
-      ],
-    },
-    {
-      id: "website-copy",
-      icon: Globe,
-      title: "Website Copy",
-      description: "Compelling website content that converts visitors into customers and clearly communicates your value proposition.",
-      features: ["Landing page copy", "Product descriptions", "About us pages", "Service descriptions"],
-    },
-    {
-      id: "social-media-content",
-      icon: Users,
-      title: "Social Media Content",
-      description: "Engaging social media posts that build community and drive engagement across all platforms.",
-      features: [
-        "Platform-specific content",
-        "Hashtag research",
-        "Visual content ideas",
-        "Engagement strategies",
-      ],
-    },
-    {
-      id: "email-marketing",
-      icon: Mail,
-      title: "Email Marketing",
-      description: "Persuasive email content that nurtures leads and drives conversions through strategic messaging.",
-      features: [
-        "Newsletter content",
-        "Email sequences",
-        "Subject line optimization",
-        "Personalization strategies",
-      ],
-    },
-    {
-      id: "marketing-materials",
-      icon: PenTool,
-      title: "Marketing Materials",
-      description: "Professional marketing copy for brochures, case studies, whitepapers, and promotional materials.",
-      features: ["Case study writing", "Whitepaper creation", "Brochure copy", "Press releases"],
-    },
-    {
-      id: "technical-writing",
-      icon: Zap,
-      title: "Technical Writing",
-      description: "Clear, concise technical documentation that makes complex information accessible to your audience.",
-      features: ["User manuals", "API documentation", "How-to guides", "Technical specifications"],
-    },
-  ]
-
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-emerald-50/20 to-white pt-5 pb-20 md:pt-7 md:pb-28 px-2">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-sm text-[#5C5C5C] mb-8"
+          >
+            <Link href="/services" className="hover:text-[#215ACD] transition-colors">Services</Link>
+            <span>/</span>
+            <span className="text-[#215ACD] font-medium">Content Writing</span>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <FileText className="h-6 w-6 text-primary" />
-                </div>
-                <span className="text-primary font-semibold">Content Writing Services</span>
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-                Compelling <span className="text-primary">Content</span> That Converts
-              </h1>
-              <p className="text-xl text-muted-foreground text-pretty leading-relaxed mb-8">
-                Professional content writing services to engage your audience, boost your brand, and drive conversions
-                across all digital platforms.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link href="/contact">
-                    Get Quality Content
-                    <ArrowRight className="ml-2 h-5 w-5" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-emerald-50 text-[#215ACD] px-4 py-2 rounded-full text-sm font-medium mb-6"
+              >
+                <PenTool className="w-4 h-4" />
+                Content Writing
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-bold font-['Inter'] mb-6"
+              >
+                <span className="text-black">Words That </span>
+                <span className="text-[#215ACD]">Convert</span>
+                <br />
+                <span className="text-black">Content That Sells</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-[18px] md:text-[20px] leading-relaxed text-[#414141] mb-8"
+              >
+                Professional content writing services that engage your audience, boost SEO rankings, and drive conversions across all platforms and formats.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Button
+                  asChild
+                  className="bg-[#215ACD] hover:bg-[#1a49a8] text-white px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/contact">Get Started Today</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#215ACD] text-[#215ACD] hover:bg-[#F1F5FF] px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/services">
+                    <ArrowRight className="w-4 h-4 mr-2 rotate-180" />
+                    Back to Services
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/services/content-writing/samples">View Writing Samples</Link>
-                </Button>
-              </div>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200"
+              >
+                {STATS.map((stat, index) => (
+                  <div key={index}>
+                    <div className="text-[28px] md:text-[36px] font-bold text-[#215ACD]">{stat.value}</div>
+                    <div className="text-[13px] text-[#5C5C5C] mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-            <div className="relative">
-              <img src="/content-writing-workspace-with-laptop-and-document.jpg" alt="Content Writing Workspace" className="rounded-lg shadow-2xl" />
-            </div>
+
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="relative h-[500px] hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/30 to-transparent rounded-2xl" />
+              <Image
+                src="https://placehold.co/600x500/d1fae5/215acd?text=Content+Writing"
+                alt="Content Writing Services"
+                fill
+                className="object-contain drop-shadow-2xl"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Content Types with Links to Subpages */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Content That Drives Results</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              From blog posts to marketing copy, we create content that resonates with your audience and achieves your
-              business objectives.
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Complete Content Writing </span>
+              <span className="text-[#215ACD]">Solutions</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              From blog posts to technical documentation, we create compelling content for every business need.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card
+            {SERVICES.map((service, index) => (
+              <motion.div
                 key={index}
-                className="border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300 group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow group"
               >
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <service.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild variant="outline" className="w-full">
-                    <Link href={`/services/content-writing/${service.id}`}>
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
+                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                  <service.icon className="w-7 h-7 text-[#215ACD]" />
+                </div>
+                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{service.title}</h3>
+                <p className="text-[#5C5C5C] leading-relaxed mb-4">{service.description}</p>
+                <Link
+                  href={service.link}
+                  className="inline-flex items-center text-[#215ACD] font-medium hover:gap-2 transition-all"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4 ml-1 group-hover:ml-2 transition-all" />
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Rest of the sections remain the same */}
-      <ProcessSection />
-      <PricingSection />
-      <CTASection />
-      
+      {/* Use Cases Section */}
+      <section className="py-20 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Common </span>
+              <span className="text-[#215ACD]">Use Cases</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              See how businesses leverage our content writing expertise to achieve their goals.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {USE_CASES.map((useCase, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl p-6 border border-slate-100 hover:border-[#215ACD]/30 transition-colors"
+              >
+                <h3 className="text-[18px] font-semibold text-[#414141] mb-3">{useCase.title}</h3>
+                <p className="text-[#5C5C5C] text-[14px] leading-relaxed mb-4">{useCase.description}</p>
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-[#215ACD] px-3 py-1 rounded-full text-xs font-medium">
+                  <Target className="w-3 h-3" />
+                  {useCase.metrics}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-6">
+                <span className="text-[#414141]">Why Choose Our </span>
+                <span className="text-[#215ACD]">Content Writing?</span>
+              </h2>
+
+              <div className="space-y-4 mb-8">
+                {BENEFITS.map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#215ACD]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-[#215ACD]" />
+                    </div>
+                    <span className="text-[#414141]">{benefit}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-2xl p-8 text-white">
+                <Shield className="w-10 h-10 mb-4" />
+                <h3 className="text-[24px] font-bold mb-3">Quality Guarantee</h3>
+                <p className="text-white/90 mb-4">
+                  Every piece of content is original, plagiarism-free, and professionally edited to meet the highest standards.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    100% original content
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Professional editing
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Unlimited revisions
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-[#F8F9FB] rounded-2xl p-8">
+                <Zap className="w-10 h-10 text-[#215ACD] mb-4" />
+                <h3 className="text-[24px] font-bold text-[#414141] mb-3">Fast Delivery</h3>
+                <p className="text-[#5C5C5C]">
+                  Get high-quality content delivered quickly with our 24-48 hour average turnaround time for most projects.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-[24px] overflow-hidden p-12 md:p-16">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <h2 className="text-[32px] md:text-[42px] font-bold text-white mb-6">
+                Ready to Elevate Your Content?
+              </h2>
+              <p className="text-white/90 text-[18px] md:text-[20px] mb-8">
+                Let our professional writers create compelling content that engages your audience and drives results.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  asChild
+                  className="bg-white hover:bg-slate-100 text-[#215ACD] px-8 py-6 rounded text-[15px] font-medium min-w-[200px]"
+                >
+                  <Link href="/contact">
+                    Start Your Project
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded text-[15px] font-medium bg-transparent min-w-[200px]"
+                >
+                  <Link href="/services">View All Services</Link>
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 mt-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  10K+ pieces written
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  98% satisfaction
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  24-48hr delivery
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
       <AutoConsultationModal serviceName="Content Writing" />
     </main>
-  )
-}
-
-// Process Section Component
-function ProcessSection() {
-  return (
-    <section className="py-20 bg-secondary/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Our Content Creation Process</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            A systematic approach to creating content that aligns with your brand voice and achieves your marketing goals.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-4 gap-8">
-          {[
-            { step: "01", title: "Discovery & Research", description: "We start by understanding your brand, audience, and objectives through comprehensive research." },
-            { step: "02", title: "Content Strategy", description: "Develop a tailored content strategy that aligns with your business goals and target audience." },
-            { step: "03", title: "Writing & Creation", description: "Our expert writers create compelling, original content that resonates with your audience." },
-            { step: "04", title: "Review & Optimization", description: "Thorough editing, SEO optimization, and quality assurance before final delivery." },
-          ].map((process, index) => (
-            <div key={index} className="text-center">
-              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold mx-auto mb-4">
-                {process.step}
-              </div>
-              <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
-              <p className="text-muted-foreground text-pretty">{process.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Pricing Section Component
-function PricingSection() {
-  return (
-    <section className="py-20 bg-background">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Transparent Pricing</h2>
-        <p className="text-xl text-muted-foreground text-pretty mb-12">
-          Quality content writing services at competitive rates with no hidden fees.
-        </p>
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              name: "Basic", price: "$30/hour", description: "Perfect for small businesses and startups",
-              features: ["Blog posts (500-800 words)", "Basic SEO optimization", "2 revisions included", "48-hour turnaround"],
-            },
-            {
-              name: "Professional", price: "$45/hour", description: "Ideal for growing businesses", popular: true,
-              features: ["Long-form content (1000+ words)", "Advanced SEO optimization", "Unlimited revisions", "24-hour turnaround", "Content strategy consultation"],
-            },
-            {
-              name: "Premium", price: "$60/hour", description: "For enterprises requiring specialized content",
-              features: ["Technical & specialized writing", "Industry expert writers", "Priority support", "Same-day turnaround", "Dedicated account manager"],
-            },
-          ].map((plan, index) => (
-            <Card key={index} className={`relative ${plan.popular ? "border-accent shadow-lg" : ""}`}>
-              {plan.popular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                  Most Popular
-                </div>
-              )}
-              <CardHeader className="text-center">
-                <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                <div className="text-3xl font-bold text-primary">{plan.price}</div>
-                <CardDescription>{plan.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 mb-6">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild className="w-full">
-                  <Link href="/contact">Get Started</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// CTA Section Component
-function CTASection() {
-  return (
-    <section className="py-20 bg-secondary/50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-        <h2 className="text-3xl lg:text-4xl font-bold text-balance">Ready to Elevate Your Content?</h2>
-        <p className="text-xl text-muted-foreground text-pretty">
-          Let's create compelling content that engages your audience and drives your business forward.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-            <Link href="/contact">
-              Start Your Project
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/services">View All Services</Link>
-          </Button>
-        </div>
-      </div>
-    </section>
-  )
+  );
 }

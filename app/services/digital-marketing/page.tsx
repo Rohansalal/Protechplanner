@@ -1,257 +1,406 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { AutoConsultationModal } from "@/components/auto-consultation-modal"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Globe, CheckCircle, ArrowRight, TrendingUp, Target, Search, Mail, BarChart3, Star } from "lucide-react"
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  Megaphone,
+  ArrowRight,
+  CheckCircle,
+  Search,
+  MousePointerClick,
+  Mail,
+  FileText,
+  Share2,
+  BarChart3,
+  Target,
+  TrendingUp,
+  Zap,
+  Shield
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { AutoConsultationModal } from "@/components/auto-consultation-modal";
+import { Button } from "@/components/ui/button";
+
+const SERVICES = [
+  {
+    icon: Search,
+    title: "SEO Services",
+    description: "Comprehensive search engine optimization to improve your rankings and drive organic traffic to your website.",
+    link: "/services/digital-marketing/seo"
+  },
+  {
+    icon: MousePointerClick,
+    title: "PPC Advertising",
+    description: "Strategic pay-per-click campaigns that maximize ROI and deliver qualified leads to your business.",
+    link: "/services/digital-marketing/ppc"
+  },
+  {
+    icon: Mail,
+    title: "Email Marketing",
+    description: "Targeted email campaigns that nurture leads, engage customers, and drive conversions.",
+    link: "/services/digital-marketing/email-marketing"
+  },
+  {
+    icon: FileText,
+    title: "Content Marketing",
+    description: "Strategic content creation and distribution to attract, engage, and convert your target audience.",
+    link: "/services/digital-marketing/content-marketing"
+  },
+  {
+    icon: Share2,
+    title: "Social Media Marketing",
+    description: "Comprehensive social media strategies that build brand awareness and drive engagement.",
+    link: "/services/digital-marketing/social-media-marketing"
+  },
+  {
+    icon: BarChart3,
+    title: "Analytics & Reporting",
+    description: "Detailed analytics and reporting to track performance and optimize your marketing campaigns.",
+    link: "/services/digital-marketing/analytics-reporting"
+  }
+];
+
+const BENEFITS = [
+  "Increase website traffic by 250% with SEO",
+  "Generate 5x ROI on paid advertising campaigns",
+  "Build brand awareness across all channels",
+  "Convert more visitors into paying customers",
+  "Data-driven strategies for maximum impact",
+  "Full-service digital marketing management"
+];
+
+const USE_CASES = [
+  {
+    title: "Lead Generation",
+    description: "Drive qualified leads through multi-channel digital marketing campaigns.",
+    metrics: "300% more leads"
+  },
+  {
+    title: "Brand Awareness",
+    description: "Build strong brand presence across search engines and social media.",
+    metrics: "5M+ impressions"
+  },
+  {
+    title: "E-commerce Growth",
+    description: "Boost online sales with targeted advertising and conversion optimization.",
+    metrics: "150% revenue boost"
+  },
+  {
+    title: "Customer Retention",
+    description: "Keep customers engaged with strategic email and content marketing.",
+    metrics: "80% retention rate"
+  }
+];
+
+const STATS = [
+  { value: "250%", label: "Traffic Increase" },
+  { value: "5x", label: "Average ROI" },
+  { value: "500+", label: "Campaigns Managed" }
+];
 
 export default function DigitalMarketingPage() {
-  const services = [
-    {
-      icon: Search,
-      title: "Search Engine Optimization",
-      description: "Improve your website's visibility and ranking on search engines with our proven SEO strategies.",
-      features: [
-        "Keyword research & analysis",
-        "On-page optimization",
-        "Technical SEO audits",
-        "Link building campaigns",
-      ],
-      link: "/services/digital-marketing/seo"
-    },
-    {
-      icon: Target,
-      title: "Pay-Per-Click Advertising",
-      description: "Drive immediate traffic and conversions with targeted PPC campaigns across Google and social platforms.",
-      features: [
-        "Google Ads management",
-        "Social media advertising",
-        "Landing page optimization",
-        "Conversion tracking",
-      ],
-      link: "/services/digital-marketing/ppc"
-    },
-    {
-      icon: TrendingUp,
-      title: "Social Media Marketing",
-      description: "Build brand awareness and engage your audience across all major social media platforms.",
-      features: [
-        "Content creation & curation",
-        "Community management",
-        "Influencer partnerships",
-        "Social media analytics",
-      ],
-      link: "/services/digital-marketing/social-media-marketing"
-    },
-    {
-      icon: Mail,
-      title: "Email Marketing",
-      description: "Nurture leads and retain customers with personalized email marketing campaigns.",
-      features: ["Email automation", "Newsletter design", "Segmentation strategies", "Performance tracking"],
-      link: "/services/digital-marketing/email-marketing"
-    },
-    {
-      icon: BarChart3,
-      title: "Analytics & Reporting",
-      description: "Track performance and optimize campaigns with comprehensive analytics and reporting.",
-      features: ["Google Analytics setup", "Custom dashboards", "Monthly reports", "ROI analysis"],
-      link: "/services/digital-marketing/analytics-reporting"
-    },
-    {
-      icon: Star,
-      title: "Content Marketing",
-      description: "Create valuable content that attracts, engages, and converts your target audience.",
-      features: ["Blog content creation", "Video marketing", "Infographic design", "Content strategy"],
-      link: "/services/digital-marketing/content-marketing"
-    },
-  ]
-
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-secondary py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-white via-orange-50/20 to-white pt-5 pb-20 md:pt-7 md:pb-28 px-2">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-sm text-[#5C5C5C] mb-8"
+          >
+            <Link href="/services" className="hover:text-[#215ACD] transition-colors">Services</Link>
+            <span>/</span>
+            <span className="text-[#215ACD] font-medium">Digital Marketing</span>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Globe className="h-6 w-6 text-primary" />
-                </div>
-                <span className="text-primary font-semibold">Digital Marketing Services</span>
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance mb-6">
-                Grow Your Business with <span className="text-primary">Digital Marketing</span>
-              </h1>
-              <p className="text-xl text-muted-foreground text-pretty leading-relaxed mb-8">
-                Comprehensive digital marketing services to expand your online reach, drive qualified traffic, and
-                convert visitors into loyal customers.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link href="/contact">
-                    Get Started Today
-                    <ArrowRight className="ml-2 h-5 w-5" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-orange-50 text-[#215ACD] px-4 py-2 rounded-full text-sm font-medium mb-6"
+              >
+                <Megaphone className="w-4 h-4" />
+                Digital Marketing
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-bold font-['Inter'] mb-6"
+              >
+                <span className="text-black">Grow Your </span>
+                <span className="text-[#215ACD]">Business</span>
+                <br />
+                <span className="text-black">Online</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-[18px] md:text-[20px] leading-relaxed text-[#414141] mb-8"
+              >
+                Comprehensive digital marketing services to increase your online visibility, drive qualified traffic, and convert visitors into loyal customers.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Button
+                  asChild
+                  className="bg-[#215ACD] hover:bg-[#1a49a8] text-white px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/contact">Get Started Today</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#215ACD] text-[#215ACD] hover:bg-[#F1F5FF] px-8 py-6 rounded text-[15px] font-medium"
+                >
+                  <Link href="/services">
+                    <ArrowRight className="w-4 h-4 mr-2 rotate-180" />
+                    Back to Services
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/contact">Schedule Consultation</Link>
-                </Button>
-              </div>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200"
+              >
+                {STATS.map((stat, index) => (
+                  <div key={index}>
+                    <div className="text-[28px] md:text-[36px] font-bold text-[#215ACD]">{stat.value}</div>
+                    <div className="text-[13px] text-[#5C5C5C] mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-            <div className="relative">
-              <img
-                src="/digital-marketing-dashboard.png"
-                alt="Digital Marketing Analytics Dashboard"
-                className="rounded-lg shadow-2xl"
+
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="relative h-[500px] hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-100/30 to-transparent rounded-2xl" />
+              <Image
+                src="https://placehold.co/600x500/ffedd5/215acd?text=Digital+Marketing"
+                alt="Digital Marketing Services"
+                fill
+                className="object-contain drop-shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services Overview */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Complete Digital Marketing Solutions</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              From SEO to social media, we provide end-to-end digital marketing services to help your business thrive
-              online.
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Complete Digital Marketing </span>
+              <span className="text-[#215ACD]">Solutions</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              From SEO to social media, we provide comprehensive digital marketing services to grow your online presence.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card
+            {SERVICES.map((service, index) => (
+              <motion.div
                 key={index}
-                className="border-2 hover:border-primary/20 hover:shadow-lg transition-all duration-300 group flex flex-col h-full"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow group"
               >
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <service.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow flex flex-col">
-                  <ul className="space-y-2 mb-4 flex-grow">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {service.link && (
-                    <div className="mt-auto pt-4">
-                      <Button asChild variant="outline" className="w-full group-hover:bg-primary/10 transition-colors">
-                        <Link href={service.link}>
-                          Learn More
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                  <service.icon className="w-7 h-7 text-[#215ACD]" />
+                </div>
+                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{service.title}</h3>
+                <p className="text-[#5C5C5C] leading-relaxed mb-4">{service.description}</p>
+                <Link
+                  href={service.link}
+                  className="inline-flex items-center text-[#215ACD] font-medium hover:gap-2 transition-all"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4 ml-1 group-hover:ml-2 transition-all" />
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-secondary/50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance mb-6">Flexible Pricing Options</h2>
-          <p className="text-xl text-muted-foreground text-pretty mb-12">
-            Choose the digital marketing package that best fits your business needs and budget.
-          </p>
+      {/* Use Cases Section */}
+      <section className="py-20 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-4">
+              <span className="text-[#414141]">Common </span>
+              <span className="text-[#215ACD]">Use Cases</span>
+            </h2>
+            <p className="text-[#5C5C5C] text-lg max-w-3xl mx-auto">
+              See how businesses leverage our digital marketing expertise to achieve their goals.
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Starter",
-                price: "$45/hour",
-                description: "Perfect for small businesses getting started with digital marketing",
-                features: ["SEO optimization", "Basic PPC management", "Social media setup", "Monthly reporting"],
-              },
-              {
-                name: "Professional",
-                price: "$75/hour",
-                description: "Comprehensive marketing for growing businesses",
-                features: [
-                  "Full SEO strategy",
-                  "Advanced PPC campaigns",
-                  "Content marketing",
-                  "Email automation",
-                  "Analytics & optimization",
-                ],
-                popular: true,
-              },
-              {
-                name: "Enterprise",
-                price: "Custom",
-                description: "Tailored solutions for large organizations",
-                features: [
-                  "Custom strategy development",
-                  "Dedicated account manager",
-                  "Advanced analytics",
-                  "Multi-platform campaigns",
-                  "24/7 support",
-                ],
-              },
-            ].map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? "border-accent shadow-lg" : ""}`}>
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                    Most Popular
-                  </div>
-                )}
-                <CardHeader className="text-center">
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                  <div className="text-3xl font-bold text-primary">{plan.price}</div>
-                  <CardDescription>{plan.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild className="w-full">
-                    <Link href="/contact">Get Started</Link>
-                  </Button>
-                </CardContent>
-              </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {USE_CASES.map((useCase, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl p-6 border border-slate-100 hover:border-[#215ACD]/30 transition-colors"
+              >
+                <h3 className="text-[18px] font-semibold text-[#414141] mb-3">{useCase.title}</h3>
+                <p className="text-[#5C5C5C] text-[14px] leading-relaxed mb-4">{useCase.description}</p>
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-[#215ACD] px-3 py-1 rounded-full text-xs font-medium">
+                  <Target className="w-3 h-3" />
+                  {useCase.metrics}
+                </div>
+              </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-[32px] md:text-[40px] font-bold font-['Inter'] mb-6">
+                <span className="text-[#414141]">Why Choose Our </span>
+                <span className="text-[#215ACD]">Digital Marketing?</span>
+              </h2>
+
+              <div className="space-y-4 mb-8">
+                {BENEFITS.map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#215ACD]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-[#215ACD]" />
+                    </div>
+                    <span className="text-[#414141]">{benefit}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-2xl p-8 text-white">
+                <TrendingUp className="w-10 h-10 mb-4" />
+                <h3 className="text-[24px] font-bold mb-3">Proven Results</h3>
+                <p className="text-white/90 mb-4">
+                  Our data-driven digital marketing strategies deliver measurable results with an average 5x ROI for our clients.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Multi-channel strategies
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Continuous optimization
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Transparent reporting
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-[#F8F9FB] rounded-2xl p-8">
+                <Zap className="w-10 h-10 text-[#215ACD] mb-4" />
+                <h3 className="text-[24px] font-bold text-[#414141] mb-3">Full-Service Support</h3>
+                <p className="text-[#5C5C5C]">
+                  From strategy to execution, we handle all aspects of your digital marketing so you can focus on running your business.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance">Ready to Grow Your Online Presence?</h2>
-          <p className="text-xl text-muted-foreground text-pretty">
-            Let's discuss how our digital marketing services can help you reach your business goals and drive measurable
-            results.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-              <Link href="/contact">
-                Start Your Campaign
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/services">View All Services</Link>
-            </Button>
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative bg-gradient-to-br from-[#215ACD] to-[#1a49a8] rounded-[24px] overflow-hidden p-12 md:p-16">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
+              <h2 className="text-[32px] md:text-[42px] font-bold text-white mb-6">
+                Ready to Grow Your Business Online?
+              </h2>
+              <p className="text-white/90 text-[18px] md:text-[20px] mb-8">
+                Let our digital marketing experts help you increase visibility, drive traffic, and convert more customers.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  asChild
+                  className="bg-white hover:bg-slate-100 text-[#215ACD] px-8 py-6 rounded text-[15px] font-medium min-w-[200px]"
+                >
+                  <Link href="/contact">
+                    Start Your Campaign
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded text-[15px] font-medium bg-transparent min-w-[200px]"
+                >
+                  <Link href="/services">View All Services</Link>
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 mt-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  250% traffic boost
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  5x ROI average
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  Full-service
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -259,5 +408,5 @@ export default function DigitalMarketingPage() {
       <Footer />
       <AutoConsultationModal serviceName="Digital Marketing" />
     </main>
-  )
+  );
 }
