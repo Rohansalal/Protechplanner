@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  CheckCircle,
   Mail,
   FileText,
   Database,
@@ -33,37 +32,49 @@ const SERVICES = [
     title: "Email Management",
     description: "Optimize your day-to-day with expert email, scheduling, and document management",
     icon: Mail,
-    href: "/service-icons/administrtive-support/email management (1).png ",
+    image: "/service-icons/administrative-support/email management (1).png",
+    alt: "Email Management",
+    href: "/services/email-management"
   },
   {
     title: "Document Creation",
     description: "Elevate your support with our team of dedicated customer service professionals",
     icon: FileText,
-    href: "/services/administrative-support/document-creation",
+    image: "/service-icons/administrative-support/document-creation.png",
+    alt: "Document Creation",
+    href: "/services/document-creation"
   },
   {
     title: "Data Entry & Management",
     description: "Streamline your schedule and optimize availability with expert calendar support.",
     icon: Database,
-    href: "/services/administrative-support/data-entry",
+    image: "/service-icons/administrative-support/data-entry.png",
+    alt: "Data Entry Management",
+    href: "/services/data-entry"
   },
   {
     title: "File Organization",
     description: "Optimize your day-to-day with expert email, scheduling, and document management",
     icon: FolderOpen,
-    href: "/services/administrative-support/file-organization",
+    image: "/service-icons/administrative-support/file-organization.png",
+    alt: "File Organization",
+    href: "/services/file-organization"
   },
   {
     title: "Travel Coordination",
     description: "Elevate your support with our team of dedicated customer service professionals",
     icon: Plane,
-    href: "/services/administrative-support/travel-coordination",
+    image: "/service-icons/administrative-support/travel-coordination.png",
+    alt: "Travel Coordination",
+    href: "/services/travel-coordination"
   },
   {
     title: "Expense Management",
     description: "Streamline your schedule and optimize availability with expert calendar support.",
     icon: CreditCard,
-    href: "/services/administrative-support/expense-management",
+    image: "/service-icons/administrative-support/expense-management.png",
+    alt: "Expense Management",
+    href: "/services/expense-management"
   },
 ];
 
@@ -173,8 +184,8 @@ function HeroSection() {
           >
             <div className="relative w-full h-full max-w-[600px] max-h-[500px]">
               <Image
-                src="/service-icons/administrtive-support/Group 1000003314 (1).png  "
-                alt="Administrative Dashboard"
+                src="/service-icons/administrtive-support/service-icon.png"
+                alt="Administrative Support Services"
                 fill
                 className="object-contain drop-shadow-2xl"
               />
@@ -232,7 +243,7 @@ function ServicesGridSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {SERVICES.map((service, index) => (
             <motion.div
               key={index}
@@ -240,35 +251,36 @@ function ServicesGridSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-lg hover:border-[#215ACD]/30 transition-all duration-300 flex flex-col group"
+              className="bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-lg hover:border-[#215ACD]/30 transition-all duration-300 flex flex-col group h-full"
             >
-              {/* Card Illustration Area */}
-              <div className="h-[200px] bg-gradient-to-b from-white to-[#F8F8F8] relative overflow-hidden p-6 flex items-center justify-center">
+              {/* Card Image Area - Optimized */}
+              <div className="relative w-full h-48 sm:h-56 md:h-64 bg-gradient-to-b from-white to-[#F8F8F8] overflow-hidden">
                 {/* Decorative Circle Background */}
-                <div className="absolute w-[150px] h-[150px] bg-blue-50 rounded-full blur-2xl opacity-60 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 w-full h-full bg-blue-50 opacity-40" />
 
-                {/* Icon/Graphic Representative */}
-                <div className="relative z-10 w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center border border-slate-50 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-10 h-10 text-[#215ACD]" strokeWidth={1.5} />
-                </div>
-
-                {/* Floating decorative 'cards' behind */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-8 -translate-y-2 w-16 h-20 bg-[#FDDA77] rounded-lg -z-0 rotate-[-12deg] opacity-80" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-[-10px] -translate-y-[-10px] w-20 h-16 bg-[#215ACD] rounded-lg -z-0 rotate-[5deg] opacity-10" />
+                {/* Optimized Image with Next.js Image */}
+                <Image
+                  src={service.image}
+                  alt={service.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  priority={index < 3}
+                />
               </div>
 
-              <div className="p-8 pt-6 flex-1 flex flex-col gap-3">
-                <h3 className="text-[20px] font-semibold text-[#414141] font-['Inter']">
+              <div className="p-6 sm:p-8 flex-1 flex flex-col gap-3">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#414141] font-['Inter']">
                   {service.title}
                 </h3>
-                <p className="text-[#5C5C5C] text-[16px] leading-relaxed flex-1">
+                <p className="text-[#5C5C5C] text-sm sm:text-base leading-relaxed flex-1">
                   {service.description}
                 </p>
 
                 {/* Learn More Link */}
                 <Link
                   href={service.href}
-                  className="inline-flex items-center gap-2 text-[#215ACD] font-medium text-[15px] hover:gap-3 transition-all duration-300 mt-2 group/link"
+                  className="inline-flex items-center gap-2 text-[#215ACD] font-medium text-sm sm:text-base hover:gap-3 transition-all duration-300 mt-2 group/link"
                 >
                   Learn More
                   <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />

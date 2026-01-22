@@ -200,10 +200,11 @@ export default function SocialMediaManagementPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-purple-100/30 to-transparent rounded-2xl" />
               <Image
-                src="https://placehold.co/600x500/f3e8ff/215acd?text=Social+Media"
+                src="/service-icons/social-media-management/service-icon.png"
                 alt="Social Media Management"
                 fill
                 className="object-contain drop-shadow-2xl"
+                priority
               />
             </motion.div>
           </div>

@@ -200,10 +200,11 @@ export default function GraphicWebDesigningPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-pink-100/30 to-transparent rounded-2xl" />
               <Image
-                src="https://placehold.co/600x500/fce7f3/215acd?text=Design+Services"
+                src="/service-icons/graphic-web-designing/service-icon.png"
                 alt="Graphic & Web Designing Services"
                 fill
                 className="object-contain drop-shadow-2xl"
+                priority
               />
             </motion.div>
           </div>

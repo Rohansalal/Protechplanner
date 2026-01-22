@@ -176,10 +176,11 @@ export default function AppointmentSchedulingPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-violet-100/30 to-transparent rounded-2xl" />
               <Image
-                src="/service-icons/administrtive-support/Group 1000003314 (1).png"
+                src="/service-icons/appointment-scheduling/service-icon.png"
                 alt="Appointment Scheduling Services"
                 fill
                 className="object-contain drop-shadow-2xl"
+                priority
               />
             </motion.div>
           </div>

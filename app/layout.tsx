@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
+import { Script } from "vm"
 
 export const metadata: Metadata = {
   title: "ProTech Planner - Premium Virtual Assistant Services",
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
     description: 'Professional virtual assistant services to streamline your business operations. Expert administrative support, customer service, and business management solutions.',
     images: [
       {
-        url: '/logo-m.png',
+        url: '/favicon.ico',
         width: 1200,
         height: 630,
         alt: 'ProtechPlanner - Virtual Assistant Services',
@@ -78,17 +79,37 @@ export const metadata: Metadata = {
   },
 }
 
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode
+// }>) {
+//   return (
+//     <html lang="en">
+//       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+//         <Suspense fallback={null}>{children}</Suspense>
+//         <Analytics />
+//       </body>
+//     </html>
+//   )
+// }
+
+import TawkTo from "@/components/TawkTo";
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
+
+        {/* Live chat */}
+        <TawkTo />
       </body>
     </html>
-  )
+  );
 }

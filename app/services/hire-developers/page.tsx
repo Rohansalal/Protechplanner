@@ -200,7 +200,7 @@ export default function HireDevelopersPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-100/30 to-transparent rounded-2xl" />
               <Image
-                src="https://placehold.co/600x500/e0e7ff/215acd?text=Hire+Developers"
+                src="/service-icons/administrtive-support/Group 1000003314 (1).png"
                 alt="Hire Developers Services"
                 fill
                 className="object-contain drop-shadow-2xl"

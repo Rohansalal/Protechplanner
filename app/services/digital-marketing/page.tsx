@@ -200,10 +200,11 @@ export default function DigitalMarketingPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-orange-100/30 to-transparent rounded-2xl" />
               <Image
-                src="https://placehold.co/600x500/ffedd5/215acd?text=Digital+Marketing"
+                src="/service-icons/digital-marketing/service-icon.png"
                 alt="Digital Marketing Services"
                 fill
                 className="object-contain drop-shadow-2xl"
+                priority
               />
             </motion.div>
           </div>

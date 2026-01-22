@@ -200,7 +200,7 @@ export default function MobileAppDevelopmentPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-sky-100/30 to-transparent rounded-2xl" />
               <Image
-                src="https://placehold.co/600x500/e0f2fe/215acd?text=Mobile+Apps"
+                src="/service-icons/mobile-app-development/service-icon.png"
                 alt="Mobile App Development Services"
                 fill
                 className="object-contain drop-shadow-2xl"

@@ -200,7 +200,7 @@ export default function ContactCentreOutsourcingPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-violet-100/30 to-transparent rounded-2xl" />
               <Image
-                src="https://placehold.co/600x500/ede9fe/215acd?text=Contact+Centre"
+                src="/service-icons/administrtive-support/Group 1000003314 (1).png"
                 alt="Contact Centre Outsourcing Services"
                 fill
                 className="object-contain drop-shadow-2xl"

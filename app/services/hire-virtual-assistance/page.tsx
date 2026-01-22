@@ -200,7 +200,7 @@ export default function HireVirtualAssistancePage() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-transparent rounded-2xl" />
               <Image
-                src="https://placehold.co/600x500/dbeafe/215acd?text=Virtual+Assistant"
+                src="/service-icons/hire-virtual-assistance/service-icon.png  "
                 alt="Hire Virtual Assistance Services"
                 fill
                 className="object-contain drop-shadow-2xl"

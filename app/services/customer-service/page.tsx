@@ -27,36 +27,42 @@ const SERVICES = [
     title: "Live Chat Support",
     description: "Real-time chat support to provide immediate assistance and boost customer satisfaction",
     icon: MessageCircle,
+    image: "/service-icons/customer services/live-chat.png",
     href: "/services/customer-service/live-chat-support",
   },
   {
     title: "Phone Support",
     description: "Professional inbound and outbound phone support for personalized customer interactions",
     icon: Phone,
+    image: "/service-icons/customer services/phone-support.png",
     href: "/services/customer-service/phone-support",
   },
   {
     title: "Email Support",
     description: "Comprehensive email management with timely, professional responses to customer inquiries",
     icon: Mail,
+    image: "/service-icons/customer services/email-support.png",
     href: "/services/customer-service/email-support",
   },
   {
     title: "Help Desk Support",
     description: "Multi-channel technical support with integrated ticketing and knowledge base",
     icon: AlertCircle,
+    image: "/service-icons/customer services/help-desk.png",
     href: "/services/customer-service/help-desk",
   },
   {
     title: "Order Processing",
     description: "Complete order management from entry to fulfillment and tracking",
     icon: ShoppingCart,
+    image: "/service-icons/customer services/order-processing.png",
     href: "/services/customer-service/order-processing",
   },
   {
     title: "Customer Feedback",
     description: "Systematic feedback collection and analysis to improve customer satisfaction",
     icon: BarChart3,
+    image: "/service-icons/customer services/customer-feedback.png",
     href: "/services/customer-service/customer-feedback",
   },
 ];
@@ -175,12 +181,12 @@ export default function CustomerServicePage() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="relative h-[500px] hidden lg:block"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-100/30 to-transparent rounded-2xl" />
               <Image
-                src="https://placehold.co/600x500/eef2ff/215acd?text=Customer+Service"
+                src="/service-icons/customer services/service-icon.png"
                 alt="Customer Service Excellence"
                 fill
                 className="object-contain drop-shadow-2xl"
+                priority
               />
             </motion.div>
           </div>
@@ -211,18 +217,17 @@ export default function CustomerServicePage() {
                 className="bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-lg hover:border-[#215ACD]/30 transition-all duration-300 flex flex-col group"
               >
                 {/* Card Illustration Area */}
-                <div className="h-[200px] bg-gradient-to-b from-white to-[#F8F8F8] relative overflow-hidden p-6 flex items-center justify-center">
-                  {/* Decorative Circle Background */}
-                  <div className="absolute w-[150px] h-[150px] bg-indigo-50 rounded-full blur-2xl opacity-60 group-hover:opacity-80 transition-opacity" />
-
-                  {/* Icon/Graphic Representative */}
-                  <div className="relative z-10 w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center border border-slate-50 group-hover:scale-110 transition-transform duration-300">
-                    <service.icon className="w-10 h-10 text-[#215ACD]" strokeWidth={1.5} />
-                  </div>
-
-                  {/* Floating decorative 'cards' behind */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-8 -translate-y-2 w-16 h-20 bg-[#FDDA77] rounded-lg -z-0 rotate-[-12deg] opacity-80" />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-[-10px] -translate-y-[-10px] w-20 h-16 bg-[#215ACD] rounded-lg -z-0 rotate-[5deg] opacity-10" />
+                <div className="relative h-[200px] bg-gradient-to-b from-white to-[#F8F8F8] overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover object-center group-hover:scale-110 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    loading="lazy"
+                  />
+                  {/* Decorative overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
                 </div>
 
                 <div className="p-8 pt-6 flex-1 flex flex-col gap-3">

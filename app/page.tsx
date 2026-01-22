@@ -34,9 +34,9 @@ export default function HomePage() {
         <ProcessJourney />
       </ScrollAnimation>
 
-      <ScrollAnimation>
+      {/* <ScrollAnimation>
         <QuickInquiry />
-      </ScrollAnimation>
+      </ScrollAnimation> */}
 
       <ScrollAnimation>
         <IndustriesSection />

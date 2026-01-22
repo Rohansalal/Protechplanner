@@ -200,10 +200,11 @@ export default function ContentWritingPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/30 to-transparent rounded-2xl" />
               <Image
-                src="https://placehold.co/600x500/d1fae5/215acd?text=Content+Writing"
+                src="/service-icons/content-writing/service-icon.png"
                 alt="Content Writing Services"
                 fill
                 className="object-contain drop-shadow-2xl"
+                priority
               />
             </motion.div>
           </div>
