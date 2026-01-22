@@ -27,42 +27,42 @@ const SERVICES = [
     title: "Live Chat Support",
     description: "Real-time chat support to provide immediate assistance and boost customer satisfaction",
     icon: MessageCircle,
-    image: "/service-icons/customer services/live-chat.png",
+    image: "/service-icons/customer services/Live-chat.png",
     href: "/services/customer-service/live-chat-support",
   },
   {
     title: "Phone Support",
     description: "Professional inbound and outbound phone support for personalized customer interactions",
     icon: Phone,
-    image: "/service-icons/customer services/phone-support.png",
+    image: "/service-icons/customer services/service-icon.png",
     href: "/services/customer-service/phone-support",
   },
   {
     title: "Email Support",
     description: "Comprehensive email management with timely, professional responses to customer inquiries",
     icon: Mail,
-    image: "/service-icons/customer services/email-support.png",
+    image: "/service-icons/customer services/service-icon.png",
     href: "/services/customer-service/email-support",
   },
   {
     title: "Help Desk Support",
     description: "Multi-channel technical support with integrated ticketing and knowledge base",
     icon: AlertCircle,
-    image: "/service-icons/customer services/help-desk.png",
+    image: "/service-icons/customer services/Help_Desk.png",
     href: "/services/customer-service/help-desk",
   },
   {
     title: "Order Processing",
     description: "Complete order management from entry to fulfillment and tracking",
     icon: ShoppingCart,
-    image: "/service-icons/customer services/order-processing.png",
+    image: "/service-icons/customer services/service-icon.png",
     href: "/services/customer-service/order-processing",
   },
   {
     title: "Customer Feedback",
     description: "Systematic feedback collection and analysis to improve customer satisfaction",
     icon: BarChart3,
-    image: "/service-icons/customer services/customer-feedback.png",
+    image: "/service-icons/customer services/Customer-Feedback.png",
     href: "/services/customer-service/customer-feedback",
   },
 ];
@@ -179,7 +179,7 @@ export default function CustomerServicePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="relative h-[500px] hidden lg:block"
+              className="relative h-[300px] md:h-[400px] lg:h-[500px] mt-8 lg:mt-0"
             >
               <Image
                 src="/service-icons/customer services/service-icon.png"

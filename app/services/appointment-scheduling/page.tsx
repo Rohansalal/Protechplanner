@@ -27,36 +27,42 @@ const SERVICES = [
     title: "Calendar Management",
     description: "Comprehensive calendar management across multiple platforms to keep your schedule organized",
     icon: Calendar,
+    image: "/service-icons/appointment-scheduling/calendar-management.png",
     href: "/services/appointment-scheduling/calendar-management",
   },
   {
     title: "Booking Systems",
     description: "Professional online booking systems that make scheduling effortless for your clients",
     icon: Users,
+    image: "/service-icons/appointment-scheduling/booking-systems.png",
     href: "/services/appointment-scheduling/booking-systems",
   },
   {
     title: "Meeting Coordination",
     description: "Complete meeting coordination and logistics management for seamless operations",
     icon: Settings,
+    image: "/service-icons/appointment-scheduling/meeting-coordination.png",
     href: "/services/appointment-scheduling/meeting-coordination",
   },
   {
     title: "Reminder Services",
     description: "Automated reminder systems to reduce no-shows and keep everyone on schedule",
     icon: Bell,
+    image: "/service-icons/appointment-scheduling/reminder-services.png",
     href: "/services/appointment-scheduling/reminder-services",
   },
   {
     title: "Rescheduling Management",
     description: "Efficient rescheduling and cancellation handling to maintain schedule flexibility",
     icon: RefreshCw,
+    image: "/service-icons/appointment-scheduling/rescheduling-management.png",
     href: "/services/appointment-scheduling/rescheduling-management",
   },
   {
     title: "Time Zone Coordination",
     description: "Global time zone coordination for international clients and remote meetings",
     icon: Globe,
+    image: "/service-icons/appointment-scheduling/time-zone-coordination.png",
     href: "/services/appointment-scheduling/time-zone-coordination",
   },
 ];
@@ -172,7 +178,7 @@ export default function AppointmentSchedulingPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="relative h-[500px] hidden lg:block"
+              className="relative h-[300px] md:h-[400px] lg:h-[500px] mt-8 lg:mt-0"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-violet-100/30 to-transparent rounded-2xl" />
               <Image
@@ -211,18 +217,30 @@ export default function AppointmentSchedulingPage() {
                 className="bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-lg hover:border-[#215ACD]/30 transition-all duration-300 flex flex-col group"
               >
                 {/* Card Illustration Area */}
-                <div className="h-[200px] bg-gradient-to-b from-white to-[#F8F8F8] relative overflow-hidden p-6 flex items-center justify-center">
-                  {/* Decorative Circle Background */}
-                  <div className="absolute w-[150px] h-[150px] bg-violet-50 rounded-full blur-2xl opacity-60 group-hover:opacity-80 transition-opacity" />
+                <div className="h-[200px] bg-gradient-to-b from-white to-[#F8F8F8] relative overflow-hidden">
+                  {service.image ? (
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="h-full p-6 flex items-center justify-center">
+                      {/* Decorative Circle Background */}
+                      <div className="absolute w-[150px] h-[150px] bg-violet-50 rounded-full blur-2xl opacity-60 group-hover:opacity-80 transition-opacity" />
 
-                  {/* Icon/Graphic Representative */}
-                  <div className="relative z-10 w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center border border-slate-50 group-hover:scale-110 transition-transform duration-300">
-                    <service.icon className="w-10 h-10 text-[#215ACD]" strokeWidth={1.5} />
-                  </div>
+                      {/* Icon/Graphic Representative */}
+                      <div className="relative z-10 w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center border border-slate-50 group-hover:scale-110 transition-transform duration-300">
+                        <service.icon className="w-10 h-10 text-[#215ACD]" strokeWidth={1.5} />
+                      </div>
 
-                  {/* Floating decorative 'cards' behind */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-8 -translate-y-2 w-16 h-20 bg-[#FDDA77] rounded-lg -z-0 rotate-[-12deg] opacity-80" />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-[-10px] -translate-y-[-10px] w-20 h-16 bg-[#215ACD] rounded-lg -z-0 rotate-[5deg] opacity-10" />
+                      {/* Floating decorative 'cards' behind */}
+                      <div className="absolute top-1/2 left-1/2 -translate-x-8 -translate-y-2 w-16 h-20 bg-[#FDDA77] rounded-lg -z-0 rotate-[-12deg] opacity-80" />
+                      <div className="absolute top-1/2 left-1/2 -translate-x-[-10px] -translate-y-[-10px] w-20 h-16 bg-[#215ACD] rounded-lg -z-0 rotate-[5deg] opacity-10" />
+                    </div>
+                  )}
                 </div>
 
                 <div className="p-8 pt-6 flex-1 flex flex-col gap-3">

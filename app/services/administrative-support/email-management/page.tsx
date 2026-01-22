@@ -161,10 +161,11 @@ export default function EmailManagementPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#215ACD]/10 to-transparent rounded-2xl" />
               <Image
-                src="https://placehold.co/600x500/eef2ff/215acd?text=Email+Management"
-                alt="Email Management Dashboard"
+                src="/service-icons/administrtive-support/email management (1).png"
+                alt="Email Management Service"
                 fill
                 className="object-contain drop-shadow-2xl"
+                priority
               />
             </motion.div>
           </div>

@@ -9,9 +9,13 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-
-
-
+  // SEO Optimizations
+  compress: true,
+  productionBrowserSourceMaps: false,
+  // Enable static generation for better SEO
+  experimental: {
+    optimizeCss: true,
+  },
 }
 
 export default nextConfig

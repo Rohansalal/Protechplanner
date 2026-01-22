@@ -1,0 +1,41 @@
+# robots.txt for ProTech Planner
+# Generated for optimal SEO crawling
+
+# Allow all bots
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /admin
+Disallow: /.env
+Disallow: /.env.local
+Disallow: /node_modules/
+Disallow: /.next/
+
+# Specific crawl delay for all bots (in seconds)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.protechplanner.com/api/sitemap.xml
+
+# Google specific rules
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Crawl-delay: 0
+
+# Bing specific rules
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Crawl-delay: 10

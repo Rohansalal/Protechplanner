@@ -194,7 +194,7 @@ export default function BusinessAnalyticsPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="relative h-[500px] hidden lg:block"
+              className="relative h-[300px] md:h-[400px] lg:h-[500px] mt-8 lg:mt-0"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-transparent rounded-2xl" />
               <Image

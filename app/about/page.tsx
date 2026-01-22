@@ -30,21 +30,21 @@ const stats = [
 
 const team = [
   {
-    name: "Jennifer Martinez",
+    name: "Pankaj Rautela",
     role: "Founder & CEO",
     bio: "Former Fortune 500 executive with 15+ years in operations management. Passionate about helping businesses scale efficiently through strategic virtual assistance.",
     image: "/professional-woman-ceo-executive-headshot.jpg",
   },
   {
-    name: "David Thompson",
-    role: "Head of Operations",
+    name: "Prajwal Sharma",
+    role: "Head of Operations & COO",
     bio: "Expert in process optimization and team management with a proven track record of delivering exceptional service quality across global teams.",
     image: "/professional-operations-manager.png",
   },
   {
-    name: "Sarah Kim",
-    role: "Client Success Manager",
-    bio: "Dedicated to building lasting partnerships and ensuring our clients maximize the value of their virtual assistant relationships.",
+    name: "Rohan Salal",
+    role: "Head of Development & CTO",
+    bio: "Expert in software development and cloud computing with a proven track record of delivering exceptional service quality across global teams.",
     image: "/professional-woman-client-success-manager-headshot.jpg",
   },
 ]

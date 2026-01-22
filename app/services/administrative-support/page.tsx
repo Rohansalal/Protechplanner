@@ -22,6 +22,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { AutoConsultationModal } from "@/components/auto-consultation-modal";
 import { Button } from "@/components/ui/button";
+import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/seo-utils";
 
 // ============================================================================
 // DATA CONSTANTS
@@ -32,49 +33,49 @@ const SERVICES = [
     title: "Email Management",
     description: "Optimize your day-to-day with expert email, scheduling, and document management",
     icon: Mail,
-    image: "/service-icons/administrative-support/email management (1).png",
+    image: "/service-icons/administrtive-support/email management (1).png",
     alt: "Email Management",
-    href: "/services/email-management"
+    href: "/services/administrative-support/email-management"
   },
   {
     title: "Document Creation",
     description: "Elevate your support with our team of dedicated customer service professionals",
     icon: FileText,
-    image: "/service-icons/administrative-support/document-creation.png",
+    image: "/service-icons/administrtive-support/document creation (1).png",
     alt: "Document Creation",
-    href: "/services/document-creation"
+    href: "/services/administrative-support/document-creation"
   },
   {
     title: "Data Entry & Management",
     description: "Streamline your schedule and optimize availability with expert calendar support.",
     icon: Database,
-    image: "/service-icons/administrative-support/data-entry.png",
+    image: "/service-icons/administrtive-support/data entry management.png",
     alt: "Data Entry Management",
-    href: "/services/data-entry"
+    href: "/services/administrative-support/data-entry"
   },
   {
     title: "File Organization",
     description: "Optimize your day-to-day with expert email, scheduling, and document management",
     icon: FolderOpen,
-    image: "/service-icons/administrative-support/file-organization.png",
+    image: "/service-icons/administrtive-support/file organization.png",
     alt: "File Organization",
-    href: "/services/file-organization"
+    href: "/services/administrative-support/file-organization"
   },
   {
     title: "Travel Coordination",
     description: "Elevate your support with our team of dedicated customer service professionals",
     icon: Plane,
-    image: "/service-icons/administrative-support/travel-coordination.png",
+    image: "/service-icons/administrtive-support/travel coordination.png",
     alt: "Travel Coordination",
-    href: "/services/travel-coordination"
+    href: "/services/administrative-support/travel-coordination"
   },
   {
     title: "Expense Management",
     description: "Streamline your schedule and optimize availability with expert calendar support.",
     icon: CreditCard,
-    image: "/service-icons/administrative-support/expense-management.png",
+    image: "/service-icons/administrtive-support/expense management.png",
     alt: "Expense Management",
-    href: "/services/expense-management"
+    href: "/services/administrative-support/expense-management"
   },
 ];
 
@@ -170,7 +171,7 @@ function HeroSection() {
         </div>
 
         {/* Right Column: Abstract Graphic Collage */}
-        <div className="relative h-[500px] w-full hidden lg:block">
+        <div className="relative h-[300px] md:h-[400px] lg:h-[500px] w-full mt-8 lg:mt-0">
           {/* Background Blurs */}
           <div className="absolute top-[10%] right-[10%] w-[300px] h-[300px] bg-[#7DA0E5] opacity-30 rounded-full blur-[80px]" />
           <div className="absolute bottom-[10%] left-[10%] w-[250px] h-[250px] bg-[#96D5FF] opacity-30 rounded-full blur-[60px]" />
@@ -458,8 +459,62 @@ function CTASection() {
 // ============================================================================
 
 export default function AdministrativeSupportPage() {
+  const breadcrumbs = [
+    { name: "Home", url: "/" },
+    { name: "Services", url: "/services" },
+    { name: "Administrative Support", url: "/services/administrative-support" },
+  ];
+
+  const faqs = [
+    {
+      question: "What is administrative support from a virtual assistant?",
+      answer: "Administrative support includes email management, scheduling, document creation, data entry, file organization, and other tasks that help keep your business running smoothly."
+    },
+    {
+      question: "How can I benefit from administrative virtual assistants?",
+      answer: "Virtual assistants free up your time to focus on high-value business activities while they handle routine administrative tasks. This can save you 50+ hours per month."
+    },
+    {
+      question: "What tools and applications do your assistants work with?",
+      answer: "Our team is proficient in Google Workspace, Microsoft 365, Slack, Zoom, Asana, Trello, and many other business tools."
+    },
+    {
+      question: "Are your virtual assistants available 24/7?",
+      answer: "Yes, our global presence ensures your administrative tasks are processed around the clock with rapid response times."
+    },
+    {
+      question: "How is my data kept secure?",
+      answer: "We follow strict security protocols, including encrypted communications, secure document handling, and confidentiality agreements to protect your sensitive business information."
+    }
+  ];
+
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateServiceSchema(
+            "Administrative Support Services",
+            "Comprehensive administrative support services including email management, document creation, data entry, file organization, and more. Expert virtual assistants available 24/7 for your business.",
+            "/service-icons/administrtive-support/service-icon.png"
+          ))
+        }}
+      />
+      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(breadcrumbs))
+        }}
+      />
+      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateFAQSchema(faqs))
+        }}
+      />
+
       <Navigation />
 
       <HeroSection />

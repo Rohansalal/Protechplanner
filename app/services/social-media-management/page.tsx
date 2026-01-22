@@ -28,36 +28,42 @@ const SERVICES = [
     icon: FileText,
     title: "Content Creation",
     description: "High-quality content creation and curation that resonates with your target audience across all platforms.",
+    image: "/service-icons/social-media-management/content-creation.png",
     link: "/services/social-media-management/content-creation"
   },
   {
     icon: Calendar,
     title: "Post Scheduling",
     description: "Strategic post scheduling across all major social media platforms for optimal reach and engagement.",
+    image: "/service-icons/social-media-management/post-scheduling.png",
     link: "/services/social-media-management/post-scheduling"
   },
   {
     icon: MessageCircle,
     title: "Community Management",
     description: "Active community management and engagement to build strong relationships with your followers.",
+    image: "/service-icons/social-media-management/community-management.png",
     link: "/services/social-media-management/community-management"
   },
   {
     icon: BarChart3,
     title: "Analytics & Reporting",
     description: "Comprehensive social media analytics and reporting to track performance and drive growth.",
+    image: "/service-icons/social-media-management/analytics.png",
     link: "/services/social-media-management/analytics"
   },
   {
     icon: Hash,
     title: "Hashtag Optimization",
     description: "Strategic hashtag research and optimization to increase visibility and reach your target audience.",
+    image: "/service-icons/social-media-management/hashtag-optimization.png",
     link: "/services/social-media-management/hashtag-optimization"
   },
   {
     icon: UserPlus,
     title: "Influencer Outreach",
     description: "Influencer outreach coordination and partnership management for expanded brand reach.",
+    image: "/service-icons/social-media-management/influencer-outreach.png",
     link: "/services/social-media-management/influencer-outreach"
   }
 ];
@@ -196,7 +202,7 @@ export default function SocialMediaManagementPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="relative h-[500px] hidden lg:block"
+              className="relative h-[300px] md:h-[400px] lg:h-[500px] mt-8 lg:mt-0"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-purple-100/30 to-transparent rounded-2xl" />
               <Image
@@ -232,20 +238,38 @@ export default function SocialMediaManagementPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow group"
+                className="bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-lg hover:border-[#215ACD]/30 transition-all duration-300 flex flex-col group"
               >
-                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
-                  <service.icon className="w-7 h-7 text-[#215ACD]" />
+                {/* Card Image Area */}
+                <div className="relative h-[200px] bg-gradient-to-b from-white to-[#F8F8F8] overflow-hidden">
+                  {service.image ? (
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="h-full flex items-center justify-center p-6">
+                      <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <service.icon className="w-7 h-7 text-[#215ACD]" />
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{service.title}</h3>
-                <p className="text-[#5C5C5C] leading-relaxed mb-4">{service.description}</p>
-                <Link
-                  href={service.link}
-                  className="inline-flex items-center text-[#215ACD] font-medium hover:gap-2 transition-all"
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4 ml-1 group-hover:ml-2 transition-all" />
-                </Link>
+
+                <div className="p-8 flex-1 flex flex-col gap-3">
+                  <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{service.title}</h3>
+                  <p className="text-[#5C5C5C] leading-relaxed mb-4 flex-1">{service.description}</p>
+                  <Link
+                    href={service.link}
+                    className="inline-flex items-center text-[#215ACD] font-medium hover:gap-2 transition-all"
+                  >
+                    Learn More
+                    <ArrowRight className="w-4 h-4 ml-1 group-hover:ml-2 transition-all" />
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>

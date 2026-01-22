@@ -27,36 +27,42 @@ const SERVICES = [
     icon: BookOpen,
     title: "Bookkeeping Services",
     description: "Accurate daily bookkeeping and transaction recording to keep your financial records organized and up-to-date.",
+    image: "/service-icons/finance-accounts/bookkeeping.png",
     link: "/services/finance-accounts/bookkeeping"
   },
   {
     icon: DollarSign,
     title: "Payroll Processing",
     description: "Complete payroll management including salary calculations, tax deductions, and compliance reporting.",
+    image: "/service-icons/finance-accounts/payroll-processing.png",
     link: "/services/finance-accounts/payroll-processing"
   },
   {
     icon: Receipt,
     title: "Tax Preparation",
     description: "Expert tax preparation and filing services to maximize deductions and ensure compliance.",
+    image: "/service-icons/finance-accounts/tax-preparation.png",
     link: "/services/finance-accounts/tax-preparation"
   },
   {
     icon: FileText,
     title: "Financial Reporting",
     description: "Comprehensive financial statements, P&L reports, balance sheets, and cash flow analysis.",
+    image: "/service-icons/finance-accounts/financial-reporting.png",
     link: "/services/finance-accounts/financial-reporting"
   },
   {
     icon: PieChart,
     title: "Budget Planning",
     description: "Strategic budget planning and forecasting to help you make informed financial decisions.",
+    image: "/service-icons/finance-accounts/budget-planning.png",
     link: "/services/finance-accounts/budget-planning"
   },
   {
     icon: TrendingUp,
     title: "Financial Consulting",
     description: "Expert financial advice and consulting to optimize your business finances and growth strategy.",
+    image: "/service-icons/finance-accounts/financial-consulting.png",
     link: "/services/finance-accounts/financial-consulting"
   }
 ];
@@ -195,7 +201,7 @@ export default function FinanceAccountsPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="relative h-[500px] hidden lg:block"
+              className="relative h-[300px] md:h-[400px] lg:h-[500px] mt-8 lg:mt-0"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-100/30 to-transparent rounded-2xl" />
               <Image
@@ -231,20 +237,38 @@ export default function FinanceAccountsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-[#F8F9FB] rounded-xl p-8 hover:shadow-lg transition-shadow group"
+                className="bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-lg hover:border-[#215ACD]/30 transition-all duration-300 flex flex-col group"
               >
-                <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
-                  <service.icon className="w-7 h-7 text-[#215ACD]" />
+                {/* Card Image Area */}
+                <div className="relative h-[200px] bg-gradient-to-b from-white to-[#F8F8F8] overflow-hidden">
+                  {service.image ? (
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="h-full flex items-center justify-center p-6">
+                      <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <service.icon className="w-7 h-7 text-[#215ACD]" />
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{service.title}</h3>
-                <p className="text-[#5C5C5C] leading-relaxed mb-4">{service.description}</p>
-                <Link
-                  href={service.link}
-                  className="inline-flex items-center text-[#215ACD] font-medium hover:gap-2 transition-all"
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4 ml-1 group-hover:ml-2 transition-all" />
-                </Link>
+
+                <div className="p-8 flex-1 flex flex-col gap-3">
+                  <h3 className="text-[22px] font-semibold text-[#414141] mb-3">{service.title}</h3>
+                  <p className="text-[#5C5C5C] leading-relaxed mb-4 flex-1">{service.description}</p>
+                  <Link
+                    href={service.link}
+                    className="inline-flex items-center text-[#215ACD] font-medium hover:gap-2 transition-all"
+                  >
+                    Learn More
+                    <ArrowRight className="w-4 h-4 ml-1 group-hover:ml-2 transition-all" />
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>
