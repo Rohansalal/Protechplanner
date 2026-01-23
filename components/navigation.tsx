@@ -373,7 +373,7 @@ export function Navigation() {
                       <div className="mb-4">
                         <Link
                           href="/services"
-                          className="text-lg font-bold text-[#213959] hover:text-[#1a2d47] transition-colors inline-flex items-center gap-2"
+                          className="text-lg font-bold text-[#213959] hover:text-[#285eca] transition-colors inline-flex items-center gap-2"
                         >
                           All Services
                         </Link>
@@ -391,8 +391,8 @@ export function Navigation() {
                             <Link
                               href={`/services/${service.slug}`}
                               className={`flex items-center justify-between px-3 py-2 text-xs transition-all duration-200 rounded-lg group/item w-full border-l-2 ${hoveredService === service.slug
-                                ? 'bg-[#213959]/20 text-[#213959] border-[#213959] font-semibold shadow-sm'
-                                : 'border-transparent hover:bg-[#213959]/10 hover:text-[#213959] text-slate-700'
+                                ? 'bg-[#011880]/20 text-[#011880] border-[#011880] font-semibold shadow-sm'
+                                : 'border-transparent hover:bg-[#011880]/10 hover:text-[#011880] text-slate-700'
                                 }`}
                             >
                               <span className="font-medium whitespace-nowrap truncate">
@@ -412,11 +412,11 @@ export function Navigation() {
                         return service ? (
                           <div className="h-full flex flex-col animate-in fade-in duration-200">
                             {/* Service Header */}
-                            <div className="p-4 border-b border-slate-100 bg-gradient-to-r from-indigo-50/50 to-white">
+                            <div className="p-4 border-b border-slate-100 bg-slate-50">
                               <h3 className="text-xl font-bold text-[#213959] mb-1">
                                 {service.title}
                               </h3>
-                              <p className="text-xs text-slate-500">
+                              <p className="text-xs text-slate-600">
                                 Comprehensive solutions to streamline your operations
                               </p>
                             </div>
@@ -429,18 +429,18 @@ export function Navigation() {
                                     <Link
                                       key={subpage.slug}
                                       href={`/services/${service.slug}/${subpage.slug}`}
-                                      className="group/subpage block p-3 rounded-lg border border-transparent hover:border-[#213959]/20 hover:bg-indigo-50/30 transition-all duration-200"
+                                      className="group/subpage block p-3 rounded-lg bg-[#285eca] border border-[#285eca] hover:bg-[#1e4cb8] hover:border-[#1e4cb8] transition-all duration-200 shadow-sm"
                                     >
                                       <div className="flex items-center justify-between gap-2">
                                         <div className="flex items-center gap-2 min-w-0 flex-1">
-                                          <div className="w-5 h-5 text-[#213959]/60 group-hover/subpage:text-[#213959] transition-colors flex-shrink-0">
+                                          <div className="w-5 h-5 text-white/70 group-hover/subpage:text-white transition-colors flex-shrink-0">
                                             <SubServiceIcon slug={subpage.slug as keyof typeof iconMap} />
                                           </div>
-                                          <h4 className="font-medium text-slate-700 group-hover/subpage:text-[#213959] transition-colors text-xs whitespace-nowrap truncate">
+                                          <h4 className="font-medium text-white group-hover/subpage:text-white transition-colors text-xs whitespace-nowrap truncate">
                                             {subpage.title}
                                           </h4>
                                         </div>
-                                        <ArrowRight className="w-4 h-4 text-[#213959]/40 group-hover/subpage:text-[#213959] transition-all duration-200 flex-shrink-0 opacity-0 group-hover/subpage:opacity-100 transform group-hover/subpage:translate-x-0 -translate-x-2" />
+                                        <ArrowRight className="w-4 h-4 text-white/60 group-hover/subpage:text-white transition-all duration-200 flex-shrink-0 opacity-0 group-hover/subpage:opacity-100 transform group-hover/subpage:translate-x-0 -translate-x-2" />
                                       </div>
                                     </Link>
                                   ))}
@@ -450,7 +450,7 @@ export function Navigation() {
                                   <div className="w-12 h-12 bg-slate-100 rounded-full mx-auto mb-3 flex items-center justify-center">
                                     <Menu className="h-6 w-6 text-slate-400" />
                                   </div>
-                                  <p className="text-slate-500 text-xs mb-3">
+                                  <p className="text-slate-600 text-xs mb-3">
                                     More specialized services coming soon
                                   </p>
                                   <Button
@@ -466,11 +466,11 @@ export function Navigation() {
                             </div>
 
                             {/* CTA Button */}
-                            <div className="p-4 border-t border-slate-100 bg-slate-50/50 rounded-br-2xl">
+                            <div className="p-4 border-t border-slate-100 bg-slate-50 rounded-br-2xl">
                               <Button
                                 asChild
                                 size="sm"
-                                className="w-full bg-[#213959] hover:bg-[#1a2d47] text-white h-9 text-xs font-semibold"
+                                className="w-full bg-[#213959] hover:bg-[#285eca] text-white h-9 text-xs font-semibold"
                               >
                                 <Link href={`/services/${service.slug}`}>
                                   Explore {service.title}
@@ -481,19 +481,19 @@ export function Navigation() {
                         ) : (
                           <div className="flex items-center justify-center h-full p-6 text-center">
                             <div className="max-w-xs">
-                              <div className="w-16 h-16 mx-auto mb-4 bg-[#213959]/10 rounded-xl flex items-center justify-center">
-                                <ChevronDown className="h-8 w-8 text-[#213959]" />
+                              <div className="w-16 h-16 mx-auto mb-4 bg-slate-100 rounded-xl flex items-center justify-center">
+                                <ChevronDown className="h-8 w-8 text-slate-600" />
                               </div>
                               <h3 className="text-lg font-bold text-slate-900 mb-2">
                                 Explore Services
                               </h3>
-                              <p className="text-slate-500 text-sm mb-4 leading-relaxed">
+                              <p className="text-slate-600 text-sm mb-4 leading-relaxed">
                                 Hover over any service to view specialized solutions
                               </p>
                               <Button
                                 asChild
                                 size="sm"
-                                className="bg-[#213959] hover:bg-[#1a2d47] text-white h-9 px-6 text-xs"
+                                className="bg-[#213959] hover:bg-[#285eca] text-white h-9 px-6 text-xs font-semibold"
                               >
                                 <Link href="/contact">Get Consultation</Link>
                               </Button>
@@ -633,7 +633,7 @@ export function Navigation() {
                   <div className="pl-4 space-y-3 mt-3 max-h-[60vh] overflow-y-auto">
                     <Link
                       href="/services"
-                      className="text-[#213959] hover:text-[#1a2d47] block px-4 py-3 rounded-xl text-sm font-medium bg-[#213959]/5"
+                      className="text-[#213959] hover:text-[#285eca] block px-4 py-3 rounded-xl text-sm font-medium bg-[#213959]/5"
                       onClick={() => setIsOpen(false)}
                     >
                       All Services
@@ -729,7 +729,7 @@ export function Navigation() {
               <div className="pt-4">
                 <Button
                   asChild
-                  className="w-full bg-[#213959] hover:bg-[#1a2d47] text-white h-12 text-base font-semibold shadow-md"
+                  className="w-full bg-[#213959] hover:bg-[#285eca] text-white h-12 text-base font-semibold shadow-md"
                   onClick={() => setIsOpen(false)}
                 >
                   <Link href="/contact">Get Started</Link>
@@ -1091,7 +1091,7 @@ export function Navigation() {
 //           <div className="hidden lg:block">
 //             <Button
 //               asChild
-//               className="bg-[#213959] hover:bg-[#1a2d47] text-white shadow-lg shadow-indigo-900/20 transition-all hover:scale-105"
+//               className="bg-[#213959] hover:bg-[#285eca] text-white shadow-lg shadow-indigo-900/20 transition-all hover:scale-105"
 //             >
 //               <Link href="/contact">Start Free Trial</Link>
 //             </Button>
@@ -1191,7 +1191,7 @@ export function Navigation() {
 //               <div className="pt-4 px-2">
 //                 <Button
 //                   asChild
-//                   className="w-full bg-[#213959] hover:bg-[#1a2d47] h-12 text-base font-semibold shadow-md"
+//                   className="w-full bg-[#213959] hover:bg-[#285eca] h-12 text-base font-semibold shadow-md"
 //                   onClick={() => setIsOpen(false)}
 //                 >
 //                   <Link href="/contact">Get Started</Link>
