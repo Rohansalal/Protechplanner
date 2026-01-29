@@ -42,7 +42,7 @@ const team = [
     image: "/professional-operations-manager.png",
   },
   {
-    name: "Rohan Salal",
+    name: "Kuldeep",
     role: "Head of Development & CTO",
     bio: "Expert in software development and cloud computing with a proven track record of delivering exceptional service quality across global teams.",
     image: "/professional-woman-client-success-manager-headshot.jpg",
